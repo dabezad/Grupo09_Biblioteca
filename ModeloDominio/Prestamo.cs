@@ -8,5 +8,7 @@ namespace ModeloDominio
 {
     public class Prestamo
     {
+
+
     }
 }

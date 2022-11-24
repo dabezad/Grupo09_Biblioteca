@@ -8,5 +8,8 @@ namespace ModeloDominio
 {
     internal class Ejemplar
     {
+        private string codigo;
+        private Estado prestado;
+
     }
 }
