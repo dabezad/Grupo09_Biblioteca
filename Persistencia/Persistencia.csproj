@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BD.cs" />
+    <Compile Include="Transformadores.cs" />
+    <Compile Include="UsuarioDato.cs" />
     <Compile Include="PrestamoDato.cs" />
     <Compile Include="EjemplarDato.cs" />
     <Compile Include="LibroDato.cs" />
