@@ -42,6 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BD.cs" />
+    <Compile Include="PrestamoDato.cs" />
+    <Compile Include="EjemplarDato.cs" />
+    <Compile Include="LibroDato.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tabla.cs" />
