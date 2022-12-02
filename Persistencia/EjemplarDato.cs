@@ -10,8 +10,8 @@ namespace Persistencia
     {
         private string codigo;
         private string estado;
-        private LibroDato libro;
-        public EjemplarDato(string codigo, string estado, LibroDato libro): base(codigo)
+        private string libro;
+        public EjemplarDato(string codigo, string estado, string libro): base(codigo)
         {
             this.codigo = codigo;
             this.estado = estado;

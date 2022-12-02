@@ -9,12 +9,12 @@ namespace Persistencia
     internal class PrestamoDato: Entity<string>
     {
         private string codigo;
-        private UsuarioDato usuario;
-        private EjemplarDato[] ejemplares;
+        private string usuario;
+        private string[] ejemplares;
         private DateTime fRealizado;
         private DateTime fFinPrestamo;
         private string estado;
-        public PrestamoDato(string codigo, UsuarioDato usuario, EjemplarDato[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo, string estado): base(codigo)
+        public PrestamoDato(string codigo, string usuario, string[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo, string estado): base(codigo)
         {
             this.codigo = codigo;
             this.usuario = usuario;

@@ -13,21 +13,21 @@ namespace ModeloDominio
         private Ejemplar[] ejemplares;
         private DateTime fRealizado;
         private DateTime fFinPrestamo;
-        private string estado;
+        private EstadoEnum estado;
 
-        private Prestamo(string codigo, Usuario usuario, Ejemplar[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo, string estado)
+        private Prestamo(string codigo, Usuario usuario, Ejemplar[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo)
         {
             this.codigo = codigo;
             this.usuario = usuario;
             this.ejemplares = ejemplares;
             this.fRealizado = fRealizado;
             this.fFinPrestamo = fFinPrestamo;
-            this.estado = estado;
+            this.estado = EstadoEnum.EnProceso;
         }
 
         public string Codigo { get { return this.codigo; } }
         public DateTime FRealizado { get { return this.fRealizado; } }
         public DateTime FFinPrestamo { get { return this.fFinPrestamo; } }
-        public string Estado { get { return this.estado; } set { this.estado = value; } }
+        public EstadoEnum Estado { get { return this.estado; } }
     }
 }

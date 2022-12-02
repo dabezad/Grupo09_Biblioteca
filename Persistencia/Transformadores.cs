@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Persistencia
 {
-    internal class Transformadores
+    internal static class Transformadores
     {
         public static UsuarioDato UsuarioADato(Usuario u)
         {
