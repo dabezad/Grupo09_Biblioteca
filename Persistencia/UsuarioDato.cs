@@ -10,10 +10,12 @@ namespace Persistencia
     {
         private string dni;
         private string nombre;
-        public UsuarioDato(string dni, string nombre): base(dni)
+        private string personalBAlta;
+        public UsuarioDato(string dni, string nombre, string personal): base(dni)
         {
             this.dni = dni;
             this.nombre = nombre;
+            this.personalBAlta = personal;
         }
     }
 }

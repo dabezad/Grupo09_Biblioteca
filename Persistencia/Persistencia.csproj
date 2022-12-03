@@ -51,5 +51,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tabla.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ModeloDominio\ModeloDominio.csproj">
+      <Project>{20cd19fd-693e-476f-8f8b-89cdaf20cab4}</Project>
+      <Name>ModeloDominio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

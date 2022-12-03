@@ -14,7 +14,8 @@ namespace Persistencia
         private DateTime fRealizado;
         private DateTime fFinPrestamo;
         private string estado;
-        public PrestamoDato(string codigo, string usuario, string[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo, string estado): base(codigo)
+        private string personalBAlta;
+        public PrestamoDato(string codigo, string usuario, string[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo, string estado, string personal): base(codigo)
         {
             this.codigo = codigo;
             this.usuario = usuario;
@@ -22,6 +23,7 @@ namespace Persistencia
             this.fRealizado = fRealizado;
             this.fFinPrestamo = fFinPrestamo;
             this.estado = estado;
+            this.personalBAlta = personal;
         }
         public string Codigo { get { return this.codigo; } }
         public DateTime FRealizado { get { return this.fRealizado; } }

@@ -12,12 +12,14 @@ namespace Persistencia
         private string titulo;
         private string autor;
         private string editorial;
-        public LibroDato(string isbn, string titulo, string autor, string editorial): base(isbn)
+        private string personalBAlta;
+        public LibroDato(string isbn, string titulo, string autor, string editorial, string personal): base(isbn)
         {
             this.isbn = isbn;
             this.titulo = titulo;
             this.autor = autor;
             this.editorial = editorial;
+            this.personalBAlta = personal;
         }
         public string Isbn { get { return isbn; } }
         public string Titulo { get { return titulo; } set { titulo = value; } }
