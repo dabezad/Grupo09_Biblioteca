@@ -12,7 +12,7 @@ namespace ModeloDominio
         private string estado;
         private Libro libro;
 
-        private Ejemplar(string codigo, string estado, Libro libro)
+        public Ejemplar(string codigo, string estado, Libro libro)
         {
             this.codigo = codigo;
             this.estado = estado;
@@ -21,5 +21,6 @@ namespace ModeloDominio
 
         public string Codigo { get { return codigo; } }
         public string Estado { get { return estado; } set { this.estado = value; } }
+        public Libro Libro { get { return libro; } }
     }
 }

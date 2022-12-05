@@ -15,7 +15,7 @@ namespace ModeloDominio
         private DateTime fFinPrestamo;
         private EstadoEnum estado;
 
-        private Prestamo(string codigo, Usuario usuario, Ejemplar[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo)
+        public Prestamo(string codigo, Usuario usuario, Ejemplar[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo)
         {
             this.codigo = codigo;
             this.usuario = usuario;
