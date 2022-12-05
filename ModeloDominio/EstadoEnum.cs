@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModeloDominio
 {
-    internal enum EstadoEnum
+    public enum EstadoEnum
     {
         EnProceso,
         Finalizado

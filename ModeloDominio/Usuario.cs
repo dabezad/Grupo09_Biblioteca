@@ -19,6 +19,12 @@ namespace ModeloDominio
             this.personalBAlta = personal;
         }
 
+        public Usuario(string dni, string nombre)
+        {
+            this.dni = dni;
+            Nombre = nombre;
+        }
+
         public string Dni
         {
             get { return this.dni; }

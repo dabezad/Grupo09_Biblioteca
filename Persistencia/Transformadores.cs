@@ -9,7 +9,7 @@ namespace Persistencia
 {
     internal static class Transformadores
     {
-        public static UsuarioDato UsuarioADato(Usuario u)
+        public static UsuarioDato UsuarioADato(Usuario u, string personal)
         {
             UsuarioDato ud = new UsuarioDato(u.Dni, u.Nombre, u.PersonalBAlta);
             return ud;
@@ -21,7 +21,7 @@ namespace Persistencia
             return u;
         }
 
-        public static EjemplarDato EjemplarADato(Ejemplar e)
+        public static EjemplarDato EjemplarADato(Ejemplar e, string personal)
         {
             EjemplarDato ed = new EjemplarDato(e.)
             return ed;
