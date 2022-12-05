@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModeloDominio
 {
-    internal class PersonalBiblioteca
+    public class PersonalBiblioteca
     {
         private string nombre;
         private string contraseña;

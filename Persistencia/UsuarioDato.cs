@@ -17,5 +17,8 @@ namespace Persistencia
             this.nombre = nombre;
             this.personalBAlta = personal;
         }
+        public string Dni { get { return dni; } }
+        public string Nombre { get { return nombre; } }
+        public string PersonalBAlta { get { return this.personalBAlta; } }
     }
 }

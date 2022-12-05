@@ -28,6 +28,5 @@ namespace ModeloDominio
         public string Codigo { get { return this.codigo; } }
         public DateTime FRealizado { get { return this.fRealizado; } }
         public DateTime FFinPrestamo { get { return this.fFinPrestamo; } }
-        public EstadoEnum Estado { get { return this.estado; } }
     }
 }
