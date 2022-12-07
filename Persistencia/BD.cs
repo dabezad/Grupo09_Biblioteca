@@ -50,15 +50,24 @@ namespace Persistencia
             return hecho;
         }
 
+        public static T READ<T>(string id)
+        {
+
+        }
+
+        public static bool UPDATE<T>(T t) where T: Entity<string>
+        {
+            return true;
+        }
+
         public static bool DELETE<T>(T t) where T: Entity<string>
         {
 
         }
 
-        public static T SEARCH<T>(string id)
-        {
+        
 
-        }
+        
 
 
     }

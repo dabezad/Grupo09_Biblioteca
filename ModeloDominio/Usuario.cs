@@ -22,7 +22,7 @@ namespace ModeloDominio
         public Usuario(string dni, string nombre)
         {
             this.dni = dni;
-            Nombre = nombre;
+            this.nombre = nombre;
         }
 
         public string Dni

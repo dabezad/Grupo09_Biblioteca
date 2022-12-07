@@ -14,8 +14,9 @@ namespace ModeloDominio
         private DateTime fRealizado;
         private DateTime fFinPrestamo;
         private EstadoEnum estado;
+        private string personalBAlta;
 
-        public Prestamo(string codigo, Usuario usuario, Ejemplar[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo)
+        public Prestamo(string codigo, Usuario usuario, Ejemplar[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo, string personalBAlta)
         {
             this.codigo = codigo;
             this.usuario = usuario;
@@ -23,10 +24,13 @@ namespace ModeloDominio
             this.fRealizado = fRealizado;
             this.fFinPrestamo = fFinPrestamo;
             this.estado = EstadoEnum.EnProceso;
+            this.personalBAlta = personalBAlta;
         }
 
         public string Codigo { get { return this.codigo; } }
         public DateTime FRealizado { get { return this.fRealizado; } }
         public DateTime FFinPrestamo { get { return this.fFinPrestamo; } }
+
+        public string PersonalBAlta { get { return this.personalBAlta; } }
     }
 }

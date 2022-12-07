@@ -25,5 +25,6 @@ namespace Persistencia
         public string Titulo { get { return titulo; } set { titulo = value; } }
         public string Autor { get { return autor; } set { autor = value; } }
         public string Editorial { get { return editorial; } set { editorial = value; } }
+        public string PersonalBAlta { get { return personalBAlta; } }
     }
 }
