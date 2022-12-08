@@ -28,9 +28,11 @@ namespace ModeloDominio
         }
 
         public string Codigo { get { return this.codigo; } }
+        public Usuario Usuario { get { return this.usuario; } }
+        public Ejemplar[] Ejemplares { get { return this.ejemplares; } set { this.ejemplares = value; } } 
         public DateTime FRealizado { get { return this.fRealizado; } }
-        public DateTime FFinPrestamo { get { return this.fFinPrestamo; } }
-
+        public DateTime FFinPrestamo { get { return this.fFinPrestamo; } set { this.fFinPrestamo = value; } }
+        public EstadoEnum Estado { get { return this.estado; } set { this.estado = value; } }
         public string PersonalBAlta { get { return this.personalBAlta; } }
     }
 }

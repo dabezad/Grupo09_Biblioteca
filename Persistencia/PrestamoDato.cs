@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModeloDominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,9 @@ namespace Persistencia
         private string[] ejemplares;
         private DateTime fRealizado;
         private DateTime fFinPrestamo;
-        private string estado;
+        private EstadoEnum estado;
         private string personalBAlta;
-        public PrestamoDato(string codigo, string usuario, string[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo, string estado, string personal): base(codigo)
+        public PrestamoDato(string codigo, string usuario, string[] ejemplares, DateTime fRealizado, DateTime fFinPrestamo, EstadoEnum estado, string personal): base(codigo)
         {
             this.codigo = codigo;
             this.usuario = usuario;
@@ -26,8 +27,11 @@ namespace Persistencia
             this.personalBAlta = personal;
         }
         public string Codigo { get { return this.codigo; } }
+        public string Usuario { get { return this.usuario; } }
+        public string[] Ejemplares { get { return this.ejemplares; } }
         public DateTime FRealizado { get { return this.fRealizado; } }
         public DateTime FFinPrestamo { get { return this.fFinPrestamo; } }
-        public string Estado { get { return this.estado; } set { this.estado = value; } }
+        public EstadoEnum Estado { get { return this.estado; } set { this.estado = value; } }
+        public string PersonalBAlta { get { return this.personalBAlta; } }
     }
 }

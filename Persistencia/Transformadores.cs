@@ -45,6 +45,23 @@ namespace Persistencia
             return l;
         }
 
+        public static PrestamoDato PrestamoADato(Prestamo p)
+        {
+            String[] n = new string[p.Ejemplares.Length];
+            for (int i = 0; i < n.Length; i++)
+            {
+                n[i] = p.Ejemplares[i].Codigo;
+            }
+            PrestamoDato pd = new PrestamoDato(p.Codigo, p.Usuario.Dni, n, p.FRealizado, p.FFinPrestamo, p.Estado, p.PersonalBAlta);
+            return pd; //CAMBIAR NULL POR NEW USUARIO Y NEW EJEMPLARES[] CUANDO SE IMPLEMENTE
+        }
+
+        public static Prestamo DatoAPrestamo(PrestamoDato pd)
+        {
+            Prestamo p = new Prestamo(pd.Codigo, null, null, pd.FRealizado, pd.FFinPrestamo,  pd.PersonalBAlta);
+            return p;
+        }
+
         public static PersonalBibliotecaDato PersonalADato(PersonalBiblioteca p)
         {
             PersonalBibliotecaDato pd = new PersonalBibliotecaDato(p.Nombre, p.Contraseña);
