@@ -1,4 +1,4 @@
-﻿  using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +10,9 @@ namespace ModeloDominio
     {
         private string dni;
         private string nombre;
-        private string personalBAlta;
+        private PersonalBiblioteca personalBAlta;
 
-        public Usuario(string dni, string nombre, string personal)
+        public Usuario(string dni, string nombre, PersonalBiblioteca personal)
         {
             this.dni = dni;
             this.nombre = nombre;
@@ -36,7 +36,7 @@ namespace ModeloDominio
             set {  this.nombre = value; }
         }
 
-        public string PersonalBAlta
+        public PersonalBiblioteca PersonalBAlta
         {
             get
             {  return this.personalBAlta; }

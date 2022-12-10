@@ -21,16 +21,4 @@ namespace ModeloDominio
         public string Contraseña { get { return contraseña; } }
     }
 
-
-
-    internal class PersonalAdquisiciones: PersonalBiblioteca
-    {
-        public PersonalAdquisiciones(string nombre, string contraseña) : base(nombre, contraseña) { }
-    }
-
-
-    internal class PersonalSala : PersonalBiblioteca
-    {
-        public PersonalSala(string nombre, string contraseña) : base(nombre, contraseña) { }
-    }
 }

@@ -12,9 +12,9 @@ namespace ModeloDominio
         private string titulo;
         private string autor;
         private string editorial;
-        private string personalBAlta;
+        private PersonalAdquisiciones personalBAlta;
 
-        public Libro(string isbn, string titulo, string autor, string editorial, string personal)
+        public Libro(string isbn, string titulo, string autor, string editorial, PersonalAdquisiciones personal)
         {
             this.isbn = isbn;
             this.titulo = titulo;
@@ -27,6 +27,6 @@ namespace ModeloDominio
         public string Titulo { get { return titulo; } set { titulo = value; } }
         public string Autor { get { return autor; } set { autor = value; } }
         public string Editorial { get { return editorial; } set { editorial = value; } }
-        public string PersonalBAlta { get { return personalBAlta;  } }
+        public PersonalAdquisiciones PersonalBAlta { get { return personalBAlta;  } }
     }
 }

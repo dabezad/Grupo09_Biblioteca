@@ -11,9 +11,9 @@ namespace ModeloDominio
         private string codigo;
         private EstadoEnum estado;
         private Libro libro;
-        private string personalBAlta;
+        private PersonalAdquisiciones personalBAlta;
 
-        public Ejemplar(string codigo, EstadoEnum estado, Libro libro, string personalBAlta)
+        public Ejemplar(string codigo, EstadoEnum estado, Libro libro, PersonalAdquisiciones personalBAlta)
         {
             this.codigo = codigo;
             this.estado = estado;
@@ -25,6 +25,6 @@ namespace ModeloDominio
         public EstadoEnum Estado { get { return estado; } set { this.estado = value; } }
         public Libro Libro { get { return libro; } }
         
-        public string PersonalBAlta { get { return personalBAlta; } }
+        public PersonalAdquisiciones PersonalBAlta { get { return personalBAlta; } }
     }
 }
