@@ -11,7 +11,7 @@ namespace Persistencia
     {
         public static UsuarioDato UsuarioADato(Usuario u)
         {
-            UsuarioDato ud = new UsuarioDato(u.Dni, u.Nombre, u.PersonalBAlta);
+            UsuarioDato ud = new UsuarioDato(u.Dni, u.Nombre, u.PersonalBAlta.Nombre);
             return ud;
         }
 
@@ -23,7 +23,7 @@ namespace Persistencia
 
         public static EjemplarDato EjemplarADato(Ejemplar e)
         {
-            EjemplarDato ed = new EjemplarDato(e.Codigo, e.Estado, e.Libro.Isbn, e.PersonalBAlta);
+            EjemplarDato ed = new EjemplarDato(e.Codigo, e.Estado, e.Libro.Isbn, e.PersonalBAlta.Nombre);
             return ed;
         }
 
@@ -35,7 +35,7 @@ namespace Persistencia
 
         public static LibroDato LibroADato(Libro l)
         {
-            LibroDato ld = new LibroDato(l.Isbn, l.Titulo, l.Autor, l.Editorial, l.PersonalBAlta);
+            LibroDato ld = new LibroDato(l.Isbn, l.Titulo, l.Autor, l.Editorial, l.PersonalBAlta.Nombre);
             return ld;
         }
 
@@ -52,7 +52,7 @@ namespace Persistencia
             {
                 n[i] = p.Ejemplares[i].Codigo;
             }
-            PrestamoDato pd = new PrestamoDato(p.Codigo, p.Usuario.Dni, n, p.FRealizado, p.FFinPrestamo, p.Estado, p.PersonalBAlta);
+            PrestamoDato pd = new PrestamoDato(p.Codigo, p.Usuario.Dni, n, p.FRealizado, p.FFinPrestamo, p.Estado, p.PersonalBAlta.Nombre);
             return pd; //CAMBIAR NULL POR NEW USUARIO Y NEW EJEMPLARES[] CUANDO SE IMPLEMENTE
         }
 
@@ -64,7 +64,7 @@ namespace Persistencia
 
         public static PersonalBibliotecaDato PersonalADato(PersonalBiblioteca p)
         {
-            PersonalBibliotecaDato pd = new PersonalBibliotecaDato(p.Nombre, p.Contraseña);
+            PersonalBibliotecaDato pd = new PersonalBibliotecaDato(p.Nombre, p.Contraseña, p.GetType().Name);
             return pd;
         }
 
