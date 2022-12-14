@@ -39,7 +39,7 @@ namespace Persistencia
             get { return tPrestamo;  }
         }
 
-        public static bool CREATE<T>(T t) where T: Entity<string>
+        public static bool CREATE<U, T>(U u) where U: Entity<T>
         {
             bool hecho = true;
             if (t is Usuario)
