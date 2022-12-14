@@ -93,15 +93,30 @@ namespace Persistencia
         {
             object u2;
             if(t == null) return null;
+            if(u == null) return null;
             if (u is UsuarioDato)
             {
-                u2=BD.TUsuario[t];
-                return true;
+                u2=BD.TUsuario[t as string];              
             }
-            
+            if (u is PrestamoDato)
+            {
+                u2 = BD.TPrestamo[t as string];
+            }
+            if (u is EjemplarDato)
+            {
+                u2 = BD.TEjemplar[t as string];
+            }
+            if (u is LibroDato)
+            {
+                u2 = BD.TLibro[t as string];
+            }
+            if (u is PersonalBibliotecaDato)
+            {
+                u2 = BD.TPersonalBiblioteca[t as string];
+            }
 
 
-            return u;
+            return u2;
         }
 
         public static bool UPDATE<T>(T t, object) where T: Entity<string>
