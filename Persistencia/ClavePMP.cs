@@ -11,6 +11,12 @@ namespace Persistencia
         private string personalB;
         private string codPres;
 
+        public ClavePMP(string personalB, string codPres)
+        {
+            this.personalB = personalB;
+            this.codPres = codPres;
+        }
+
         public string PersonalB
         {
             get { return personalB; }

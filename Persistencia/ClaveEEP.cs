@@ -10,6 +10,12 @@ namespace Persistencia
     {
         private string codPres;
         private string codEjem;
+        
+        public ClaveEEP(string codPres, string codEjem)
+        {
+            this.codPres = codPres;
+            this.codEjem = codEjem;
+        }
         public string CodPres
         {
             get { return codPres; }

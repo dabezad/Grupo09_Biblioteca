@@ -17,7 +17,7 @@ namespace Persistencia
 
         public static Usuario DatoAUsuario(UsuarioDato ud)
         {
-            Usuario u = new Usuario(ud.Dni, ud.Nombre, ud.PersonalBAlta);
+            Usuario u = new Usuario(ud.Dni, ud.Nombre, BD.READ<string, PersonalBibliotecaDato>(ud.PersonalBAlta));
             return u;
         }
 
@@ -29,8 +29,8 @@ namespace Persistencia
 
         public static Ejemplar DatoAEjemplar(EjemplarDato ed)
         {
-            Ejemplar e = new Ejemplar(ed.Codigo, ed.Estado, null, ed.PersonalBAlta); //CAMBIAR NULL POR NEW LIBRO
-            return e;                                                               // CUANDO SE IMPLEMENTE
+            Ejemplar e = new Ejemplar(ed.Codigo, ed.Estado, BD.READ<string, LibroDato>(e.Libro), BD.READ<string, PersonalBibliotecaDato>(e.PersonalBAlta)); 
+            return e;                                                               
         }
 
         public static LibroDato LibroADato(Libro l)
@@ -41,7 +41,7 @@ namespace Persistencia
 
         public static Libro DatoALibro(LibroDato ld)
         {
-            Libro l = new Libro(ld.Isbn, ld.Titulo, ld.Autor, ld.Editorial, ld.PersonalBAlta);
+            Libro l = new Libro(ld.Isbn, ld.Titulo, ld.Autor, ld.Editorial, BD.READ<string, PersonalBibliotecaDato>(ld.PersonalBAlta));
             return l;
         }
 

@@ -44,8 +44,10 @@
     <Compile Include="BD.cs" />
     <Compile Include="ClaveEEP.cs" />
     <Compile Include="ClavePMP.cs" />
+    <Compile Include="EjemplarEnPrestamoDato.cs" />
     <Compile Include="GestorBD.cs" />
     <Compile Include="PersonalBibliotecaDato.cs" />
+    <Compile Include="PersonalModificaPrestamoDato.cs" />
     <Compile Include="Transformadores.cs" />
     <Compile Include="UsuarioDato.cs" />
     <Compile Include="PrestamoDato.cs" />
