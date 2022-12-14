@@ -29,7 +29,7 @@ namespace Persistencia
 
         public static Ejemplar DatoAEjemplar(EjemplarDato ed)
         {
-            Ejemplar e = new Ejemplar(ed.Codigo, ed.Estado, BD.READ<string, LibroDato>(e.Libro), BD.READ<string, PersonalBibliotecaDato>(e.PersonalBAlta)); 
+            Ejemplar e = new Ejemplar(ed.Codigo, ed.Estado, BD.READ<string, LibroDato>(ed.Libro, ), BD.READ<string, PersonalBibliotecaDato>(e.PersonalBAlta)); 
             return e;                                                               
         }
 
@@ -41,24 +41,22 @@ namespace Persistencia
 
         public static Libro DatoALibro(LibroDato ld)
         {
-            Libro l = new Libro(ld.Isbn, ld.Titulo, ld.Autor, ld.Editorial, BD.READ<string, PersonalBibliotecaDato>(ld.PersonalBAlta));
+            Libro l = new Libro(ld.Isbn, ld.Titulo, ld.Autor, ld.Editorial, BD.READ<string, PersonalBibliotecaDato>(ld.PersonalBAlta, ld));
             return l;
         }
 
         public static PrestamoDato PrestamoADato(Prestamo p)
         {
-            String[] n = new string[p.Ejemplares.Length];
-            for (int i = 0; i < n.Length; i++)
-            {
-                n[i] = p.Ejemplares[i].Codigo;
-            }
-            PrestamoDato pd = new PrestamoDato(p.Codigo, p.Usuario.Dni, n, p.FRealizado, p.FFinPrestamo, p.Estado, p.PersonalBAlta.Nombre);
-            return pd; //CAMBIAR NULL POR NEW USUARIO Y NEW EJEMPLARES[] CUANDO SE IMPLEMENTE
+            PrestamoDato pd = new PrestamoDato(p.Codigo, p.Usuario.Dni, p.FRealizado, p.FFinPrestamo, p.Estado, p.PersonalBAlta.Nombre);
+            
+            return pd;
+        
+        
         }
 
         public static Prestamo DatoAPrestamo(PrestamoDato pd)
         {
-            Prestamo p = new Prestamo(pd.Codigo, null, null, pd.FRealizado, pd.FFinPrestamo,  pd.PersonalBAlta);
+            Prestamo p = new Prestamo(pd.Codigo, null, null, pd.FRealizado, pd.FFinPrestamo,  BD.READ<string, PersonalBibliotecaDato>(pd.PersonalBAlta));
             return p;
         }
 

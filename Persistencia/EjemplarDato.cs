@@ -22,6 +22,7 @@ namespace Persistencia
         }
         public string Codigo { get { return codigo; } }
         public EstadoEnum Estado { get { return estado; } set { this.estado = value; } }
+        public string Libro { get { return libro; } }
 
         public string PersonalBAlta { get { return personalBAlta; } }
     }
