@@ -43,75 +43,98 @@ namespace Persistencia
         {
             get { return tPersonalBiblioteca; }
         }
-
-        public static bool CREATE<U, T>(U u) where U: Entity<T>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T">Clave de tabla U</typeparam>
+        /// <typeparam name="U">Dato tipo Tabla con clave T</typeparam>
+        /// <param name="u"></param>
+        /// <returns></returns>
+        public static bool CREATE<T, U>(object u) where U: Entity<T>
         {
-            bool hecho = true;
-            if (t is Usuario)
+            if (u == null)
             {
-                UsuarioDato ud = Transformadores.UsuarioADato(t as Usuario);
-                BD.TUsuario.Add(ud);
+                return false;
             }
-            if (t is Prestamo)
+            if ( u is Usuario)
             {
-                PrestamoDato pm = Transformadores.PrestamoADato(t as Prestamo);
+                UsuarioDato ud = Transformadores.UsuarioADato(u as Usuario);
+                BD.TUsuario.Add(ud);
+                return true;
+            }
+            if (u is Prestamo)
+            {
+                PrestamoDato pm = Transformadores.PrestamoADato(u as Prestamo);
                 BD.TPrestamo.Add(pm);
+                return true;
             }
-            if (t is Ejemplar)
+            if (u is Ejemplar)
             {
-                UsuarioDato ud = Transformadores.UsuarioADato(t as Usuario);
-                BD.TUsuario.Add(ud);
+                EjemplarDato ed = Transformadores.EjemplarADato(u as Ejemplar);
+                BD.TEjemplar.Add(ed);
+                return true;
             }
-            if (t is Libro)
+            if (u is Libro)
             {
-                UsuarioDato ud = Transformadores.UsuarioADato(t as Usuario);
-                BD.TUsuario.Add(ud);
+                LibroDato ld= Transformadores.LibroADato(u as Libro);
+                BD.TLibro.Add(ld);
+                return true;
             }
-            if (t is PersonalBiblioteca)
+            if (u is PersonalBiblioteca)
             {
-                PersonalBibliotecaDato pb = Transformadores.PersonalADato(t as PersonalBiblioteca);
+                PersonalBibliotecaDato pb = Transformadores.PersonalADato(u as PersonalBiblioteca);
                 BD.TPersonalBiblioteca.Add(pb);
+                return true;
             }//en caso de no funcionar añadir 3 if con los distintos personales
-
-            return hecho;
+            return false;
         }
 
-        public static T READ<T, U>(string id)
+        public static U READ<T, U>(T t, U u) where U : Entity<T>
         {
+            object u2;
+            if(t == null) return null;
+            if (u is UsuarioDato)
+            {
+                u2=BD.TUsuario[t];
+                return true;
+            }
+            
 
+
+            return u;
         }
 
-        public static bool UPDATE<T>(T t) where T: Entity<string>
+        public static bool UPDATE<T>(T t, object) where T: Entity<string>
         {
             return true;
         }
 
-        public static bool DELETE<T>(T t) where T: Entity<string>
+        public static bool DELETE<T, U>(T t, U u) where U: Entity<T>
         {
-            if (t is Usuario)
+            if (u is Usuario)
             {
-                UsuarioDato ud = Transformadores.UsuarioADato(t as Usuario);
+                UsuarioDato ud = Transformadores.UsuarioADato(u as Usuario);
                 BD.TUsuario.Remove(ud);
                 return true;
             }
-            if (t is Prestamo)
+            if (u is Prestamo)
             {
-                PrestamoDato pm = Transformadores.PrestamoADato(t as Prestamo);
+                PrestamoDato pm = Transformadores.PrestamoADato(u as Prestamo);
                 BD.TPrestamo.Remove(pm);
             }
-            if (t is Ejemplar)
+            if (u is Ejemplar)
             {
-                UsuarioDato ud = Transformadores.UsuarioADato(t as Usuario);
+                UsuarioDato ud = Transformadores.UsuarioADato(u as Usuario);
                 BD.TUsuario.Remove(ud);
             }
-            if (t is Libro)
+            if (u is Libro)
             {
-                UsuarioDato ud = Transformadores.UsuarioADato(t as Usuario);
+                UsuarioDato ud = Transformadores.UsuarioADato(u as Usuario);
                 BD.TUsuario.Remove(ud);
             }
-            if (t is PersonalBiblioteca)
+            if (u is PersonalBiblioteca)
             {
-                PersonalBibliotecaDato pb = Transformadores.PersonalADato(t as PersonalBiblioteca);
+                PersonalBibliotecaDato pb = Transformadores.PersonalADato(u as PersonalBiblioteca);
                 BD.TPersonalBiblioteca.Remove(pb);
             }//en caso de no funcionar añadir 3 if con los distintos personales
 
