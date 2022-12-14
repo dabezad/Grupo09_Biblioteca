@@ -76,7 +76,7 @@ namespace Persistencia
             return hecho;
         }
 
-        public static T READ<T>(string id)
+        public static T READ<T, U>(string id)
         {
 
         }
