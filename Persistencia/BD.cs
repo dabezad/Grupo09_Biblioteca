@@ -14,6 +14,7 @@ namespace Persistencia
         private static Tabla<string, UsuarioDato> tUsuario;
         private static Tabla<string, PrestamoDato> tPrestamo;
         private static Tabla<string, PersonalBibliotecaDato> tPersonalBiblioteca;
+        private static Tabla<ClaveEEP, EjemplarEnPrestamoDato> tEjemplarEnPrestamo;
 
         private BD()
         {
@@ -43,6 +44,10 @@ namespace Persistencia
         {
             get { return tPersonalBiblioteca; }
         }
+
+        public static Tabla<ClaveEEP, EjemplarEnPrestamoDato> TEjemplarEnPrestamo { 
+            get { return tEjemplarEnPrestamo; }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -64,7 +69,12 @@ namespace Persistencia
             }
             if (u is Prestamo)
             {
-                PrestamoDato pm = Transformadores.PrestamoADato(u as Prestamo);
+                Prestamo p = u as Prestamo;
+                PrestamoDato pm = Transformadores.PrestamoADato(p);
+                foreach(Ejemplar e in p.Ejemplares)
+                {
+                    BD.TEjemplarEnPrestamo.Add(new EjemplarEnPrestamoDato(p.Codigo, e.Codigo)); 
+                }
                 BD.TPrestamo.Add(pm);
                 return true;
             }
@@ -89,34 +99,33 @@ namespace Persistencia
             return false;
         }
 
-        public static U READ<T, U>(T t, U u) where U : Entity<T>
+        public static object READ<T, U>(T t, U u) where U : Entity<T>
         {
-            object u2;
             if(t == null) return null;
             if(u == null) return null;
             if (u is UsuarioDato)
             {
-                u2=BD.TUsuario[t as string];              
+                Usuario us=Transformadores.DatoAUsuario(BD.TUsuario[t as string]);
+                return us;
             }
             if (u is PrestamoDato)
             {
-                u2 = BD.TPrestamo[t as string];
+                Prestamo ps = Transformadores.DatoAPrestamo(BD.TPrestamo[t as string]);
+
             }
             if (u is EjemplarDato)
             {
-                u2 = BD.TEjemplar[t as string];
+                Ejemplar ej = Transformadores.DatoAEjemplar(BD.TEjemplar[t as string]);
             }
             if (u is LibroDato)
             {
-                u2 = BD.TLibro[t as string];
+                Libro lb = Transformadores.DatoALibro(BD.TLibro[t as string]);
             }
             if (u is PersonalBibliotecaDato)
             {
-                u2 = BD.TPersonalBiblioteca[t as string];
+                PersonalBiblioteca pb = Transformadores.DatoAPersonal(BD.TPersonalBiblioteca[t as string]);
             }
-
-
-            return u2;
+            return null;
         }
 
         public static bool UPDATE<T>(T t, object) where T: Entity<string>

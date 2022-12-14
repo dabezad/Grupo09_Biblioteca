@@ -41,7 +41,7 @@ namespace Persistencia
 
         public static Libro DatoALibro(LibroDato ld)
         {
-            Libro l = new Libro(ld.Isbn, ld.Titulo, ld.Autor, ld.Editorial, BD.READ<string, PersonalBibliotecaDato>(ld.PersonalBAlta));
+            Libro l = new Libro(ld.Isbn, ld.Titulo, ld.Autor, ld.Editorial, PersonalBibliotecaDato pbd=BD.READ<string, PersonalBibliotecaDato>(ld.PersonalBAlta, pbd));
             return l;
         }
 
