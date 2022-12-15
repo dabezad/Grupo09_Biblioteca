@@ -32,17 +32,16 @@ namespace LogicaNegocio
             return prestamo.Estado;
         }
 
-        public Ejemplar[] VerEjemplaresNoDevueltos(Prestamo prestamo)
+        public List<Ejemplar> VerEjemplaresNoDevueltos(Prestamo prestamo)
         {
             int i = 0;
-            Ejemplar[] noDevueltos = new Ejemplar[prestamo.Ejemplares.Length];
-            Ejemplar[] prestados = prestamo.Ejemplares;
+            List<Ejemplar> noDevueltos = new List<Ejemplar>();
+            List<Ejemplar> prestados = prestamo.Ejemplares.ToList();
             foreach(Ejemplar e in prestados)
             {
                 if (e.Estado == EstadoEnum.EnProceso)
                 {
-                    noDevueltos[i] = e;
-                    i++;
+                    noDevueltos.Add(e);
                 }
             }
             return noDevueltos;
@@ -53,36 +52,35 @@ namespace LogicaNegocio
             return gbd.BuscarPrestamo(id);
         }
 
-        public Prestamo[] ObtenerPrestamosLibro(Libro l)
+        public List<Prestamo> ObtenerPrestamosLibro(Libro l)
         {
-            
+            List<Prestamo> prestamos = new List<Prestamo>();
+            foreach (Prestamo p in gbd.RecorrerPrestamos())
+            {
+                if (p.Ejemplares)
+            }
         }
 
-        public void devolverEjemplarPrestado(Ejemplar ejemplar)
+        public void DevolverEjemplarPrestado(Ejemplar ejemplar)
         {
             ejemplar.Estado = EstadoEnum.Finalizado;
         }
 
         public Prestamo[] ObtenerPrestamosEnProcesoPasados()
         {
-
+                
         }
 
         public List<Libro> VerLibrosNoDevueltos(Prestamo prestamo)
         {
-            List<Libro> list = new List<Libro>;
-            Ejemplar[] prestados = prestamo.Ejemplares;
-            foreach (Ejemplar e in prestados)
+            List<Libro> lista1 = gbd.RecorrerLibros();
+            List<Libro> res = new List<Libro>();
+            foreach(Libro l in lista1)
             {
-                if (e.Estado == EstadoEnum.EnProceso)
-                {
-                    Libro libro = e.Libro;
-                    if (!list.Contains(libro))
-                    {
-                        list.Add(libro);
-                    }
-                }
+                if (l.)
             }
+            
+            
             return list;
         }
     }

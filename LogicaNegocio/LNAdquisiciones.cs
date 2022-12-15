@@ -21,9 +21,9 @@ namespace LogicaNegocio
             return gbd.CrearLibro(l);
         }
 
-        public bool Baja(Libro l)
+        public bool Baja(string id)
         {
-            return gbd.EliminarLibro();
+            return gbd.EliminarLibro(id);
         }
 
         public bool AltaEjemplar(Ejemplar e)
@@ -31,9 +31,9 @@ namespace LogicaNegocio
             return gbd.CrearEjemplar(e);
         }
 
-        public bool BajaEjemplar(Ejemplar e)
+        public bool BajaEjemplar(string id)
         {
-            return gbd.EliminarEjemplar(e);
+            return gbd.EliminarEjemplar(id);
         }
 
         public Libro Buscar(string isbn)
@@ -46,9 +46,18 @@ namespace LogicaNegocio
             return gbd.BuscarEjemplar(codigo);
         }
 
-        public Ejemplar[] EjemplaresDisponibles(string isbn)
+        public List<Ejemplar> EjemplaresDisponibles(string isbn)
         {
-
+            List<Ejemplar> ejemplares = gbd.RecorrerEjemplares();
+            List<Ejemplar> res = new List<Ejemplar>();
+            foreach (Ejemplar e in ejemplares)
+            {
+                if (e.Estado == EstadoEjemplarEnum.Disponible)
+                {
+                    res.Add(e);
+                }
+            }
+            return res;
         }
 
         public DateTime MostrarFechaDevolucion(Ejemplar e, Prestamo p) 

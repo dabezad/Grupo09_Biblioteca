@@ -39,9 +39,28 @@ namespace LogicaNegocio
             return lista;
         }
 
-        public List<Usuario> mostrarEjemplaresPrestados(string id) 
+        public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 
         {
+            List<Ejemplar> todosEjemplares = gbd.RecorrerEjemplares();
+            List<Ejemplar> res = new List<Ejemplar>();
+            foreach (Ejemplar ejemplar in todosEjemplares)
+            {
+                if (ejemplar.Estado == EstadoEnum.EnProceso)
+                {
+                    res.Add(ejemplar);
+                }
+            }
+            return res;
+        }
 
+        public List<Prestamo> MostrarPrestamosCaducados()
+        {
+            List<Prestamo> todosPrestamos = gbd.RecorrerPrestamos();
+            List<Prestamo> res;
+            foreach (Prestamo p in todosPrestamos)
+            {
+                
+            }
         }
 
     }

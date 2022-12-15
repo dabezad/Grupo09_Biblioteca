@@ -122,6 +122,28 @@ namespace Persistencia
             return listaL;
         }
 
+        public List<Prestamo> RecorrerPrestamos()
+        {
+            List<Prestamo> listaP = new List<Prestamo>();
+            List<PrestamoDato> listaPDatos = BD.TPrestamo.ToList<PrestamoDato>();
+            foreach(PrestamoDato datoP in listaPDatos)
+            {
+                listaP.Add(Transformadores.DatoAPrestamo(datoP));
+            }
+            return listaP;
+        }
+
+        public List<Ejemplar> RecorrerEjemplares()
+        {
+            List<Ejemplar> listaE = new List<Ejemplar>();
+            List<EjemplarDato> listaEDatos = BD.TEjemplar.ToList<EjemplarDato>();
+            foreach(EjemplarDato datoE in listaEDatos)
+            {
+                listaE.Add(Transformadores.DatoAEjemplar(datoE));
+            }
+            return listaE;
+        }
+
 
 
     }
