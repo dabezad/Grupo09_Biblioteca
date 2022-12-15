@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    internal interface IntLN
+    internal interface IntLN<C, O>
     {
-        bool Alta<T>(T t);
-        bool Baja<T>(T t);
-        bool Buscar<T>();
+        bool Alta(O o);
+        bool Baja(C c);
+        O Buscar(C c);
     }
 }

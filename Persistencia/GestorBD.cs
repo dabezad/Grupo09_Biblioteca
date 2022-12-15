@@ -29,6 +29,7 @@ namespace Persistencia
 
         }
 
+
         public bool EliminarLibro(string id)
         {
             return BD.DELETE<string, LibroDato>(id);
@@ -98,6 +99,30 @@ namespace Persistencia
         {
             return BD.DELETE<string, UsuarioDato>(id);
         }
+
+        public List<Usuario> RecorrerUsuarios()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            List<UsuarioDato> listaDatos = BD.TUsuario.ToList<UsuarioDato>();
+            foreach (UsuarioDato dato in listaDatos)
+            {
+                lista.Add(Transformadores.DatoAUsuario(dato));
+            }
+            return lista;
+        }
+
+        public List<Libro> RecorrerLibros()
+        {
+            List<Libro> listaL = new List<Libro>();
+            List<LibroDato> listaLDatos = BD.TLibro.ToList<LibroDato>();
+            foreach(LibroDato datoL in listaLDatos)
+            {
+                listaL.Add(Transformadores.DatoALibro(datoL));
+            }
+            return listaL;
+        }
+
+
 
     }
 }
