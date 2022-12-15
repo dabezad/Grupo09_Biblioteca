@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    public class Class1
+    internal class LNSala
     {
-
     }
 }
