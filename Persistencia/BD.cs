@@ -99,41 +99,40 @@ namespace Persistencia
             return false;
         }
 
-        public static object READ<T, U>(T t, U u) where U : Entity<T>
+        public static object READ<T, U>(T t, string tabla) where U : Entity<T>
         {
-            if(t == null) return null;
-            if(u == null) return null;
-            if (u is UsuarioDato)
+            if (t == null) return null;
+            object x = null;
+            switch (tabla)
             {
-                Usuario us=Transformadores.DatoAUsuario(BD.TUsuario[t as string]);
-                return us;
+                case "UsuarioDato":
+                    if (BD.TUsuario.Contains(t as string)) x = Transformadores.DatoAUsuario(BD.TUsuario[t as string]);
+                    break;
+                case "PrestamoDato":
+                    if (BD.TPrestamo.Contains(t as string)) x = Transformadores.DatoAPrestamo(BD.TPrestamo[t as string]);
+                    break;
+                case "EjemplarDato":
+                    if (BD.TEjemplar.Contains(t as string)) x = Transformadores.DatoAEjemplar(BD.TEjemplar[t as string]);
+                    break;
+                case "LibroDato":
+                    if (BD.TLibro.Contains(t as string)) x = Transformadores.DatoALibro(BD.TLibro[t as string]);
+                    break;
+                case "PersonalBibliotecaDato":
+                    if (BD.TPersonalBiblioteca.Contains(t as string)) x = Transformadores.DatoAPersonal(BD.TPersonalBiblioteca[t as string]);
+                    break;
+                case "EjemplarEnPrestamoDato":
+                    if (BD.TEjemplarEnPrestamo.Contains(t as ClaveEEP)) x = Transformadores.DatoAPersonal(BD.TEjemplarEnPrestamo[t as ClaveEEP]);
+                    break;//aca mierdon
+                    return x;
             }
-            if (u is PrestamoDato)
-            {
-                Prestamo ps = Transformadores.DatoAPrestamo(BD.TPrestamo[t as string]);
-
-            }
-            if (u is EjemplarDato)
-            {
-                Ejemplar ej = Transformadores.DatoAEjemplar(BD.TEjemplar[t as string]);
-            }
-            if (u is LibroDato)
-            {
-                Libro lb = Transformadores.DatoALibro(BD.TLibro[t as string]);
-            }
-            if (u is PersonalBibliotecaDato)
-            {
-                PersonalBiblioteca pb = Transformadores.DatoAPersonal(BD.TPersonalBiblioteca[t as string]);
-            }
-            return null;
         }
 
-        public static bool UPDATE<T>(T t, object) where T: Entity<string>
+        public static bool UPDATE<T, U>(object u) where U: Entity<T>
         {
             return true;
         }
 
-        public static bool DELETE<T, U>(T t, U u) where U: Entity<T>
+        public static bool DELETE<T, U>(T t, string nombre) where U: Entity<T>
         {
             if (u is Usuario)
             {
@@ -160,10 +159,7 @@ namespace Persistencia
             {
                 PersonalBibliotecaDato pb = Transformadores.PersonalADato(u as PersonalBiblioteca);
                 BD.TPersonalBiblioteca.Remove(pb);
-            }//en caso de no funcionar añadir 3 if con los distintos personales
-
-           
-
+            }//en caso de no funcionar añadir 3 if con los distintos personales          
             return false;
         }
 
