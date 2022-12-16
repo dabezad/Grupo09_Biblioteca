@@ -41,16 +41,16 @@ namespace LogicaNegocio
 
         public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 
         {
-            List<Prestamo> listaPrestamos = gbd.RecorrerPrestamos();
-            List<Ejemplar> listaEjemplares = gbd.RecorrerEjemplares();
-            List<EjemplarEnPrestamoDato> ejemplaresPrestamo = gbd.
-            List<Prestamo> prestamosDelUsuario = new List<Prestamo>();
-            foreach(Prestamo p in listaPrestamos){
-                if (p.Usuario.Equals(u))
+            List<Prestamo> prestamosUsuario = new List<Prestamo>();
+            foreach(Prestamo p in gbd.RecorrerPrestamos())
+            {
+                if (p.Usuario.Equals(u) && p.Estado == EstadoEnum.EnProceso)
                 {
-                    prestamosDelUsuario.Add(p);
+                    prestamosUsuario.Add(p);
                 }
             }
+
+            
         }
 
         public List<Prestamo> MostrarPrestamosCaducados()

@@ -2,6 +2,7 @@
 using Persistencia;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +53,7 @@ namespace LogicaNegocio
             List<Ejemplar> res = new List<Ejemplar>();
             foreach (Ejemplar e in ejemplares)
             {
-                if (e.Estado == EstadoEjemplarEnum.Disponible)
+                if (e.Libro.Isbn == isbn && e.Estado == EstadoEjemplarEnum.Disponible)
                 {
                     res.Add(e);
                 }
@@ -60,19 +61,27 @@ namespace LogicaNegocio
             return res;
         }
 
-        public DateTime MostrarFechaDevolucion(Ejemplar e, Prestamo p) 
+        public DateTime MostrarFechaDevolucion(Prestamo p) 
         {
             return p.FFinPrestamo;
         }
 
-        public  ListarEjemplares(string isbn)
+        public List<Ejemplar> ListarEjemplares(string isbn)
         {
-
+            List<Ejemplar> ejemplarDeLibro = new List<Ejemplar>();
+            foreach(Ejemplar e in gbd.RecorrerEjemplares())
+            {
+                if (isbn == e.Libro.Isbn)
+                {
+                    ejemplarDeLibro.Add(e);
+                }
+            }
+            return ejemplarDeLibro;
         }
 
-        public Libros[] ListarLibros()
+        public List<Libro> ListarLibros()
         {
-
+            return gbd.RecorrerLibros();
         }
 
         public Libro MostrarLibroMasLeido()

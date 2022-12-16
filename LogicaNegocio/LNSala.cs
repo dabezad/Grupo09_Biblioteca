@@ -35,9 +35,8 @@ namespace LogicaNegocio
         public List<Ejemplar> VerEjemplaresNoDevueltos(Prestamo prestamo)
         {
             List<Ejemplar> noDevueltos = new List<Ejemplar>();
-            List<Ejemplar> prestados = prestamo.Ejemplares.ToList();
-            foreach(Ejemplar e in prestados)
-            {
+            foreach(Ejemplar e in prestamo.Ejemplares.ToList()) { 
+            
                 if (e.Estado == EstadoEjemplarEnum.Prestado)
                 {
                     noDevueltos.Add(e);
@@ -56,18 +55,47 @@ namespace LogicaNegocio
             List<Prestamo> prestamos = new List<Prestamo>();
             foreach (Prestamo p in gbd.RecorrerPrestamos())
             {
-                if (p.Ejemplares)
+                foreach(Ejemplar e in p.Ejemplares.ToList())
+                {
+                    if (e.Libro.Isbn == l.Isbn && !prestamos.Contains(p))
+                    {
+                        prestamos.Add(p);
+                    }
+                }
             }
+            return prestamos;
         }
 
-        public void DevolverEjemplarPrestado(Ejemplar ejemplar)
+        public void DevolverEjemplarPrestado(Prestamo prestamo, Ejemplar ejemplar)
         {
-            ejemplar.Estado = EstadoEnum.Finalizado;
+            bool finalizado = true;
+            ejemplar.Estado = EstadoEjemplarEnum.Disponible;
+            foreach (Ejemplar e in prestamo.Ejemplares)
+            {
+                if (finalizado && e.Estado == EstadoEjemplarEnum.Prestado)
+                {
+                    finalizado = false;
+                }
+            }
+            if (finalizado)
+            {
+                prestamo.Estado = EstadoEnum.Finalizado;
+                gbd.ActualizarPrestamo(); //PONERLO A FINALIZADO EN LA BD
+            }
+            
         }
 
-        public Prestamo[] ObtenerPrestamosEnProcesoPasados()
+        public List<Prestamo> ObtenerPrestamosEnProcesoPasados()
         {
-                
+            List<Prestamo> resultado = new List<Prestamo>();
+            foreach(Prestamo p in gbd.RecorrerPrestamos())
+            {
+                if (DateTime.Compare(DateTime.Now, p.FFinPrestamo) > 0)
+                {
+                    resultado.Add(p);
+                }
+            }
+            return resultado;
         }
 
         public List<Libro> VerLibrosNoDevueltos(Prestamo prestamo)
