@@ -6,7 +6,7 @@ using System.Threading.Tasks;
  
 namespace ModeloDominio
 {
-    public class Usuario
+    public class Usuario: IEquatable<Usuario>
     {
         private string dni;
         private string nombre;
@@ -42,5 +42,15 @@ namespace ModeloDominio
             {  return this.personalBAlta; }
         }
 
+        public  bool Equals(Usuario otro)
+        {
+            if (otro == null)
+            {
+                return this == null;
+            } else
+            {
+                return otro.Dni == this.Dni;
+            }
+        }
     }
 }

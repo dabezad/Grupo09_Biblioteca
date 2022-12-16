@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace LogicaNegocio
 {
 
-    public class LNBiblioteca : IntLN<string, Usuario>
+    public class LNBiblioteca 
     {
         private GestorBD gbd;
 
@@ -18,17 +18,17 @@ namespace LogicaNegocio
         {
             gbd = new GestorBD();
         }
-        public bool Alta(Usuario usuario)
+        public bool AltaUsuario(Usuario usuario)
         {
             return gbd.CrearUsuario(usuario);
         }
 
-        public bool Baja(string id)
+        public bool BajaUsuario(string id)
         {
             return gbd.EliminarUsuario(id);
         }
 
-        public Usuario Buscar(string id)
+        public Usuario BuscarUsuario(string id)
         {
             return gbd.BuscarUsuario(id);
         }
@@ -41,16 +41,16 @@ namespace LogicaNegocio
 
         public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 
         {
-            List<Ejemplar> todosEjemplares = gbd.RecorrerEjemplares();
-            List<Ejemplar> res = new List<Ejemplar>();
-            foreach (Ejemplar ejemplar in todosEjemplares)
-            {
-                if (ejemplar.Estado == EstadoEnum.EnProceso)
+            List<Prestamo> listaPrestamos = gbd.RecorrerPrestamos();
+            List<Ejemplar> listaEjemplares = gbd.RecorrerEjemplares();
+            List<EjemplarEnPrestamoDato> ejemplaresPrestamo = gbd.
+            List<Prestamo> prestamosDelUsuario = new List<Prestamo>();
+            foreach(Prestamo p in listaPrestamos){
+                if (p.Usuario.Equals(u))
                 {
-                    res.Add(ejemplar);
+                    prestamosDelUsuario.Add(p);
                 }
             }
-            return res;
         }
 
         public List<Prestamo> MostrarPrestamosCaducados()

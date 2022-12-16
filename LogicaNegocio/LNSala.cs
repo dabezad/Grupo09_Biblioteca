@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    internal class LNSala
+    internal class LNSala: LNBiblioteca
     {
         private GestorBD gbd;
 
@@ -17,7 +17,7 @@ namespace LogicaNegocio
         {
             gbd = new GestorBD();
         }
-        public bool Alta(Prestamo prestamo)
+        public bool AltaPrestamo(Prestamo prestamo)
         {
             return gbd.CrearPrestamo(prestamo);
         }
@@ -34,12 +34,11 @@ namespace LogicaNegocio
 
         public List<Ejemplar> VerEjemplaresNoDevueltos(Prestamo prestamo)
         {
-            int i = 0;
             List<Ejemplar> noDevueltos = new List<Ejemplar>();
             List<Ejemplar> prestados = prestamo.Ejemplares.ToList();
             foreach(Ejemplar e in prestados)
             {
-                if (e.Estado == EstadoEnum.EnProceso)
+                if (e.Estado == EstadoEjemplarEnum.Prestado)
                 {
                     noDevueltos.Add(e);
                 }
@@ -47,7 +46,7 @@ namespace LogicaNegocio
             return noDevueltos;
         }
 
-        public Prestamo VerDatosPrestamo(string id)
+        public Prestamo BuscarPrestamo(string id)
         {
             return gbd.BuscarPrestamo(id);
         }

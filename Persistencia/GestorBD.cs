@@ -144,6 +144,68 @@ namespace Persistencia
             return listaE;
         }
 
+        public List<Ejemplar> PrestamoJoinEjemplar(string idP)
+        {
+            List<EjemplarEnPrestamoDato> ejemplaresDelPrestamo = new List<EjemplarEnPrestamoDato>();
+            List<Ejemplar> ejemplares = RecorrerEjemplares();
+            List<Ejemplar> resultado = new List<Ejemplar>();
+            int i;
+            bool encontrado;
+            foreach(EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
+            {
+                if (elem.Id.CodPres == idP)
+                {
+                    ejemplaresDelPrestamo.Add(elem);
+                }
+            }
+            foreach(EjemplarEnPrestamoDato eep in ejemplaresDelPrestamo)
+            {
+                i = 0;
+                encontrado = false;
+                while (!encontrado)
+                {
+                    if (eep.Id.CodEjem == ejemplares.ElementAt(i).Codigo)
+                    {
+                        resultado.Add(ejemplares.ElementAt(i));
+                        encontrado = true;
+                    }
+                    i++;
+                } 
+            }
+            return resultado;
+        }
+
+        public List<Prestamo> EjemplarJoinPrestamo(string idE)
+        {
+            List<Prestamo> prestamos = RecorrerPrestamos();
+            List<EjemplarEnPrestamoDato> prestamosDelEjemplar = new List<EjemplarEnPrestamoDato>();
+            List<Prestamo> resultado = new List<Prestamo>();
+            int i;
+            bool encontrado;
+            foreach (EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
+            {
+                if (elem.Id.CodEjem == idE)
+                {
+                    prestamosDelEjemplar.Add(elem);
+                }
+            }
+            foreach (EjemplarEnPrestamoDato eep in prestamosDelEjemplar)
+            {
+                i = 0;
+                encontrado = false;
+                while (!encontrado)
+                {
+                    if (eep.Id.CodPres == prestamos.ElementAt(i).Codigo)
+                    {
+                        resultado.Add(prestamos.ElementAt(i));
+                        encontrado = true;
+                    }
+                    i++;
+                }
+            }
+            return resultado;
+        }
+
 
 
     }

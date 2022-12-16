@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    internal class LNAdquisiciones : IntLN<string, Libro>
+    internal class LNAdquisiciones : LNBiblioteca
     {
         private GestorBD gbd;
 
@@ -16,12 +16,12 @@ namespace LogicaNegocio
         {
             gbd = new GestorBD();
         }
-        public bool Alta(Libro l)
+        public bool AltaLibro(Libro l)
         {
             return gbd.CrearLibro(l);
         }
 
-        public bool Baja(string id)
+        public bool BajaLibro(string id)
         {
             return gbd.EliminarLibro(id);
         }
@@ -36,7 +36,7 @@ namespace LogicaNegocio
             return gbd.EliminarEjemplar(id);
         }
 
-        public Libro Buscar(string isbn)
+        public Libro BuscarLibro(string isbn)
         {
             return gbd.BuscarLibro(isbn);
         }
@@ -65,7 +65,7 @@ namespace LogicaNegocio
             return p.FFinPrestamo;
         }
 
-        public Ejemplar[] ListarEjemplares(string isbn)
+        public  ListarEjemplares(string isbn)
         {
 
         }
