@@ -137,13 +137,14 @@ namespace Persistencia
         public List<Ejemplar> RecorrerEjemplares()
         {
             List<Ejemplar> listaE = new List<Ejemplar>();
-            List<EjemplarDato> listaEDatos = BD.TEjemplar.ToList<EjemplarDato>();
+            List<EjemplarDato> listaEDatos = BD.TEjemplar.ToList();
             foreach(EjemplarDato datoE in listaEDatos)
             {
                 listaE.Add(Transformadores.DatoAEjemplar(datoE));
             }
             return listaE;
         }
+
 
         public List<Ejemplar> PrestamoJoinEjemplar(string idP)
         {

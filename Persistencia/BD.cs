@@ -9,12 +9,12 @@ namespace Persistencia
 {
     internal class BD
     {
-        private static Tabla<string, LibroDato> tLibro;
-        private static Tabla<string, EjemplarDato> tEjemplar;
-        private static Tabla<string, UsuarioDato> tUsuario;
-        private static Tabla<string, PrestamoDato> tPrestamo;
-        private static Tabla<string, PersonalBibliotecaDato> tPersonalBiblioteca;
-        private static Tabla<ClaveEEP, EjemplarEnPrestamoDato> tEjemplarEnPrestamo;
+        private static Tabla<string, LibroDato> tLibro = new Tabla<string, LibroDato>();
+        private static Tabla<string, EjemplarDato> tEjemplar = new Tabla<string, EjemplarDato>();
+        private static Tabla<string, UsuarioDato> tUsuario = new Tabla<string, UsuarioDato>();
+        private static Tabla<string, PrestamoDato> tPrestamo = new Tabla<string, PrestamoDato>();
+        private static Tabla<string, PersonalBibliotecaDato> tPersonalBiblioteca = new Tabla<string, PersonalBibliotecaDato>();
+        private static Tabla<ClaveEEP, EjemplarEnPrestamoDato> tEjemplarEnPrestamo = new Tabla<ClaveEEP, EjemplarEnPrestamoDato>();
 
         private BD()
         {

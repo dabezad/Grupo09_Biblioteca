@@ -90,7 +90,7 @@ namespace LogicaNegocio
             List<Prestamo> resultado = new List<Prestamo>();
             foreach(Prestamo p in gbd.RecorrerPrestamos())
             {
-                if (DateTime.Compare(DateTime.Now, p.FFinPrestamo) > 0)
+                if ((DateTime.Compare(DateTime.Now, p.FFinPrestamo) > 0) && (p.Estado == EstadoEnum.EnProceso))
                 {
                     resultado.Add(p);
                 }
@@ -100,12 +100,7 @@ namespace LogicaNegocio
 
         public List<Libro> VerLibrosNoDevueltos(Prestamo prestamo)
         {
-            List<Libro> lista1 = gbd.RecorrerLibros();
-            List<Libro> res = new List<Libro>();
-            foreach(Libro l in lista1)
-            {
-                //if (l.)
-            }
+            
             
             
             return lista1;

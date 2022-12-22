@@ -45,6 +45,7 @@
             // 
             // msPrincipal
             // 
+            this.msPrincipal.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.msPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiUsuario,
             this.tsmiLibros,
@@ -53,7 +54,7 @@
             this.tsmiConfiguracion});
             this.msPrincipal.Location = new System.Drawing.Point(0, 0);
             this.msPrincipal.Name = "msPrincipal";
-            this.msPrincipal.Size = new System.Drawing.Size(800, 24);
+            this.msPrincipal.Size = new System.Drawing.Size(1067, 28);
             this.msPrincipal.TabIndex = 0;
             this.msPrincipal.Text = "menuStrip1";
             // 
@@ -64,26 +65,26 @@
             this.tsmiBajaUsu,
             this.tsmiBusqUsu});
             this.tsmiUsuario.Name = "tsmiUsuario";
-            this.tsmiUsuario.Size = new System.Drawing.Size(64, 20);
+            this.tsmiUsuario.Size = new System.Drawing.Size(79, 24);
             this.tsmiUsuario.Text = "Usuarios";
             // 
             // tsmiAltaUsu
             // 
             this.tsmiAltaUsu.Name = "tsmiAltaUsu";
-            this.tsmiAltaUsu.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAltaUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiAltaUsu.Text = "Alta";
             this.tsmiAltaUsu.Click += new System.EventHandler(this.tsmiAltaUsu_Click);
             // 
             // tsmiBajaUsu
             // 
             this.tsmiBajaUsu.Name = "tsmiBajaUsu";
-            this.tsmiBajaUsu.Size = new System.Drawing.Size(180, 22);
+            this.tsmiBajaUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiBajaUsu.Text = "Baja";
             // 
             // tsmiBusqUsu
             // 
             this.tsmiBusqUsu.Name = "tsmiBusqUsu";
-            this.tsmiBusqUsu.Size = new System.Drawing.Size(180, 22);
+            this.tsmiBusqUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiBusqUsu.Text = "Búsqueda";
             // 
             // tsmiLibros
@@ -93,54 +94,55 @@
             this.tsmiBajaLib,
             this.tsmiBusqLib});
             this.tsmiLibros.Name = "tsmiLibros";
-            this.tsmiLibros.Size = new System.Drawing.Size(51, 20);
+            this.tsmiLibros.Size = new System.Drawing.Size(63, 24);
             this.tsmiLibros.Text = "Libros";
             // 
             // tsmiAltaLib
             // 
             this.tsmiAltaLib.Name = "tsmiAltaLib";
-            this.tsmiAltaLib.Size = new System.Drawing.Size(126, 22);
+            this.tsmiAltaLib.Size = new System.Drawing.Size(157, 26);
             this.tsmiAltaLib.Text = "Alta";
             // 
             // tsmiBajaLib
             // 
             this.tsmiBajaLib.Name = "tsmiBajaLib";
-            this.tsmiBajaLib.Size = new System.Drawing.Size(126, 22);
+            this.tsmiBajaLib.Size = new System.Drawing.Size(157, 26);
             this.tsmiBajaLib.Text = "Baja";
             // 
             // tsmiBusqLib
             // 
             this.tsmiBusqLib.Name = "tsmiBusqLib";
-            this.tsmiBusqLib.Size = new System.Drawing.Size(126, 22);
+            this.tsmiBusqLib.Size = new System.Drawing.Size(157, 26);
             this.tsmiBusqLib.Text = "Búsqueda";
             // 
             // tsmiEjemplares
             // 
             this.tsmiEjemplares.Name = "tsmiEjemplares";
-            this.tsmiEjemplares.Size = new System.Drawing.Size(76, 20);
+            this.tsmiEjemplares.Size = new System.Drawing.Size(96, 24);
             this.tsmiEjemplares.Text = "Ejemplares";
             this.tsmiEjemplares.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // tsmiPrestamos
             // 
             this.tsmiPrestamos.Name = "tsmiPrestamos";
-            this.tsmiPrestamos.Size = new System.Drawing.Size(74, 20);
+            this.tsmiPrestamos.Size = new System.Drawing.Size(91, 24);
             this.tsmiPrestamos.Text = "Préstamos";
             // 
             // tsmiConfiguracion
             // 
             this.tsmiConfiguracion.Name = "tsmiConfiguracion";
-            this.tsmiConfiguracion.Size = new System.Drawing.Size(95, 20);
+            this.tsmiConfiguracion.Size = new System.Drawing.Size(116, 24);
             this.tsmiConfiguracion.Text = "Configuración";
             // 
-            // GestionBiblioteca
+            // FormGestionBiblioteca
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.msPrincipal);
             this.MainMenuStrip = this.msPrincipal;
-            this.Name = "GestionBiblioteca";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "FormGestionBiblioteca";
             this.Text = "Gestion de biblioteca";
             this.msPrincipal.ResumeLayout(false);
             this.msPrincipal.PerformLayout();

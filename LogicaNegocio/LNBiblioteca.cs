@@ -41,26 +41,18 @@ namespace LogicaNegocio
 
         public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 
         {
-            List<Prestamo> prestamosUsuario = new List<Prestamo>();
-            foreach(Prestamo p in gbd.RecorrerPrestamos())
-            {
-                if (p.Usuario.Equals(u) && p.Estado == EstadoEnum.EnProceso)
-                {
-                    prestamosUsuario.Add(p);
-                }
-            }
+            var presJUsu = gbd.RecorrerPrestamos().Where((p) => p.Usuario.Equals(u)); //Es necesario crear el objeto EjemplarEnPrestamo para la consulta
+            var l = 
+                from prestamos in presJUsu
+                join ejemplares in gbd.RecorrerEEP() on prestamos.Codigo equals ejemplares.
 
             
         }
 
-        public List<Prestamo> MostrarPrestamosCaducados()
+        public List<Prestamo> MostrarPrestamosCaducados(Usuario u)
         {
-            List<Prestamo> todosPrestamos = gbd.RecorrerPrestamos();
-            List<Prestamo> res;
-            foreach (Prestamo p in todosPrestamos)
-            {
-                
-            }
+            var l = gbd.RecorrerPrestamos().Where((p) => p.Usuario.Equals(u)).Where((p) => DateTime.Compare(DateTime.Now, p.FFinPrestamo) > 0 && p.Estado == EstadoEnum.EnProceso);
+            return new List<Prestamo>(l); //Tryhardeada masiva
         }
 
     }

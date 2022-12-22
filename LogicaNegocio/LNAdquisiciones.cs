@@ -3,6 +3,7 @@ using Persistencia;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,7 +87,13 @@ namespace LogicaNegocio
 
         public Libro MostrarLibroMasLeido()
         {
-
+            var l = 
+                from libros in gbd.RecorrerLibros()
+                join ejemplares in gbd.RecorrerEjemplares() on libros.Isbn equals ejemplares.Libro.Isbn
+                join eep in gbd.RecorrerEEP() on ejemplares.Codigo equals eep.CodEj
+                group eep by libros into libros
+                orderby libros.Count() descending
+                select libros.
         }
     }
 }
