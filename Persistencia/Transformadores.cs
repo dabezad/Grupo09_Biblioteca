@@ -17,7 +17,7 @@ namespace Persistencia
 
         public static Usuario DatoAUsuario(UsuarioDato ud)
         {
-            Usuario u = new Usuario(ud.Dni, ud.Nombre, BD.READ<string, PersonalBibliotecaDato>(ud.PersonalBAlta));
+            Usuario u = new Usuario(ud.Dni, ud.Nombre, BD.READ<string, PersonalBibliotecaDato>(ud.PersonalBAlta, "PersonalBibliotecaDato") as PersonalBiblioteca);
             return u;
         }
 
@@ -29,7 +29,7 @@ namespace Persistencia
 
         public static Ejemplar DatoAEjemplar(EjemplarDato ed)
         {
-            Ejemplar e = new Ejemplar(ed.Codigo, ed.Estado, BD.READ<string, LibroDato>(ed.Libro, ), BD.READ<string, PersonalBibliotecaDato>(e.PersonalBAlta)); 
+            Ejemplar e = new Ejemplar(ed.Codigo, ed.Estado, BD.READ<string, LibroDato>(ed.Libro, "LibroDato") as Libro, BD.READ<string, PersonalBibliotecaDato>(ed.PersonalBAlta, "PersonalBibliotecaDato") as PersonalAdquisiciones); 
             return e;                                                               
         }
 
@@ -41,7 +41,7 @@ namespace Persistencia
 
         public static Libro DatoALibro(LibroDato ld)
         {
-            Libro l = new Libro(ld.Isbn, ld.Titulo, ld.Autor, ld.Editorial, BD.READ<string, PersonalBibliotecaDato>(ld.PersonalBAlta, ld));
+            Libro l = new Libro(ld.Isbn, ld.Titulo, ld.Autor, ld.Editorial, BD.READ<string, PersonalBibliotecaDato>(ld.PersonalBAlta, "PersonalBibliotecaDato") as PersonalAdquisiciones);
             return l;
         }
 
@@ -57,12 +57,13 @@ namespace Persistencia
         public static Prestamo DatoAPrestamo(PrestamoDato pd)
         {
             
-            List<EjemplarEnPrestamoDato> ejemplares = new List<EjemplarEnPrestamoDato>();
+            List<Ejemplar> ejemplares = new List<Ejemplar>();
             foreach (EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
             {
-                if (elem.Id.CodEjem == pd.Codigo)
+                if (elem.Id.CodPres == pd.Codigo)
                 {
-                    ejemplares.Add(elem);
+                    Ejemplar e = BD.READ<string, EjemplarDato>(elem.Id.CodEjem, "EjemplarDato") as Ejemplar;
+                    ejemplares.Add(e);
                 }
             }
             Prestamo p = new Prestamo(pd.Codigo, BD.READ<string, UsuarioDato>(pd.Usuario, "UsuarioDato") as Usuario, ejemplares, pd.FRealizado, pd.FFinPrestamo,  BD.READ<string, PersonalBibliotecaDato>(pd.PersonalBAlta,"PersonalBibliotecaDato") as PersonalSala);

@@ -104,11 +104,11 @@ namespace LogicaNegocio
             List<Libro> res = new List<Libro>();
             foreach(Libro l in lista1)
             {
-                if (l.)
+                //if (l.)
             }
             
             
-            return list;
+            return lista1;
         }
     }
 }

@@ -16,88 +16,89 @@ namespace Persistencia
 
         public bool CrearLibro(Libro l)
         {
-            return BD.CREATE<string, LibroDato>(l);
+            return BD.CREATE<string, LibroDato>(Transformadores.LibroADato(l));
         }
         
         public Libro BuscarLibro(string id)
         {
-            return BD.READ<string, LibroDato>(id);
+            return BD.READ<string, LibroDato>(id, "LibroDato") as Libro;
         }
 
         public bool ActualizarLibro()
         {
-
+            return false; //AKA mierdon
         }
 
 
         public bool EliminarLibro(string id)
         {
-            return BD.DELETE<string, LibroDato>(id);
+            return BD.DELETE<string, LibroDato>(id, "LibroDato");
         }
 
         public bool CrearEjemplar(Ejemplar e)
         {
-            return BD.CREATE<string, EjemplarDato>(e);
+            return BD.CREATE<string, EjemplarDato>(Transformadores.EjemplarADato(e));
         }
         public Ejemplar BuscarEjemplar(string id)
         {
-            return BD.READ<string, EjemplarDato>(id);
+            return BD.READ<string, EjemplarDato>(id, "EjemplarDato") as Ejemplar;
         }
         public bool ActualizarEjemplar()
         {
-
+            return false;//AKA mierdon
         }
         public bool EliminarEjemplar(string id)
         {
-            return BD.DELETE<string, EjemplarDato>(id);
+            return BD.DELETE<string, EjemplarDato>(id, "EjemplarDato");
         }
         public bool CrearPrestamo(Prestamo p)
         {
-            return BD.CREATE<string, PrestamoDato>(p);
+            return BD.CREATE<string, PrestamoDato>(Transformadores.PrestamoADato(p));
         }
         public Prestamo BuscarPrestamo(string id)
         {
-            return BD.READ<string, PrestamoDato>(id);
+            return BD.READ<string, PrestamoDato>(id, "PrestamoDato") as Prestamo;
         }
         public bool ActualizarPrestamo()
         {
-
+            return false; //AKA mierdon
         }
         public bool EliminarPrestamo(string id)
         {
-            return BD.DELETE<string, PrestamoDato>(id);
+            return BD.DELETE<string, PrestamoDato>(id, "PrestamoDato");
         }
         public bool CrearPersonal(PersonalBiblioteca p)
         {
-            return BD.CREATE<string, PersonalBibliotecaDato>(p);
+            return BD.CREATE<string, PersonalBibliotecaDato>(Transformadores.PersonalADato(p));
         }
         public PersonalBiblioteca BuscarPersonal(string id)
         {
-            return BD.READ<string, PersonalBibliotecaDato>(id);
+            return BD.READ<string, PersonalBibliotecaDato>(id, "PersonalBibliotecaDato") as PersonalBiblioteca;
         }
         public bool ActualizarPersonal()
         {
+            return false; //AKA mierdon
 
         }
         public bool EliminarPersonal(string id)
         {
-            return BD.DELETE<string, PersonalBibliotecaDato>(id);
+            return BD.DELETE<string, PersonalBibliotecaDato>(id, "PersonalBibliotecaDato");
         }
         public bool CrearUsuario(Usuario u)
         {
-            return BD.CREATE<string, UsuarioDato>(u);
+            return BD.CREATE<string, UsuarioDato>(Transformadores.UsuarioADato(u));
         }
         public Usuario BuscarUsuario(string id)
         {
-            return BD.READ<string, UsuarioDato>(id);
+            return BD.READ<string, UsuarioDato>(id, "UsuarioDato") as Usuario;
         }
         public bool ActualizarUsuario()
         {
-
+            return false; //AKA mierdon
         }
         public bool EliminarUsuario(string id)
         {
-            return BD.DELETE<string, UsuarioDato>(id);
+            return BD.DELETE<string, UsuarioDato>(id, "UsuarioDato");
         }
 
         public List<Usuario> RecorrerUsuarios()
