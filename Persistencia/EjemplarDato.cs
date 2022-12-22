@@ -10,10 +10,10 @@ namespace Persistencia
     internal class EjemplarDato: Entity<string>
     {
         private string codigo;
-        private EstadoEnum estado;
+        private EstadoEjemplarEnum estado;
         private string libro;
         private string personalBAlta;
-        public EjemplarDato(string codigo, EstadoEnum estado, string libro, string personal): base(codigo)
+        public EjemplarDato(string codigo, EstadoEjemplarEnum estado, string libro, string personal): base(codigo)
         {
             this.codigo = codigo;
             this.estado = estado;
@@ -21,7 +21,7 @@ namespace Persistencia
             this.personalBAlta = personal;
         }
         public string Codigo { get { return codigo; } }
-        public EstadoEnum Estado { get { return estado; } set { this.estado = value; } }
+        public EstadoEjemplarEnum Estado { get { return estado; } set { this.estado = value; } }
         public string Libro { get { return libro; } }
 
         public string PersonalBAlta { get { return personalBAlta; } }

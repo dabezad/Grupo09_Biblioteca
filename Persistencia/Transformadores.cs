@@ -56,9 +56,17 @@ namespace Persistencia
 
         public static Prestamo DatoAPrestamo(PrestamoDato pd)
         {
-            Prestamo p = new Prestamo(pd.Codigo, BD.READ<string, UsuarioDato>(pd.Usuario, "UsuarioDato") as Usuario, null, pd.FRealizado, pd.FFinPrestamo,  BD.READ<string, PersonalBibliotecaDato>(pd.PersonalBAlta,"PersonalBibliotecaDato") as PersonalSala);
-            EjemplarEnPrestamoDato //esto se lia fuertemente
-            foreach(BD.READ<ClaveEEP, "EjemeplarEnPrestamoDato"> in )
+            
+            List<EjemplarEnPrestamoDato> ejemplares = new List<EjemplarEnPrestamoDato>();
+            foreach (EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
+            {
+                if (elem.Id.CodEjem == pd.Codigo)
+                {
+                    ejemplares.Add(elem);
+                }
+            }
+            Prestamo p = new Prestamo(pd.Codigo, BD.READ<string, UsuarioDato>(pd.Usuario, "UsuarioDato") as Usuario, ejemplares, pd.FRealizado, pd.FFinPrestamo,  BD.READ<string, PersonalBibliotecaDato>(pd.PersonalBAlta,"PersonalBibliotecaDato") as PersonalSala);
+
             return p;
         }
 
