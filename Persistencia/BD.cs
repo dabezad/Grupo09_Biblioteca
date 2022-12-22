@@ -120,9 +120,9 @@ namespace Persistencia
                 case "PersonalBibliotecaDato":
                     if (BD.TPersonalBiblioteca.Contains(t as string)) x = Transformadores.DatoAPersonal(BD.TPersonalBiblioteca[t as string]);
                     break;
-                case "EjemplarEnPrestamoDato":
+                /*case "EjemplarEnPrestamoDato":
                     if (BD.TEjemplarEnPrestamo.Contains(t as ClaveEEP)) x = Transformadores.DatoAPersonal(BD.TEjemplarEnPrestamo[t as ClaveEEP]);
-                    break;//aca mierdon
+                    break;//aca mierdon*/
             }
             return x;
         }
@@ -212,10 +212,43 @@ namespace Persistencia
             return b;
         }
 
-        public static bool DELETE<T, U>(T t, string nombre) where U: Entity<T>
-        {
-            
-        }
 
+        public static bool DELETE<T, U>(T t, string tabla) where U : Entity<T>
+        {
+            //porfavor
+            switch (tabla)
+            {
+                case "UsuarioDato":
+                    UsuarioDato ud = BD.READ<string, UsuarioDato>(t as string, "UsuarioDato") as UsuarioDato;
+                    return BD.TUsuario.Remove(ud);
+
+                case "PrestamoDato":
+                    PrestamoDato pd = BD.READ<string, PrestamoDato>(t as string, "PrestamoDato") as PrestamoDato;
+                    foreach (EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
+                    {
+                        if (elem.Id.CodPres == pd.Codigo)
+                        {
+                            BD.TEjemplarEnPrestamo.Remove(elem);
+                        }
+                    }
+                    return BD.TPrestamo.Remove(pd);
+                case "EjemplarDato":
+                    EjemplarDato ed = BD.READ<string, EjemplarDato>(t as string, "EjemplarDato") as EjemplarDato;
+                    return BD.TEjemplar.Remove(ed);
+
+                case "LibroDato":
+                    LibroDato ld = BD.READ<string, LibroDato>(t as string, "LibroDato") as LibroDato;
+                    return BD.TLibro.Remove(ld);
+
+                case "PersonalBibliotecaDato":
+                    PersonalBibliotecaDato pbd = BD.READ<string, PersonalBibliotecaDato>(t as string, "PersonalBibliotecaDato") as PersonalBibliotecaDato;
+                    return BD.TPersonalBiblioteca.Remove(pbd);
+            }
+            return false;
+
+
+
+
+        }
     }
 }
