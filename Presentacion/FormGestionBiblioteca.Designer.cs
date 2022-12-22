@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class GestionBiblioteca
+    partial class FormGestionBiblioteca
     {
         /// <summary>
         /// Variable del diseñador necesaria.

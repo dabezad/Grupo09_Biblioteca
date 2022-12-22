@@ -58,11 +58,11 @@
     <Compile Include="FormClave.Designer.cs">
       <DependentUpon>FormClave.cs</DependentUpon>
     </Compile>
-    <Compile Include="GestionBiblioteca.cs">
+    <Compile Include="FormGestionBiblioteca.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GestionBiblioteca.Designer.cs">
-      <DependentUpon>GestionBiblioteca.cs</DependentUpon>
+    <Compile Include="FormGestionBiblioteca.Designer.cs">
+      <DependentUpon>FormGestionBiblioteca.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,8 +72,8 @@
     <EmbeddedResource Include="FormClave.resx">
       <DependentUpon>FormClave.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GestionBiblioteca.resx">
-      <DependentUpon>GestionBiblioteca.cs</DependentUpon>
+    <EmbeddedResource Include="FormGestionBiblioteca.resx">
+      <DependentUpon>FormGestionBiblioteca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

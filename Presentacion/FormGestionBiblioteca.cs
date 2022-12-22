@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class GestionBiblioteca : Form
+    public partial class FormGestionBiblioteca : Form
     {
         private LNBiblioteca lnB;
-        public GestionBiblioteca()
+        public FormGestionBiblioteca()
         {
             InitializeComponent();
             lnB = new LNBiblioteca();

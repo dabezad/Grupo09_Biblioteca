@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IntLN.cs" />
     <Compile Include="LNAdquisiciones.cs" />
     <Compile Include="LNBiblioteca.cs" />
     <Compile Include="LNSala.cs" />
