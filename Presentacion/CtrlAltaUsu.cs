@@ -10,26 +10,23 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class FormClave : Form
+    public partial class CtrlAltaUsu : UserControl
     {
 
-        public Label LbClave { 
-            get { return this.lbClave ;  }
-        }
-
-        public TextBox TbClave
+        public TextBox TbNombre
         {
-            get { return this.tbClave;  }
+            get { return tbNombre; }
         }
-        public FormClave()
+        public CtrlAltaUsu()
         {
             InitializeComponent();
         }
 
-        private void FormClave_Load(object sender, EventArgs e)
+        public CtrlAltaUsu(int top, int left)
         {
-            
-            
+            this.Top = top;
+            this.Left = left;
+            InitializeComponent();
         }
     }
 }

@@ -17,9 +17,19 @@ namespace Presentacion
             get { return this.lbClave;  }
         }
 
+        public TextBox TbClave
+        {
+            get { return this.tbClave;  }
+        }
+
         public FormAlta()
         {
             InitializeComponent();
+        }
+
+        private void FormAlta_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

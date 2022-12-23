@@ -37,19 +37,19 @@
             // btAceptar
             // 
             this.btAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btAceptar.Location = new System.Drawing.Point(143, 377);
-            this.btAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btAceptar.Location = new System.Drawing.Point(92, 240);
+            this.btAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(100, 28);
             this.btAceptar.TabIndex = 0;
-            this.btAceptar.Text = "Aceptar";
+            this.btAceptar.Text = "Dar alta";
             this.btAceptar.UseVisualStyleBackColor = true;
             // 
             // btCancelar
             // 
             this.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancelar.Location = new System.Drawing.Point(349, 377);
-            this.btCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btCancelar.Location = new System.Drawing.Point(310, 240);
+            this.btCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btCancelar.Name = "btCancelar";
             this.btCancelar.Size = new System.Drawing.Size(100, 28);
             this.btCancelar.TabIndex = 1;
@@ -59,7 +59,7 @@
             // lbClave
             // 
             this.lbClave.AutoSize = true;
-            this.lbClave.Location = new System.Drawing.Point(161, 73);
+            this.lbClave.Location = new System.Drawing.Point(170, 73);
             this.lbClave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbClave.Name = "lbClave";
             this.lbClave.Size = new System.Drawing.Size(0, 16);
@@ -67,8 +67,8 @@
             // 
             // tbClave
             // 
-            this.tbClave.Location = new System.Drawing.Point(316, 69);
-            this.tbClave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbClave.Location = new System.Drawing.Point(210, 70);
+            this.tbClave.Margin = new System.Windows.Forms.Padding(4);
             this.tbClave.Name = "tbClave";
             this.tbClave.ReadOnly = true;
             this.tbClave.Size = new System.Drawing.Size(132, 22);
@@ -78,14 +78,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 502);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(531, 336);
             this.Controls.Add(this.tbClave);
             this.Controls.Add(this.lbClave);
             this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.btAceptar);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "FormAlta";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.FormAlta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

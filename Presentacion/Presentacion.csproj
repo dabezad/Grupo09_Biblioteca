@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CtrlAltaUsu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlAltaUsu.Designer.cs">
+      <DependentUpon>CtrlAltaUsu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAlta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CtrlAltaUsu.resx">
+      <DependentUpon>CtrlAltaUsu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAlta.resx">
       <DependentUpon>FormAlta.cs</DependentUpon>
     </EmbeddedResource>

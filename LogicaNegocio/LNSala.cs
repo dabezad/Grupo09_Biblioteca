@@ -99,12 +99,22 @@ namespace LogicaNegocio
             return resultado;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prestamo">Debe estar en proceso</param>
+        /// <returns>Lista con libros del préstamo que todavía no han sido devueltos</returns>
         public List<Libro> VerLibrosNoDevueltos(Prestamo prestamo)
         {
-            
-            
-            
-            return lista1;
+            var prestamoT = gbd.RecorrerPrestamos().Where((p) => p.Codigo == prestamo.Codigo);
+            var l =
+                from prestamos in prestamoT
+                join eeps in gbd.RecorrerEEP() on prestamos.Codigo equals eeps.CodPr
+                join ejemplares in gbd.RecorrerEjemplares() on eeps.CodEj equals ejemplares.Codigo
+                join libros in gbd.RecorrerLibros() on ejemplares.Libro.Isbn equals libros.Isbn
+                where ejemplares.Estado == EstadoEjemplarEnum.Prestado
+                select libros;
+            return new List<Libro>(l);
         }
     }
 }

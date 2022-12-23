@@ -56,7 +56,7 @@ namespace LogicaNegocio
         public List<Prestamo> MostrarPrestamosCaducados(Usuario u)
         {
             var l = gbd.RecorrerPrestamos().Where((p) => p.Usuario.Equals(u)).Where((p) => DateTime.Compare(DateTime.Now, p.FFinPrestamo) > 0 && p.Estado == EstadoEnum.EnProceso);
-            return new List<Prestamo>(l); //Tryhardeada masiva
+            return new List<Prestamo>(l); 
         }
 
     }

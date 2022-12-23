@@ -195,14 +195,16 @@ namespace Persistencia
 
         public static bool DELETE<T, U>(T t, string tabla) where U : Entity<T>
         {
+            //porfavor
             switch (tabla)
             {
+                
                 case "UsuarioDato":
-                    UsuarioDato ud = BD.READ<string, UsuarioDato>(t as string, "UsuarioDato") as UsuarioDato;
+                    UsuarioDato ud = Transformadores.UsuarioADato(BD.READ<string, UsuarioDato>(t as string, "UsuarioDato") as Usuario);
                     return BD.TUsuario.Remove(ud);
 
                 case "PrestamoDato":
-                    PrestamoDato pd = BD.READ<string, PrestamoDato>(t as string, "PrestamoDato") as PrestamoDato;
+                    PrestamoDato pd = Transformadores.PrestamoADato(BD.READ<string, PrestamoDato>(t as string, "PrestamoDato") as Prestamo);
                     foreach (EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
                     {
                         if (elem.Id.CodPres == pd.Codigo)
@@ -224,6 +226,8 @@ namespace Persistencia
                     return BD.TPersonalBiblioteca.Remove(pbd);
             }
             return false;
+
+
 
 
         }

@@ -155,7 +155,7 @@ namespace Persistencia
             }
             return res;
         }
-
+        
         public List<Ejemplar> PrestamoJoinEjemplar(string idP)
         {
             List<EjemplarEnPrestamoDato> ejemplaresDelPrestamo = new List<EjemplarEnPrestamoDato>();
