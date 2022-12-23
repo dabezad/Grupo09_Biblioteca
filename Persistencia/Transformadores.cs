@@ -82,5 +82,11 @@ namespace Persistencia
             PersonalBiblioteca p = new PersonalBiblioteca(pd.Nombre, pd.Contraseña);
             return p;
         }
+
+        public static EjemplarEnPrestamo DatoAEEP(EjemplarEnPrestamoDato datoEEP)
+        {
+            EjemplarEnPrestamo eep = new EjemplarEnPrestamo(datoEEP.CodPrestamo, datoEEP.CodEjemplar);
+            return eep;
+        }
     }
 }

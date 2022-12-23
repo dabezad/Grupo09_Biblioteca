@@ -41,10 +41,14 @@ namespace LogicaNegocio
 
         public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 
         {
-            var presJUsu = gbd.RecorrerPrestamos().Where((p) => p.Usuario.Equals(u)); //Es necesario crear el objeto EjemplarEnPrestamo para la consulta
-            var l = 
+            var presJUsu = gbd.RecorrerPrestamos().Where((p) => p.Usuario.Equals(u) && p.Estado == EstadoEnum.EnProceso); //Es necesario crear el objeto EjemplarEnPrestamo para la consulta
+            var l =
                 from prestamos in presJUsu
-                join ejemplares in gbd.RecorrerEEP() on prestamos.Codigo equals ejemplares.
+                join eeps in gbd.RecorrerEEP() on prestamos.Codigo equals eeps.CodPr
+                join ejemplares in gbd.RecorrerEjemplares() on eeps.CodEj equals ejemplares.Codigo
+                where ejemplares.Estado == EstadoEjemplarEnum.Prestado
+                select ejemplares;
+            return new List<Ejemplar>(l); //Otra tryhardeada masiva (esta aun mas)
 
             
         }

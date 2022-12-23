@@ -24,9 +24,9 @@ namespace Persistencia
             return BD.READ<string, LibroDato>(id, "LibroDato") as Libro;
         }
 
-        public bool ActualizarLibro()
+        public bool ActualizarLibro(Libro l)
         {
-            return false; //AKA mierdon
+            return BD.UPDATE<string, LibroDato>(Transformadores.LibroADato(l)); 
         }
 
 
@@ -43,9 +43,9 @@ namespace Persistencia
         {
             return BD.READ<string, EjemplarDato>(id, "EjemplarDato") as Ejemplar;
         }
-        public bool ActualizarEjemplar()
+        public bool ActualizarEjemplar(Ejemplar e)
         {
-            return false;//AKA mierdon
+            return BD.UPDATE<string, EjemplarDato>(Transformadores.EjemplarADato(e));
         }
         public bool EliminarEjemplar(string id)
         {
@@ -59,9 +59,9 @@ namespace Persistencia
         {
             return BD.READ<string, PrestamoDato>(id, "PrestamoDato") as Prestamo;
         }
-        public bool ActualizarPrestamo()
+        public bool ActualizarPrestamo(Prestamo p)
         {
-            return false; //AKA mierdon
+            return BD.UPDATE<string, PrestamoDato>(Transformadores.PrestamoADato(p));
         }
         public bool EliminarPrestamo(string id)
         {
@@ -75,9 +75,9 @@ namespace Persistencia
         {
             return BD.READ<string, PersonalBibliotecaDato>(id, "PersonalBibliotecaDato") as PersonalBiblioteca;
         }
-        public bool ActualizarPersonal()
+        public bool ActualizarPersonal(PersonalBiblioteca p)
         {
-            return false; //AKA mierdon
+            return BD.UPDATE<string, PersonalBibliotecaDato>(Transformadores.PersonalADato(p));
 
         }
         public bool EliminarPersonal(string id)
@@ -92,9 +92,9 @@ namespace Persistencia
         {
             return BD.READ<string, UsuarioDato>(id, "UsuarioDato") as Usuario;
         }
-        public bool ActualizarUsuario()
+        public bool ActualizarUsuario(Usuario u)
         {
-            return false; //AKA mierdon
+            return BD.UPDATE<string, UsuarioDato>(Transformadores.UsuarioADato(u));
         }
         public bool EliminarUsuario(string id)
         {
@@ -145,6 +145,16 @@ namespace Persistencia
             return listaE;
         }
 
+        public List<EjemplarEnPrestamo> RecorrerEEP()
+        {
+            List<EjemplarEnPrestamo> res = new List<EjemplarEnPrestamo>();
+            List<EjemplarEnPrestamoDato> listaEEPDatos = BD.TEjemplarEnPrestamo.ToList();
+            foreach (EjemplarEnPrestamoDato datoEEP in listaEEPDatos)
+            {
+                res.Add(Transformadores.DatoAEEP(datoEEP));
+            }
+            return res;
+        }
 
         public List<Ejemplar> PrestamoJoinEjemplar(string idP)
         {

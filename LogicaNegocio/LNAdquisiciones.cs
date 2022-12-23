@@ -87,13 +87,17 @@ namespace LogicaNegocio
 
         public Libro MostrarLibroMasLeido()
         {
-            var l = 
-                from libros in gbd.RecorrerLibros()
-                join ejemplares in gbd.RecorrerEjemplares() on libros.Isbn equals ejemplares.Libro.Isbn
-                join eep in gbd.RecorrerEEP() on ejemplares.Codigo equals eep.CodEj
-                group eep by libros into libros
-                orderby libros.Count() descending
-                select libros.
+            var l =
+                from eeps in gbd.RecorrerEEP()
+                join prestamos in gbd.RecorrerPrestamos() on eeps.CodPr equals prestamos.Codigo
+                group eeps by prestamos into gr
+                orderby gr.Count() descending
+                select gr.Key;  //Ordena los eeps por prestamos 
+            Prestamo p = l.First(); //Consigo el primer prestamo (que contiene el libro mas solicitado)
+            EjemplarEnPrestamo eep = gbd.RecorrerEEP().Where((ep) => ep.CodPr == p.Codigo).First(); //Voy sacando el libro mediante busquedas
+            Ejemplar l2 = gbd.RecorrerEjemplares().Where((ej) => ej.Codigo == eep.CodEj).First(); //de Prestamo -> EEP -> Ejemplar -> Libro
+            Libro masLeido = gbd.RecorrerLibros().Where((lib) => l2.Libro.Isbn == lib.Isbn).First();
+            return masLeido;
         }
     }
 }

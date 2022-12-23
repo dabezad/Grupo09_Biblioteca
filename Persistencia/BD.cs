@@ -55,45 +55,49 @@ namespace Persistencia
         /// <typeparam name="U">Dato tipo Tabla con clave T</typeparam>
         /// <param name="u"></param>
         /// <returns></returns>
-        public static bool CREATE<T, U>(U u) where U: Entity<T>
+        public static bool CREATE<T, U>(U u) where U : Entity<T>
         {
             if (u == null)
             {
                 return false;
             }
-            if ( u is Usuario)
+            else
+            if (u is UsuarioDato)
             {
-                UsuarioDato ud = Transformadores.UsuarioADato(u as Usuario);
-                BD.TUsuario.Add(ud);
+
+                BD.TUsuario.Add(u as UsuarioDato);
                 return true;
             }
-            if (u is Prestamo)
+            else
+            if (u is PrestamoDato)
             {
-                Prestamo p = u as Prestamo;
-                PrestamoDato pm = Transformadores.PrestamoADato(p);
-                foreach(Ejemplar e in p.Ejemplares)
+                Prestamo p = Transformadores.DatoAPrestamo(u as PrestamoDato);
+                foreach (Ejemplar e in p.Ejemplares)
                 {
-                    BD.TEjemplarEnPrestamo.Add(new EjemplarEnPrestamoDato(p.Codigo, e.Codigo)); 
+                    BD.TEjemplarEnPrestamo.Add(new EjemplarEnPrestamoDato(p.Codigo, e.Codigo));
                 }
-                BD.TPrestamo.Add(pm);
+                BD.TPrestamo.Add(u as PrestamoDato);
                 return true;
             }
-            if (u is Ejemplar)
+            else
+            if (u is EjemplarDato)
             {
-                EjemplarDato ed = Transformadores.EjemplarADato(u as Ejemplar);
-                BD.TEjemplar.Add(ed);
+
+                BD.TEjemplar.Add(u as EjemplarDato);
                 return true;
             }
-            if (u is Libro)
+            else
+            if (u is LibroDato)
             {
-                LibroDato ld= Transformadores.LibroADato(u as Libro);
-                BD.TLibro.Add(ld);
+
+                BD.TLibro.Add(u as LibroDato);
                 return true;
             }
-            if (u is PersonalBiblioteca)
+            else
+            if (u is PersonalBibliotecaDato)
             {
-                PersonalBibliotecaDato pb = Transformadores.PersonalADato(u as PersonalBiblioteca);
-                BD.TPersonalBiblioteca.Add(pb);
+
+                BD.TPersonalBiblioteca.Add(u as PersonalBibliotecaDato);
                 return true;
             }//en caso de no funcionar añadir 3 if con los distintos personales
             return false;
@@ -134,79 +138,55 @@ namespace Persistencia
             {
                 b = false;
             }
-            if (u is Usuario)
+            else if (u is UsuarioDato)
             {
-                UsuarioDato ud = Transformadores.UsuarioADato(u as Usuario);
-                String s = ud.Dni;
-                if ((BD.READ<string, UsuarioDato>(s, "UsuarioDato") != null))
+                UsuarioDato ud = u as UsuarioDato;
+                if ((BD.READ<string, UsuarioDato>(ud.Dni, "UsuarioDato") != null))
                 {
-                    BD.DELETE<string, UsuarioDato>(s, "UsuarioDato");
+                    BD.DELETE<string, UsuarioDato>(ud.Dni, "UsuarioDato");
                     BD.CREATE<string, UsuarioDato>(ud);
                     b = true;
                 }
-                else
-                {
-                    b = false;
-                }
             }
-            if (u is Prestamo)
+            else if (u is PrestamoDato) //Comprobar ejemplares con el previo elemento de la tabla
             {
-                PrestamoDato ud = Transformadores.PrestamoADato(u as Prestamo);
-                String s = ud.Codigo;
-                if ((BD.READ<string, PrestamoDato>(s, "PrestamoDato") != null))
+                PrestamoDato ud = u as PrestamoDato;
+                if ((BD.READ<string, PrestamoDato>(ud.Codigo, "PrestamoDato") != null))
                 {
-                    BD.DELETE<string, PrestamoDato>(s, "PrestamoDato");
+                    BD.DELETE<string, PrestamoDato>(ud.Codigo, "PrestamoDato");
                     BD.CREATE<string, PrestamoDato>(ud);
                     b = true;
                 }
-                else
-                {
-                    b = false;
-                }
+                
             }
-            if (u is Ejemplar)
+            else if (u is EjemplarDato)
             {
-                EjemplarDato ud = Transformadores.EjemplarADato(u as Ejemplar);
-                String s = ud.Codigo;
-                if ((BD.READ<string, EjemplarDato>(s, "EjemplarDato") != null))
+                EjemplarDato ud = u as EjemplarDato;
+                if ((BD.READ<string, EjemplarDato>(ud.Codigo, "EjemplarDato") != null))
                 {
-                    BD.DELETE<string, EjemplarDato>(s, "EjemplarDato");
+                    BD.DELETE<string, EjemplarDato>(ud.Codigo, "EjemplarDato");
                     BD.CREATE<string, EjemplarDato>(ud);
                     b = true;
                 }
-                else
-                {
-                    b = false;
-                }
             }
-            if (u is Libro)
+            else if (u is LibroDato)
             {
-                LibroDato ud = Transformadores.LibroADato(u as Libro);
-                String s = ud.Isbn;
-                if ((BD.READ<string, LibroDato>(s, "LibroDato") != null))
+                LibroDato ud = u as LibroDato;
+                if ((BD.READ<string, LibroDato>(ud.Isbn, "LibroDato") != null))
                 {
-                    BD.DELETE<string, LibroDato>(s, "LibroDato");
+                    BD.DELETE<string, LibroDato>(ud.Isbn, "LibroDato");
                     BD.CREATE<string, LibroDato>(ud);
                     b = true;
                 }
-                else
-                {
-                    b = false;
-                }
             }
-            if (u is PersonalBiblioteca)
+            else if (u is PersonalBibliotecaDato)
             {
-                PersonalBibliotecaDato ud = Transformadores.PersonalADato(u as PersonalBiblioteca);
-                String s = ud.Nombre;
-                if ((BD.READ<string, PersonalBibliotecaDato>(s, "PersonalBibliotecaDato") != null))
+                PersonalBibliotecaDato ud = u as PersonalBibliotecaDato;
+                if ((BD.READ<string, PersonalBibliotecaDato>(ud.Id, "PersonalBibliotecaDato") != null))
                 {
-                    BD.DELETE<string, PersonalBibliotecaDato>(s, "PersonalBibliotecaDato");
+                    BD.DELETE<string, PersonalBibliotecaDato>(ud.Id, "PersonalBibliotecaDato");
                     BD.CREATE<string, PersonalBibliotecaDato>(ud);
                     b = true;
-                }
-                else
-                {
-                    b = false;
                 }
             }
             return b;
@@ -215,7 +195,6 @@ namespace Persistencia
 
         public static bool DELETE<T, U>(T t, string tabla) where U : Entity<T>
         {
-            //porfavor
             switch (tabla)
             {
                 case "UsuarioDato":
@@ -245,8 +224,6 @@ namespace Persistencia
                     return BD.TPersonalBiblioteca.Remove(pbd);
             }
             return false;
-
-
 
 
         }

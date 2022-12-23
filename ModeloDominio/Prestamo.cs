@@ -27,6 +27,7 @@ namespace ModeloDominio
             this.personalBAlta = personalBAlta;
         }
 
+
         public string Codigo { get { return this.codigo; } }
         public Usuario Usuario { get { return this.usuario; } }
         public List<Ejemplar> Ejemplares { get { return this.ejemplares; } set { this.ejemplares = value; } } 

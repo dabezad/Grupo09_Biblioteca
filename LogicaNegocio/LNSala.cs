@@ -70,6 +70,7 @@ namespace LogicaNegocio
         {
             bool finalizado = true;
             ejemplar.Estado = EstadoEjemplarEnum.Disponible;
+            gbd.ActualizarEjemplar(ejemplar);
             foreach (Ejemplar e in prestamo.Ejemplares)
             {
                 if (finalizado && e.Estado == EstadoEjemplarEnum.Prestado)
@@ -80,7 +81,7 @@ namespace LogicaNegocio
             if (finalizado)
             {
                 prestamo.Estado = EstadoEnum.Finalizado;
-                gbd.ActualizarPrestamo(); //PONERLO A FINALIZADO EN LA BD
+                gbd.ActualizarPrestamo(prestamo); 
             }
             
         }
