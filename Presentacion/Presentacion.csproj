@@ -46,11 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CtrlDatosEjemplar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDatosEjemplar.Designer.cs">
+      <DependentUpon>CtrlDatosEjemplar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlDatosLib.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDatosLib.Designer.cs">
+      <DependentUpon>CtrlDatosLib.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlDatosUsu.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CtrlDatosUsu.Designer.cs">
       <DependentUpon>CtrlDatosUsu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdquisiciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdquisiciones.Designer.cs">
+      <DependentUpon>FormAdquisiciones.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDatos.cs">
       <SubType>Form</SubType>
@@ -70,10 +88,25 @@
     <Compile Include="FormGestionBiblioteca.Designer.cs">
       <DependentUpon>FormGestionBiblioteca.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSala.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSala.Designer.cs">
+      <DependentUpon>FormSala.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CtrlDatosEjemplar.resx">
+      <DependentUpon>CtrlDatosEjemplar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlDatosLib.resx">
+      <DependentUpon>CtrlDatosLib.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosUsu.resx">
       <DependentUpon>CtrlDatosUsu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdquisiciones.resx">
+      <DependentUpon>FormAdquisiciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDatos.resx">
       <DependentUpon>FormDatos.cs</DependentUpon>

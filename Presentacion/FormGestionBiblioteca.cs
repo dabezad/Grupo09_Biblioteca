@@ -16,15 +16,21 @@ namespace Presentacion
     public partial class FormGestionBiblioteca : Form
     {
         private LNBiblioteca lnB;
-        private PersonalBiblioteca personal;
+        private PersonalBiblioteca personal; //DATO DE PRUEBA, cambiar despues por el personal que accede 
 
-        
         public FormGestionBiblioteca()
         {
             InitializeComponent();
-            personal = new PersonalBiblioteca("Pepe", "123"); //DATO DE PRUEBA, cambiar despues por el personal que accede 
+        }
+
+        public FormGestionBiblioteca(PersonalBiblioteca pers)
+        {
+            this.personal = pers;
+            this.Text = this.personal.Nombre + " - Gestión de biblioteca";
             lnB = new LNBiblioteca();
-            lnB.AltaPersonal(personal);
+            lnB.AltaPersonal(pers);
+            InitializeComponent();
+            
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
@@ -41,7 +47,8 @@ namespace Presentacion
             if (d == DialogResult.Cancel)
             {
                 formDNI.Close();
-            } else if (d == DialogResult.OK)
+            }
+            else if (d == DialogResult.OK)
             {
                 string dni = formDNI.TbClave.Text;
                 if (dni != "")
@@ -49,17 +56,18 @@ namespace Presentacion
                     if (lnB.BuscarUsuario(dni) == null)
                     {
                         MostrarFormAltaUsu(dni);
-                    } else
+                    }
+                    else
                     {
                         DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "Ya existe un usuario con ese DNI", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (res == DialogResult.Yes)
                         {
                             tsmiAltaUsu_Click(sender, e);
-                        } 
+                        }
                     }
                 }
-                
-                
+
+
             }
             formDNI.Dispose();
         }
@@ -113,7 +121,8 @@ namespace Presentacion
             if (d == DialogResult.Cancel)
             {
                 formDNI.Close();
-            } else
+            }
+            else
             {
                 string dni = formDNI.TbClave.Text;
                 if (dni != "")
@@ -160,14 +169,25 @@ namespace Presentacion
                 {
                     if (lnB.BajaUsuario(u.Dni))
                     {
-                        MessageBox.Show("El usuario se ha dado de baja correctamente" , "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    } else
+                        MessageBox.Show("El usuario se ha dado de baja correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
                     {
                         MessageBox.Show("Error en el sistema al dar de baja al usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             formBajaUsu.Dispose();
+        }
+
+        protected virtual void tsmiAltaLib_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected virtual void tsmiAltaEj_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

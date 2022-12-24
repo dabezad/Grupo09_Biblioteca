@@ -16,7 +16,7 @@ namespace Presentacion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormGestionBiblioteca());
+            Application.Run(new FormAdquisiciones(new ModeloDominio.PersonalAdquisiciones("Pepe", "123")));
         }
     }
 }

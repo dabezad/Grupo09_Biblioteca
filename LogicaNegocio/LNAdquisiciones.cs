@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    internal class LNAdquisiciones : LNBiblioteca
+    public class LNAdquisiciones : LNBiblioteca
     {
         private GestorBD gbd;
 

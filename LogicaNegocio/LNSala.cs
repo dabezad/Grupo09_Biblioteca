@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LogicaNegocio
 {
-    internal class LNSala: LNBiblioteca
+    public class LNSala: LNBiblioteca
     {
         private GestorBD gbd;
 

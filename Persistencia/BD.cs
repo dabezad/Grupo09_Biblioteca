@@ -199,7 +199,6 @@ namespace Persistencia
             switch (tabla)
             {
                 case "UsuarioDato":
-                    //UsuarioDato ud = Transformadores.UsuarioADato(BD.READ<string, UsuarioDato>(t as string, "UsuarioDato") as Usuario);
                     return BD.TUsuario.Remove(t as string);
 
                 case "PrestamoDato":

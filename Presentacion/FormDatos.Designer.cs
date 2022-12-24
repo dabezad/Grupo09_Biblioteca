@@ -37,7 +37,7 @@
             // btAceptar
             // 
             this.btAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btAceptar.Location = new System.Drawing.Point(92, 240);
+            this.btAceptar.Location = new System.Drawing.Point(120, 383);
             this.btAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(100, 28);
@@ -47,7 +47,7 @@
             // btCancelar
             // 
             this.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancelar.Location = new System.Drawing.Point(310, 240);
+            this.btCancelar.Location = new System.Drawing.Point(300, 383);
             this.btCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btCancelar.Name = "btCancelar";
             this.btCancelar.Size = new System.Drawing.Size(100, 28);
@@ -58,7 +58,7 @@
             // lbClave
             // 
             this.lbClave.AutoSize = true;
-            this.lbClave.Location = new System.Drawing.Point(170, 73);
+            this.lbClave.Location = new System.Drawing.Point(153, 73);
             this.lbClave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbClave.Name = "lbClave";
             this.lbClave.Size = new System.Drawing.Size(0, 16);
@@ -78,7 +78,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(531, 336);
+            this.ClientSize = new System.Drawing.Size(503, 502);
             this.Controls.Add(this.tbClave);
             this.Controls.Add(this.lbClave);
             this.Controls.Add(this.btCancelar);

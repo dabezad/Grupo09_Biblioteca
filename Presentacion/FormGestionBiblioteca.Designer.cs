@@ -35,11 +35,12 @@
             this.tsmiBusqUsu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLibros = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAltaLib = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBajaLib = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiBusqLib = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEjemplares = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPrestamos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAltaPres = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBajaPres = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAltaEj = new System.Windows.Forms.ToolStripMenuItem();
             this.msPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,29 +72,27 @@
             // tsmiAltaUsu
             // 
             this.tsmiAltaUsu.Name = "tsmiAltaUsu";
-            this.tsmiAltaUsu.Size = new System.Drawing.Size(224, 26);
+            this.tsmiAltaUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiAltaUsu.Text = "Alta";
             this.tsmiAltaUsu.Click += new System.EventHandler(this.tsmiAltaUsu_Click);
             // 
             // tsmiBajaUsu
             // 
             this.tsmiBajaUsu.Name = "tsmiBajaUsu";
-            this.tsmiBajaUsu.Size = new System.Drawing.Size(224, 26);
+            this.tsmiBajaUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiBajaUsu.Text = "Baja";
             this.tsmiBajaUsu.Click += new System.EventHandler(this.tsmiBajaUsu_Click);
             // 
             // tsmiBusqUsu
             // 
             this.tsmiBusqUsu.Name = "tsmiBusqUsu";
-            this.tsmiBusqUsu.Size = new System.Drawing.Size(224, 26);
+            this.tsmiBusqUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiBusqUsu.Text = "Búsqueda";
             // 
             // tsmiLibros
             // 
             this.tsmiLibros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiAltaLib,
-            this.tsmiBajaLib,
-            this.tsmiBusqLib});
+            this.tsmiAltaLib});
             this.tsmiLibros.Name = "tsmiLibros";
             this.tsmiLibros.Size = new System.Drawing.Size(63, 24);
             this.tsmiLibros.Text = "Libros";
@@ -101,23 +100,14 @@
             // tsmiAltaLib
             // 
             this.tsmiAltaLib.Name = "tsmiAltaLib";
-            this.tsmiAltaLib.Size = new System.Drawing.Size(157, 26);
+            this.tsmiAltaLib.Size = new System.Drawing.Size(119, 26);
             this.tsmiAltaLib.Text = "Alta";
-            // 
-            // tsmiBajaLib
-            // 
-            this.tsmiBajaLib.Name = "tsmiBajaLib";
-            this.tsmiBajaLib.Size = new System.Drawing.Size(157, 26);
-            this.tsmiBajaLib.Text = "Baja";
-            // 
-            // tsmiBusqLib
-            // 
-            this.tsmiBusqLib.Name = "tsmiBusqLib";
-            this.tsmiBusqLib.Size = new System.Drawing.Size(157, 26);
-            this.tsmiBusqLib.Text = "Búsqueda";
+            this.tsmiAltaLib.Click += new System.EventHandler(this.tsmiAltaLib_Click);
             // 
             // tsmiEjemplares
             // 
+            this.tsmiEjemplares.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAltaEj});
             this.tsmiEjemplares.Name = "tsmiEjemplares";
             this.tsmiEjemplares.Size = new System.Drawing.Size(96, 24);
             this.tsmiEjemplares.Text = "Ejemplares";
@@ -125,15 +115,37 @@
             // 
             // tsmiPrestamos
             // 
+            this.tsmiPrestamos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAltaPres,
+            this.tsmiBajaPres});
             this.tsmiPrestamos.Name = "tsmiPrestamos";
             this.tsmiPrestamos.Size = new System.Drawing.Size(91, 24);
             this.tsmiPrestamos.Text = "Préstamos";
+            // 
+            // tsmiAltaPres
+            // 
+            this.tsmiAltaPres.Name = "tsmiAltaPres";
+            this.tsmiAltaPres.Size = new System.Drawing.Size(121, 26);
+            this.tsmiAltaPres.Text = "Alta";
+            // 
+            // tsmiBajaPres
+            // 
+            this.tsmiBajaPres.Name = "tsmiBajaPres";
+            this.tsmiBajaPres.Size = new System.Drawing.Size(121, 26);
+            this.tsmiBajaPres.Text = "Baja";
             // 
             // tsmiConfiguracion
             // 
             this.tsmiConfiguracion.Name = "tsmiConfiguracion";
             this.tsmiConfiguracion.Size = new System.Drawing.Size(116, 24);
             this.tsmiConfiguracion.Text = "Configuración";
+            // 
+            // tsmiAltaEj
+            // 
+            this.tsmiAltaEj.Name = "tsmiAltaEj";
+            this.tsmiAltaEj.Size = new System.Drawing.Size(224, 26);
+            this.tsmiAltaEj.Text = "Alta";
+            this.tsmiAltaEj.Click += new System.EventHandler(this.tsmiAltaEj_Click);
             // 
             // FormGestionBiblioteca
             // 
@@ -146,7 +158,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormGestionBiblioteca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gestion de biblioteca";
             this.msPrincipal.ResumeLayout(false);
             this.msPrincipal.PerformLayout();
             this.ResumeLayout(false);
@@ -155,19 +166,19 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip msPrincipal;
         private System.Windows.Forms.ToolStripMenuItem tsmiUsuario;
-        private System.Windows.Forms.ToolStripMenuItem tsmiLibros;
         private System.Windows.Forms.ToolStripMenuItem tsmiEjemplares;
         private System.Windows.Forms.ToolStripMenuItem tsmiPrestamos;
         private System.Windows.Forms.ToolStripMenuItem tsmiConfiguracion;
         private System.Windows.Forms.ToolStripMenuItem tsmiAltaUsu;
         private System.Windows.Forms.ToolStripMenuItem tsmiBajaUsu;
         private System.Windows.Forms.ToolStripMenuItem tsmiBusqUsu;
-        private System.Windows.Forms.ToolStripMenuItem tsmiAltaLib;
-        private System.Windows.Forms.ToolStripMenuItem tsmiBajaLib;
-        private System.Windows.Forms.ToolStripMenuItem tsmiBusqLib;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAltaPres;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBajaPres;
+        protected System.Windows.Forms.ToolStripMenuItem tsmiLibros;
+        protected System.Windows.Forms.ToolStripMenuItem tsmiAltaLib;
+        protected System.Windows.Forms.MenuStrip msPrincipal;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAltaEj;
     }
 }
 

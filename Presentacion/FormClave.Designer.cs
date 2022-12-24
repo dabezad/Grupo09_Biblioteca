@@ -37,7 +37,7 @@
             // lbClave
             // 
             this.lbClave.AutoSize = true;
-            this.lbClave.Location = new System.Drawing.Point(170, 73);
+            this.lbClave.Location = new System.Drawing.Point(153, 73);
             this.lbClave.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbClave.Name = "lbClave";
             this.lbClave.Size = new System.Drawing.Size(0, 16);
@@ -46,7 +46,7 @@
             // tbClave
             // 
             this.tbClave.Location = new System.Drawing.Point(210, 70);
-            this.tbClave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbClave.Margin = new System.Windows.Forms.Padding(4);
             this.tbClave.Name = "tbClave";
             this.tbClave.Size = new System.Drawing.Size(132, 22);
             this.tbClave.TabIndex = 2;
@@ -55,7 +55,7 @@
             // 
             this.btAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btAceptar.Location = new System.Drawing.Point(92, 240);
-            this.btAceptar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(100, 28);
             this.btAceptar.TabIndex = 3;
@@ -66,7 +66,7 @@
             // 
             this.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancelar.Location = new System.Drawing.Point(301, 240);
-            this.btCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btCancelar.Name = "btCancelar";
             this.btCancelar.Size = new System.Drawing.Size(100, 28);
             this.btCancelar.TabIndex = 4;
@@ -83,7 +83,7 @@
             this.Controls.Add(this.tbClave);
             this.Controls.Add(this.lbClave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormClave";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormClave_Load);

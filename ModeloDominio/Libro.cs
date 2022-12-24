@@ -14,6 +14,15 @@ namespace ModeloDominio
         private string editorial;
         private PersonalAdquisiciones personalBAlta;
 
+        public Libro(string isbn, PersonalAdquisiciones pers) //Constructor para introducir ejemplares ANTES del libro 
+        {
+            this.isbn = isbn;
+            this.titulo = "";
+            this.autor = "";
+            this.editorial = "";
+            this.personalBAlta = pers;
+        }
+
         public Libro(string isbn, string titulo, string autor, string editorial, PersonalAdquisiciones personal)
         {
             this.isbn = isbn;
