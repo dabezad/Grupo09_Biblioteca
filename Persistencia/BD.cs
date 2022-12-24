@@ -197,8 +197,7 @@ namespace Persistencia
         {
             //porfavor
             switch (tabla)
-            {
-                
+            {       
                 case "UsuarioDato":
                     //UsuarioDato ud = Transformadores.UsuarioADato(BD.READ<string, UsuarioDato>(t as string, "UsuarioDato") as Usuario);
                     return BD.TUsuario.Remove(t as string);
@@ -214,15 +213,15 @@ namespace Persistencia
                     }
                     return BD.TPrestamo.Remove(pd);
                 case "EjemplarDato":
-                    EjemplarDato ed = BD.READ<string, EjemplarDato>(t as string, "EjemplarDato") as EjemplarDato;
+                    EjemplarDato ed = Transformadores.EjemplarADato(BD.READ<string, EjemplarDato>(t as string, "EjemplarDato") as Ejemplar);
                     return BD.TEjemplar.Remove(ed);
 
                 case "LibroDato":
-                    LibroDato ld = BD.READ<string, LibroDato>(t as string, "LibroDato") as LibroDato;
+                    LibroDato ld = Transformadores.LibroADato(BD.READ<string, LibroDato>(t as string, "LibroDato") as Libro);
                     return BD.TLibro.Remove(ld);
 
                 case "PersonalBibliotecaDato":
-                    PersonalBibliotecaDato pbd = BD.READ<string, PersonalBibliotecaDato>(t as string, "PersonalBibliotecaDato") as PersonalBibliotecaDato;
+                    PersonalBibliotecaDato pbd = Transformadores.PersonalADato(BD.READ<string, PersonalBibliotecaDato>(t as string, "PersonalBibliotecaDato") as PersonalBiblioteca);
                     return BD.TPersonalBiblioteca.Remove(pbd);
             }
             return false;
