@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class CtrlAltaUsu
+    partial class CtrlDatosUsu
     {
         /// <summary> 
         /// Variable del diseñador necesaria.

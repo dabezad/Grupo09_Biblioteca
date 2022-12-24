@@ -1,6 +1,6 @@
 ﻿namespace Presentacion
 {
-    partial class FormAlta
+    partial class FormDatos
     {
         /// <summary>
         /// Required designer variable.
@@ -42,7 +42,6 @@
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(100, 28);
             this.btAceptar.TabIndex = 0;
-            this.btAceptar.Text = "Dar alta";
             this.btAceptar.UseVisualStyleBackColor = true;
             // 
             // btCancelar
@@ -74,7 +73,7 @@
             this.tbClave.Size = new System.Drawing.Size(132, 22);
             this.tbClave.TabIndex = 3;
             // 
-            // FormAlta
+            // FormDatos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,7 +86,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "FormAlta";
+            this.Name = "FormDatos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormAlta_Load);
             this.ResumeLayout(false);

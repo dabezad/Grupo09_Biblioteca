@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CtrlAltaUsu.cs">
+    <Compile Include="CtrlDatosUsu.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CtrlAltaUsu.Designer.cs">
-      <DependentUpon>CtrlAltaUsu.cs</DependentUpon>
+    <Compile Include="CtrlDatosUsu.Designer.cs">
+      <DependentUpon>CtrlDatosUsu.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAlta.cs">
+    <Compile Include="FormDatos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAlta.Designer.cs">
-      <DependentUpon>FormAlta.cs</DependentUpon>
+    <Compile Include="FormDatos.Designer.cs">
+      <DependentUpon>FormDatos.cs</DependentUpon>
     </Compile>
     <Compile Include="FormClave.cs">
       <SubType>Form</SubType>
@@ -72,11 +72,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CtrlAltaUsu.resx">
-      <DependentUpon>CtrlAltaUsu.cs</DependentUpon>
+    <EmbeddedResource Include="CtrlDatosUsu.resx">
+      <DependentUpon>CtrlDatosUsu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAlta.resx">
-      <DependentUpon>FormAlta.cs</DependentUpon>
+    <EmbeddedResource Include="FormDatos.resx">
+      <DependentUpon>FormDatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormClave.resx">
       <DependentUpon>FormClave.cs</DependentUpon>

@@ -71,20 +71,21 @@
             // tsmiAltaUsu
             // 
             this.tsmiAltaUsu.Name = "tsmiAltaUsu";
-            this.tsmiAltaUsu.Size = new System.Drawing.Size(157, 26);
+            this.tsmiAltaUsu.Size = new System.Drawing.Size(224, 26);
             this.tsmiAltaUsu.Text = "Alta";
             this.tsmiAltaUsu.Click += new System.EventHandler(this.tsmiAltaUsu_Click);
             // 
             // tsmiBajaUsu
             // 
             this.tsmiBajaUsu.Name = "tsmiBajaUsu";
-            this.tsmiBajaUsu.Size = new System.Drawing.Size(157, 26);
+            this.tsmiBajaUsu.Size = new System.Drawing.Size(224, 26);
             this.tsmiBajaUsu.Text = "Baja";
+            this.tsmiBajaUsu.Click += new System.EventHandler(this.tsmiBajaUsu_Click);
             // 
             // tsmiBusqUsu
             // 
             this.tsmiBusqUsu.Name = "tsmiBusqUsu";
-            this.tsmiBusqUsu.Size = new System.Drawing.Size(157, 26);
+            this.tsmiBusqUsu.Size = new System.Drawing.Size(224, 26);
             this.tsmiBusqUsu.Text = "Búsqueda";
             // 
             // tsmiLibros

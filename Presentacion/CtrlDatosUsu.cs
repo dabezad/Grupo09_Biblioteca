@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class CtrlAltaUsu : UserControl
+    public partial class CtrlDatosUsu : UserControl
     {
 
         public TextBox TbNombre
         {
             get { return tbNombre; }
         }
-        public CtrlAltaUsu()
+        public CtrlDatosUsu()
         {
             InitializeComponent();
         }
 
-        public CtrlAltaUsu(int top, int left)
+        public CtrlDatosUsu(int top, int left)
         {
             this.Top = top;
             this.Left = left;

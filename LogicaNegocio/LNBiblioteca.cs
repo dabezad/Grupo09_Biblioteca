@@ -22,6 +22,10 @@ namespace LogicaNegocio
         {
             return gbd.CrearUsuario(usuario);
         }
+        public bool AltaPersonal(PersonalBiblioteca personal) //Metodo de prueba, eliminar despues
+        {
+            return gbd.CrearPersonal(personal);
+        }
 
         public bool BajaUsuario(string id)
         {

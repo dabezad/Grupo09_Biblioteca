@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class FormAlta : Form
+    public partial class FormDatos : Form
     {
         public Label LbClave
         {
@@ -22,7 +22,12 @@ namespace Presentacion
             get { return this.tbClave;  }
         }
 
-        public FormAlta()
+        public Button BtAceptar
+        {
+            get { return this.btAceptar; }
+        }
+
+        public FormDatos()
         {
             InitializeComponent();
         }

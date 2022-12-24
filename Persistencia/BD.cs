@@ -200,8 +200,8 @@ namespace Persistencia
             {
                 
                 case "UsuarioDato":
-                    UsuarioDato ud = Transformadores.UsuarioADato(BD.READ<string, UsuarioDato>(t as string, "UsuarioDato") as Usuario);
-                    return BD.TUsuario.Remove(ud);
+                    //UsuarioDato ud = Transformadores.UsuarioADato(BD.READ<string, UsuarioDato>(t as string, "UsuarioDato") as Usuario);
+                    return BD.TUsuario.Remove(t as string);
 
                 case "PrestamoDato":
                     PrestamoDato pd = Transformadores.PrestamoADato(BD.READ<string, PrestamoDato>(t as string, "PrestamoDato") as Prestamo);
