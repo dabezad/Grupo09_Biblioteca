@@ -199,8 +199,16 @@ namespace Persistencia
             switch (tabla)
             {
                 case "UsuarioDato":
-                    //UsuarioDato ud = Transformadores.UsuarioADato(BD.READ<string, UsuarioDato>(t as string, "UsuarioDato") as Usuario);
+                    foreach (PrestamoDato pd in BD.TPrestamo.ToList())
+                    {
+                        if (pd.Usuario==t as string)
+                        {
+                            BD.TPrestamo.Remove(pd.Codigo);
+                        }                       
+                    }
+
                     return BD.TUsuario.Remove(t as string);
+
 
                 case "PrestamoDato":
                     foreach (EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
@@ -215,6 +223,13 @@ namespace Persistencia
                     return BD.TEjemplar.Remove(t as string);
 
                 case "LibroDato":
+                    foreach (EjemplarDato ed in BD.TEjemplar.ToList())
+                    {
+                        if (ed.Libro == t as string)
+                        {
+                            BD.TEjemplar.Remove(ed.Codigo);
+                        }
+                    }
                     return BD.TLibro.Remove(t as string);
 
                 case "PersonalBibliotecaDato":
