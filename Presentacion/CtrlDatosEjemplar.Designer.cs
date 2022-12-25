@@ -81,7 +81,6 @@
             this.Controls.Add(this.lbCodigo);
             this.Name = "CtrlDatosEjemplar";
             this.Size = new System.Drawing.Size(301, 143);
-            this.Load += new System.EventHandler(this.CtrlDatosEjemplar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -66,6 +66,8 @@
             // 
             // btAniadirEj
             // 
+            this.btAniadirEj.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btAniadirEj.Enabled = false;
             this.btAniadirEj.Location = new System.Drawing.Point(200, 195);
             this.btAniadirEj.Name = "btAniadirEj";
             this.btAniadirEj.Size = new System.Drawing.Size(100, 53);

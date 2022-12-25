@@ -18,7 +18,10 @@ namespace Presentacion
             get { return this.tbCodigo; }
         }
 
-        
+        public Label LbCodigo
+        {
+            get { return this.lbCodigo;  }
+        }
         public ComboBox CbEstadoEj
         {
             get { return this.cbEstadoEj;  }
@@ -35,9 +38,5 @@ namespace Presentacion
             InitializeComponent();
         }
 
-        private void CtrlDatosEjemplar_Load(object sender, EventArgs e)
-        {
-            this.cbEstadoEj.SelectedIndex = 0;
-        }
     }
 }

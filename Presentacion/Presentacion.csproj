@@ -58,6 +58,12 @@
     <Compile Include="CtrlDatosLib.Designer.cs">
       <DependentUpon>CtrlDatosLib.cs</DependentUpon>
     </Compile>
+    <Compile Include="CtrlDatosPrestamo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDatosPrestamo.Designer.cs">
+      <DependentUpon>CtrlDatosPrestamo.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlDatosUsu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     <EmbeddedResource Include="CtrlDatosLib.resx">
       <DependentUpon>CtrlDatosLib.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CtrlDatosPrestamo.resx">
+      <DependentUpon>CtrlDatosPrestamo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosUsu.resx">
       <DependentUpon>CtrlDatosUsu.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGestionBiblioteca.resx">
       <DependentUpon>FormGestionBiblioteca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSala.resx">
+      <DependentUpon>FormSala.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

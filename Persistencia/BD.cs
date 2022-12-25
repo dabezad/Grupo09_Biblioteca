@@ -220,18 +220,53 @@ namespace Persistencia
                     }
                     return BD.TPrestamo.Remove(t as string);
                 case "EjemplarDato":
-                    return BD.TEjemplar.Remove(t as string);
-
-                case "LibroDato":
-                    foreach (EjemplarDato ed in BD.TEjemplar.ToList())
+                    string codEj = t as string;
+                    Ejemplar e = BD.READ<string, EjemplarDato>(codEj, "EjemplarDato") as Ejemplar;
+                    if (e.Estado != EstadoEjemplarEnum.Prestado) //Si el ejemplar a eliminar esta prestado, no se podra eliminar de la BD
                     {
-                        if (ed.Libro == t as string)
-                        {
-                            BD.TEjemplar.Remove(ed.Codigo);
-                        }
-                    }
-                    return BD.TLibro.Remove(t as string);
+                        var l = BD.TEjemplarEnPrestamo.ToList().Where((eep) => eep.CodEjemplar == codEj);
+                        List<EjemplarEnPrestamoDato> listEEP = new List<EjemplarEnPrestamoDato>(l); //EEPs del ejemplar
 
+                        List<PrestamoDato> listP = new List<PrestamoDato>();
+                        foreach (PrestamoDato pd in BD.TPrestamo.ToList())
+                        {
+                            foreach (EjemplarEnPrestamoDato eep in listEEP)
+                            {
+                                if (pd.Id == eep.CodPrestamo)
+                                {
+                                    listP.Add(pd);
+                                }
+                            }
+                        }
+                        foreach (PrestamoDato p in listP)
+                        {
+                            BD.TPrestamo.Remove(p.Codigo);
+                        }
+                        foreach (EjemplarEnPrestamoDato eep in listEEP)
+                        {
+                            BD.TEjemplarEnPrestamo.Remove(eep.Id);
+                        }
+                        return BD.TEjemplar.Remove(codEj);
+                    } else
+                    {
+                        return false;
+                    }
+                case "LibroDato":
+                    var b = BD.TEjemplar.ToList().Exists((ej) => ej.Estado == EstadoEjemplarEnum.Prestado);
+                    if (b)
+                    {
+                        return false;
+                    } else
+                    {
+                        foreach (EjemplarDato ed in BD.TEjemplar.ToList())
+                        {
+                            if (ed.Libro == t as string)
+                            {
+                                BD.DELETE<string, EjemplarDato>(ed.Codigo, "EjemplarDato"); //Para cada libro se eliminaran todos sus ejemplares 
+                            }
+                        }
+                        return BD.TLibro.Remove(t as string);
+                    }
                 case "PersonalBibliotecaDato":
                     return BD.TPersonalBiblioteca.Remove(t as string);
             }

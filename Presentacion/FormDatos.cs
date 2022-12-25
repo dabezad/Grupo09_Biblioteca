@@ -12,6 +12,10 @@ namespace Presentacion
 {
     public partial class FormDatos : Form
     {
+        public Button BtCancelar
+        {
+            get { return this.btCancelar;  }
+        }
         public Label LbClave
         {
             get { return this.lbClave;  }

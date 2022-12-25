@@ -14,7 +14,6 @@ namespace Presentacion
 {
     public partial class CtrlDatosLib : UserControl
     {
-        private LNAdquisiciones lnAdq;
         public TextBox TbTitulo
         {
             get { return tbTitulo;  }
@@ -30,6 +29,10 @@ namespace Presentacion
             get { return tbEditorial; }
         }
 
+        public Button BtAniadirEj
+        {
+            get { return btAniadirEj;  }
+        }
         public CtrlDatosLib()
         {
             InitializeComponent();

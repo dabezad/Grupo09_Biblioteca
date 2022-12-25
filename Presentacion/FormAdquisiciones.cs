@@ -27,11 +27,183 @@ namespace Presentacion
         {
             lnAdq = new LNAdquisiciones();
             this.pers = pers;
-            this.Text = pers.Nombre + " - Gestión de biblioteca - Adquisiciones"; 
+            this.Text = pers.Nombre + " - Gestión de biblioteca - Adquisiciones";
+
+            this.Aniadir_tsmis();
             InitializeComponent();
         }
 
-        protected override void tsmiAltaLib_Click(object sender, EventArgs e)
+        private void Aniadir_tsmis()
+        {
+            ToolStripMenuItem tsmiAltaLib = new ToolStripMenuItem("Alta");
+            tsmiAltaLib.Click += tsmiAltaLib_Click;
+            ToolStripMenuItem tsmiBajaLib = new ToolStripMenuItem("Baja");
+            tsmiBajaLib.Click += tsmiBajaLib_Click;
+            ToolStripMenuItem tsmiAltaEj = new ToolStripMenuItem("Alta");
+            tsmiAltaEj.Click += tsmiAltaEj_Click;
+            ToolStripMenuItem tsmiBajaEj = new ToolStripMenuItem("Baja");
+            tsmiBajaEj.Click += tsmiBajaEj_Click;
+
+            this.tsmiLibros.DropDownItems.Add(tsmiAltaLib);
+            this.tsmiLibros.DropDownItems.Add(tsmiBajaLib);
+            this.tsmiEjemplares.DropDownItems.Add(tsmiAltaEj);
+            this.tsmiEjemplares.DropDownItems.Add(tsmiBajaEj);
+        }
+
+        private void tsmiBajaEj_Click(object sender, EventArgs e)
+        {
+            FormClave formCodEj = new FormClave();
+            formCodEj.Text = "Introducir codigo";
+            formCodEj.LbClave.Text = "Código";
+            DialogResult d = formCodEj.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formCodEj.Close();
+            }
+            else
+            {
+                string cod = formCodEj.TbClave.Text;
+                if (cod != "")
+                {
+                    Ejemplar ej = lnAdq.BuscarEjemplar(cod);
+                    if (ej != null)
+                    {
+                        MostrarFormBajaEj(ej);
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún ejemplar con ese código", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            tsmiBajaEj_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            formCodEj.Dispose();
+        }
+
+        private void MostrarFormBajaEj(Ejemplar e)
+        {
+            CtrlDatosEjemplar control = new CtrlDatosEjemplar(100, 100);
+            FormDatos formBajaEj = new FormDatos();
+            formBajaEj.Text = "Baja de un ejemplar";
+            formBajaEj.LbClave.Text = "Código";
+            formBajaEj.BtAceptar.Text = "Dar de baja";
+            formBajaEj.TbClave.Text = e.Codigo;
+            control.TbCodigo.Text = e.Libro.Isbn;
+            control.TbCodigo.ReadOnly = true;
+            control.LbCodigo.Text = "Libro\r\n(Isbn)";
+            if (e.Estado == EstadoEjemplarEnum.Disponible)
+            {
+                control.CbEstadoEj.SelectedIndex = 0;
+            } else if (e.Estado == EstadoEjemplarEnum.Prestado)
+            {
+                control.CbEstadoEj.SelectedIndex = 1;
+  
+            }
+            control.CbEstadoEj.Enabled = false;
+            formBajaEj.Controls.Add(control);
+
+            DialogResult dBaja = formBajaEj.ShowDialog();
+            if (dBaja == DialogResult.Cancel)
+            {
+                formBajaEj.Close();
+            }
+            else if (dBaja == DialogResult.OK)
+            {
+                DialogResult dConfirm = MessageBox.Show("¿Está seguro que desea dar de baja al ejemplar?\r\nSe borrará del sistema toda la información relacionada" +
+                    " con sus préstamos.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dConfirm == DialogResult.OK)
+                {
+                    if (lnAdq.BajaEjemplar(e.Codigo))
+                    {
+                        MessageBox.Show("El ejemplar se ha dado de baja correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se puede dar de baja al ejemplar porque actualmente está prestado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            formBajaEj.Dispose();
+        }
+
+        private void MostrarFormBajaLib(Libro l)
+        {
+            CtrlDatosLib control = new CtrlDatosLib(100, 100);
+            FormDatos formBajaLib = new FormDatos();
+            formBajaLib.Text = "Baja de un libro";
+            formBajaLib.LbClave.Text = "ISBN";
+            formBajaLib.BtAceptar.Text = "Dar de baja";
+            formBajaLib.TbClave.Text = l.Isbn;
+            control.BtAniadirEj.Hide();
+            control.TbAutor.Text = l.Autor;
+            control.TbAutor.ReadOnly = true;
+            control.TbEditorial.Text = l.Editorial;
+            control.TbEditorial.ReadOnly = true;
+            control.TbTitulo.Text = l.Titulo;
+            control.TbTitulo.ReadOnly = true;
+            formBajaLib.Controls.Add(control);
+
+            DialogResult dBaja = formBajaLib.ShowDialog();
+            if (dBaja == DialogResult.Cancel)
+            {
+                formBajaLib.Close();
+            }
+            else if (dBaja == DialogResult.OK)
+            {
+                DialogResult dConfirm = MessageBox.Show("¿Está seguro que desea dar de baja al libro?\r\nSe borrará del sistema toda la información relacionada" +
+                    " con sus préstamos y ejemplares.", "Aviso", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dConfirm == DialogResult.OK)
+                {
+                    if (lnAdq.BajaLibro(l.Isbn))
+                    {
+                        MessageBox.Show("El libro se ha dado de baja correctamente", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El libro no se ha podido dar de baja porque tiene algún ejemplar prestado actualmente.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            formBajaLib.Dispose();
+        }
+
+        private void tsmiBajaLib_Click(object sender, EventArgs e)
+        {
+            FormClave formISBN = new FormClave();
+            formISBN.Text = "Introducir ISBN";
+            formISBN.LbClave.Text = "ISBN";
+            DialogResult d = formISBN.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formISBN.Close();
+            }
+            else
+            {
+                string isbn = formISBN.TbClave.Text;
+                if (isbn != "")
+                {
+                    Libro l = lnAdq.BuscarLibro(isbn);
+                    if (l != null)
+                    {
+                        MostrarFormBajaLib(l);
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún libro con ese ISBN", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            tsmiBajaLib_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            formISBN.Dispose();
+        }
+
+        private void tsmiAltaLib_Click(object sender, EventArgs e)
         {
             FormClave formISBN = new FormClave();
             formISBN.Text = "Introducir ISBN";
@@ -83,9 +255,14 @@ namespace Presentacion
                 string titulo = control.TbTitulo.Text;
                 if (titulo != "")
                 {
-                    if (this.lnAdq.AltaLibro(new Libro(isbn, titulo, control.TbAutor.Text, control.TbEditorial.Text, this.pers))) //Modificar por el usuario que lo da de alta CUANDO SE IMPLEMENTE
+                    Libro l = new Libro(isbn, titulo, control.TbAutor.Text, control.TbEditorial.Text, this.pers);
+                    if (this.lnAdq.AltaLibro(l)) //Modificar por el usuario que lo da de alta CUANDO SE IMPLEMENTE
                     {
-                        MessageBox.Show("Se ha dado de alta al libro correctamente", "Alta de un libro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DialogResult dRes = MessageBox.Show("Se ha dado de alta al libro correctamente. \r\n ¿Deseas añadirle ejemplares?", "Alta de un libro", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        if (dRes == DialogResult.Yes)
+                        {
+                            this.AniadirEjsDsdLibro(l);
+                        }
                     }
                     else
                     {
@@ -103,7 +280,36 @@ namespace Presentacion
             formAltaLib.Dispose();
         }
 
-        protected override void tsmiAltaEj_Click(object sender, EventArgs e)
+        private void AniadirEjsDsdLibro(Libro l)
+        {
+            CtrlDatosLib control = new CtrlDatosLib(100, 100);
+            FormDatos formAltaLib = new FormDatos();
+            formAltaLib.Text = "Alta de un libro";
+            formAltaLib.LbClave.Text = "ISBN";
+            formAltaLib.BtAceptar.Hide();
+            formAltaLib.TbClave.Text = l.Isbn;
+            formAltaLib.BtCancelar.Text = "Salir";
+
+            control.BtAniadirEj.Enabled = true;
+            control.TbAutor.Text = l.Autor;
+            control.TbAutor.ReadOnly = true;
+            control.TbEditorial.Text = l.Editorial;
+            control.TbEditorial.ReadOnly = true;
+            control.TbTitulo.Text = l.Titulo;
+            control.TbTitulo.ReadOnly = true;
+            formAltaLib.Controls.Add(control);
+            DialogResult d = formAltaLib.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formAltaLib.Close();
+            } else
+            {
+                AniadirEjsDsdLibro(l);
+            }
+            formAltaLib.Dispose();
+        }
+
+        private void tsmiAltaEj_Click(object sender, EventArgs e)
         {
             FormClave formISBN = new FormClave();
             formISBN.Text = "Introducir ISBN";
@@ -139,10 +345,11 @@ namespace Presentacion
         {
             CtrlDatosEjemplar control = new CtrlDatosEjemplar(100, 100);
             FormDatos formAltaEj = new FormDatos();
-            formAltaEj.Text = "Alta de un Ejemplar";
+            formAltaEj.Text = "Alta de un ejemplar";
             formAltaEj.LbClave.Text = "ISBN";
             formAltaEj.BtAceptar.Text = "Dar alta";
             formAltaEj.TbClave.Text = isbn;
+            control.CbEstadoEj.SelectedIndex = 0;
             formAltaEj.Controls.Add(control);
 
             DialogResult dAlta = formAltaEj.ShowDialog();
@@ -170,7 +377,7 @@ namespace Presentacion
                     }
                     if (lnAdq.BuscarEjemplar(codigo) != null)
                     {
-                        DialogResult d = MessageBox.Show("¿Desea introducir otro?", "Ya existe un ejemplar del libro con ese codigo", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                        DialogResult d = MessageBox.Show("¿Desea introducir otro?", "Ya existe un ejemplar en el sistema con ese codigo", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                         if (d == DialogResult.OK)
                         {
                             MostrarFormAltaEj(isbn);

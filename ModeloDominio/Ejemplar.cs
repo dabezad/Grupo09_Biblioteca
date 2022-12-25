@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ModeloDominio
 {
-    public class Ejemplar
+    public class Ejemplar: IEquatable<Ejemplar>
     {
         private string codigo;
         private EstadoEjemplarEnum estado;
@@ -21,10 +21,20 @@ namespace ModeloDominio
             this.personalBAlta = personalBAlta;
         }
 
+       
         public string Codigo { get { return codigo; } }
         public EstadoEjemplarEnum Estado { get { return estado; } set { this.estado = value; } }
         public Libro Libro { get { return libro; } }
         
         public PersonalAdquisiciones PersonalBAlta { get { return personalBAlta; } }
+
+        public bool Equals(Ejemplar other)
+        {
+            if (other == null)
+            {
+                return this == null;
+            }
+            else return other.codigo == this.codigo;
+        }
     }
 }
