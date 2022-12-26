@@ -12,7 +12,10 @@ namespace Presentacion
 {
     public partial class CtrlDatosUsu : UserControl
     {
-
+        public Label LbNombre
+        {
+            get { return this.lbNombre; }
+        }
         public TextBox TbNombre
         {
             get { return tbNombre; }

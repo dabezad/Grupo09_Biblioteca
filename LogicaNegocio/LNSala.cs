@@ -13,8 +13,9 @@ namespace LogicaNegocio
     {
         private GestorBD gbd;
 
-        public LNSala()
+        public LNSala(): base()
         {
+            
             gbd = new GestorBD();
         }
         public bool AltaPrestamo(Prestamo prestamo)
@@ -22,6 +23,10 @@ namespace LogicaNegocio
             return gbd.CrearPrestamo(prestamo);
         }
 
+        public bool ActualizarPrestamo(Prestamo prestamo)
+        {
+            return gbd.ActualizarPrestamo(prestamo);
+        }
         public Usuario VerInformacionUsuario(Prestamo prestamo)
         {
             return prestamo.Usuario;

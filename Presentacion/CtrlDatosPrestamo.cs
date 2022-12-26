@@ -12,8 +12,23 @@ namespace Presentacion
 {
     public partial class CtrlDatosPrestamo : UserControl
     {
+        public TextBox TbUsuario
+        {
+            get { return this.tbUsuario;  }
+        }
+
+        public Button BtEjsPres
+        {
+            get { return this.btEjsPres;  }
+        }
         public CtrlDatosPrestamo()
         {
+            InitializeComponent();
+        }
+        public CtrlDatosPrestamo(int top, int left)
+        {
+            this.Top = top;
+            this.Left = left;
             InitializeComponent();
         }
     }

@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.lbUsuario = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btEjsPres = new System.Windows.Forms.Button();
+            this.tbUsuario = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbUsuario
@@ -37,27 +38,37 @@
             this.lbUsuario.AutoSize = true;
             this.lbUsuario.Location = new System.Drawing.Point(53, 28);
             this.lbUsuario.Name = "lbUsuario";
-            this.lbUsuario.Size = new System.Drawing.Size(54, 16);
+            this.lbUsuario.Size = new System.Drawing.Size(54, 32);
             this.lbUsuario.TabIndex = 0;
-            this.lbUsuario.Text = "Usuario";
+            this.lbUsuario.Text = "Usuario\r\n  (DNI)";
             // 
-            // button1
+            // btEjsPres
             // 
-            this.button1.Location = new System.Drawing.Point(56, 133);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btEjsPres.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btEjsPres.Enabled = false;
+            this.btEjsPres.Location = new System.Drawing.Point(200, 85);
+            this.btEjsPres.Name = "btEjsPres";
+            this.btEjsPres.Size = new System.Drawing.Size(100, 53);
+            this.btEjsPres.TabIndex = 1;
+            this.btEjsPres.Text = "Añadir ejemplares";
+            this.btEjsPres.UseVisualStyleBackColor = true;
+            // 
+            // tbUsuario
+            // 
+            this.tbUsuario.Location = new System.Drawing.Point(115, 25);
+            this.tbUsuario.Name = "tbUsuario";
+            this.tbUsuario.Size = new System.Drawing.Size(132, 22);
+            this.tbUsuario.TabIndex = 2;
             // 
             // CtrlDatosPrestamo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.tbUsuario);
+            this.Controls.Add(this.btEjsPres);
             this.Controls.Add(this.lbUsuario);
             this.Name = "CtrlDatosPrestamo";
-            this.Size = new System.Drawing.Size(292, 260);
+            this.Size = new System.Drawing.Size(336, 163);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -66,6 +77,7 @@
         #endregion
 
         private System.Windows.Forms.Label lbUsuario;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btEjsPres;
+        private System.Windows.Forms.TextBox tbUsuario;
     }
 }

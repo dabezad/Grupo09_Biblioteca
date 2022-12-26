@@ -26,7 +26,6 @@ namespace Presentacion
         public FormGestionBiblioteca(PersonalBiblioteca pers)
         {
             this.personal = pers;
-            this.Text = this.personal.Nombre + " - Gestión de biblioteca";
             lnB = new LNBiblioteca();
             lnB.AltaPersonal(pers);
             InitializeComponent();

@@ -72,7 +72,7 @@
             this.btAniadirEj.Name = "btAniadirEj";
             this.btAniadirEj.Size = new System.Drawing.Size(100, 53);
             this.btAniadirEj.TabIndex = 4;
-            this.btAniadirEj.Text = "Añadir ejemplares";
+            this.btAniadirEj.Text = "Añadir ejemplar";
             this.btAniadirEj.UseVisualStyleBackColor = true;
             this.btAniadirEj.Click += new System.EventHandler(this.btAniadirEj_Click);
             // 

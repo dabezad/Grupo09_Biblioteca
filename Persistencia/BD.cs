@@ -49,6 +49,14 @@ namespace Persistencia
             get { return tEjemplarEnPrestamo; }
         }
         /// <summary>
+        /// Carga en la BD los datos iniciales
+        /// </summary>
+        public static void LOAD()
+        {
+            //Iniciar tablas e insertar datos para hacer pruebas
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T">Clave de tabla U</typeparam>
