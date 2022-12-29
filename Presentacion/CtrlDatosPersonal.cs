@@ -10,27 +10,20 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class CtrlDatosPrestamo : UserControl
+    public partial class CtrlDatosPersonal : UserControl
     {
-        public TextBox TbUsuario
+
+        public TextBox TbRol
         {
-            get { return this.tbUsuario;  }
+            get { return this.tbRol; }
         }
 
-        public Label LbUsuario
-        {
-            get { return this.lbUsuario;  }
-        }
-
-        public Button BtEjsPres
-        {
-            get { return this.btEjsPres;  }
-        }
-        public CtrlDatosPrestamo()
+        public CtrlDatosPersonal()
         {
             InitializeComponent();
         }
-        public CtrlDatosPrestamo(int top, int left)
+
+        public CtrlDatosPersonal(int top, int left)
         {
             this.Top = top;
             this.Left = left;

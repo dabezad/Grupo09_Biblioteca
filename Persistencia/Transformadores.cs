@@ -48,7 +48,23 @@ namespace Persistencia
         public static PrestamoDato PrestamoADato(Prestamo p)
         {
             PrestamoDato pd = new PrestamoDato(p.Codigo, p.Usuario.Dni, p.FRealizado, p.FFinPrestamo, p.Estado, p.PersonalBAlta.Nombre);
-            
+            foreach (Ejemplar e in p.Ejemplares)
+            {
+                bool existe = false;
+                foreach(EjemplarEnPrestamoDato eepd in BD.TEjemplarEnPrestamo.ToList())
+                {
+                    if (eepd.CodEjemplar == e.Codigo)
+                    {
+                        existe = true;
+                        break;
+                    }
+                }
+                if (!existe)
+                {
+                    BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(new EjemplarEnPrestamoDato(p.Codigo, e.Codigo)); //Se crea la instancia de la tabla intermedia correspondiente
+                    BD.UPDATE<string, EjemplarDato>(new EjemplarDato(e.Codigo, EstadoEjemplarEnum.Prestado, e.Libro.Isbn, e.PersonalBAlta.Nombre)); //El ejemplar se pone a prestado
+                }
+            }
             return pd;
         
         
@@ -81,6 +97,16 @@ namespace Persistencia
         {
             PersonalBiblioteca p = new PersonalBiblioteca(pd.Nombre, pd.Contraseña);
             return p;
+        }
+
+        public static PersonalAdquisiciones DatoAPersonalAdq(PersonalBibliotecaDato pd)
+        {
+            return new PersonalAdquisiciones(pd.Id, pd.Contraseña);
+        }
+
+        public static PersonalSala DatoAPersonalSala(PersonalBibliotecaDato pd)
+        {
+            return new PersonalSala(pd.Id, pd.Contraseña);
         }
 
         public static EjemplarEnPrestamo DatoAEEP(EjemplarEnPrestamoDato datoEEP)

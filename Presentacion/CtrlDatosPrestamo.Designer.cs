@@ -46,7 +46,7 @@
             // 
             this.btEjsPres.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btEjsPres.Enabled = false;
-            this.btEjsPres.Location = new System.Drawing.Point(200, 85);
+            this.btEjsPres.Location = new System.Drawing.Point(200, 145);
             this.btEjsPres.Name = "btEjsPres";
             this.btEjsPres.Size = new System.Drawing.Size(100, 53);
             this.btEjsPres.TabIndex = 1;
@@ -68,7 +68,7 @@
             this.Controls.Add(this.btEjsPres);
             this.Controls.Add(this.lbUsuario);
             this.Name = "CtrlDatosPrestamo";
-            this.Size = new System.Drawing.Size(336, 163);
+            this.Size = new System.Drawing.Size(364, 253);
             this.ResumeLayout(false);
             this.PerformLayout();
 

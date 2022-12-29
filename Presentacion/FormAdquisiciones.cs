@@ -43,11 +43,63 @@ namespace Presentacion
             tsmiAltaEj.Click += tsmiAltaEj_Click;
             ToolStripMenuItem tsmiBajaEj = new ToolStripMenuItem("Baja");
             tsmiBajaEj.Click += tsmiBajaEj_Click;
+            ToolStripMenuItem tsmiBusqLib = new ToolStripMenuItem("Búsqueda");
+            tsmiBusqLib.Click += TsmiBusqLib_Click;
+            ToolStripMenuItem tsmiBusqEj = new ToolStripMenuItem("Búsqueda");
+            tsmiBusqEj.Click += TsmiBusqEj_Click;
+            ToolStripMenuItem tsmiEjDisp = new ToolStripMenuItem("Ejemplares disponibles");
+            tsmiEjDisp.Click += TsmiEjDisp_Click;
+            ToolStripMenuItem tsmiListadoLib = new ToolStripMenuItem("Listado");
+            tsmiListadoLib.Click += TsmiListadoLib_Click;
+            ToolStripMenuItem tsmiListadoEj = new ToolStripMenuItem("Listado");
+            tsmiListadoEj.Click += TsmiListadoEj_Click;
+            ToolStripMenuItem tsmiLibMasLeido = new ToolStripMenuItem("Libro más leído");
+            tsmiLibMasLeido.Click += TsmiLibMasLeido_Click;
+
 
             this.tsmiLibros.DropDownItems.Add(tsmiAltaLib);
             this.tsmiLibros.DropDownItems.Add(tsmiBajaLib);
+            this.tsmiLibros.DropDownItems.Add(tsmiBusqLib);
+            this.tsmiLibros.DropDownItems.Add(tsmiListadoLib);
+            this.tsmiLibros.DropDownItems.Add(tsmiLibMasLeido);
+
+            
             this.tsmiEjemplares.DropDownItems.Add(tsmiAltaEj);
             this.tsmiEjemplares.DropDownItems.Add(tsmiBajaEj);
+            this.tsmiEjemplares.DropDownItems.Add(tsmiBusqEj);
+            this.tsmiEjemplares.DropDownItems.Add(tsmiListadoEj);
+            this.tsmiEjemplares.DropDownItems.Add(tsmiEjDisp);
+
+        }
+
+        private void TsmiLibMasLeido_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TsmiListadoEj_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TsmiListadoLib_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TsmiEjDisp_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TsmiBusqEj_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TsmiBusqLib_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void tsmiBajaEj_Click(object sender, EventArgs e)

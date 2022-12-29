@@ -11,18 +11,24 @@ namespace LogicaNegocio
 {
     public class LNSala: LNBiblioteca
     {
-        private GestorBD gbd;
 
         public LNSala(): base()
         {
             
-            gbd = new GestorBD();
         }
         public bool AltaPrestamo(Prestamo prestamo)
         {
             return gbd.CrearPrestamo(prestamo);
         }
 
+        public bool BajaPrestamo(string codigo)
+        {
+            return gbd.EliminarPrestamo(codigo);
+        }
+        public Ejemplar BuscarEjemplar(string cod)
+        {
+            return gbd.BuscarEjemplar(cod);
+        }
         public bool ActualizarPrestamo(Prestamo prestamo)
         {
             return gbd.ActualizarPrestamo(prestamo);
@@ -120,6 +126,17 @@ namespace LogicaNegocio
                 where ejemplares.Estado == EstadoEjemplarEnum.Prestado
                 select libros;
             return new List<Libro>(l);
+        }
+
+        public List<Ejemplar> ObtenerEjemplaresDePrestamo(string codP)
+        {
+            var eeps = gbd.RecorrerEEP().Where((eep) => eep.CodPr == codP);
+            var l =
+                from prestamos in eeps
+                join ejemplares in gbd.RecorrerEjemplares() on prestamos.CodEj equals ejemplares.Codigo
+                select ejemplares;
+            return new List<Ejemplar>(l);
+            
         }
     }
 }

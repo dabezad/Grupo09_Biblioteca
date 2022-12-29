@@ -33,11 +33,14 @@
             this.tsmiAltaUsu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBajaUsu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBusqUsu = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLibros = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEjemplares = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCerrarSes = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEjPrest = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPrestCad = new System.Windows.Forms.ToolStripMenuItem();
             this.msPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +64,8 @@
             this.tsmiUsuario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAltaUsu,
             this.tsmiBajaUsu,
-            this.tsmiBusqUsu});
+            this.tsmiBusqUsu,
+            this.listadoToolStripMenuItem});
             this.tsmiUsuario.Name = "tsmiUsuario";
             this.tsmiUsuario.Size = new System.Drawing.Size(79, 24);
             this.tsmiUsuario.Text = "Usuarios";
@@ -69,22 +73,32 @@
             // tsmiAltaUsu
             // 
             this.tsmiAltaUsu.Name = "tsmiAltaUsu";
-            this.tsmiAltaUsu.Size = new System.Drawing.Size(157, 26);
+            this.tsmiAltaUsu.Size = new System.Drawing.Size(235, 26);
             this.tsmiAltaUsu.Text = "Alta";
             this.tsmiAltaUsu.Click += new System.EventHandler(this.tsmiAltaUsu_Click);
             // 
             // tsmiBajaUsu
             // 
             this.tsmiBajaUsu.Name = "tsmiBajaUsu";
-            this.tsmiBajaUsu.Size = new System.Drawing.Size(157, 26);
+            this.tsmiBajaUsu.Size = new System.Drawing.Size(235, 26);
             this.tsmiBajaUsu.Text = "Baja";
             this.tsmiBajaUsu.Click += new System.EventHandler(this.tsmiBajaUsu_Click);
             // 
             // tsmiBusqUsu
             // 
+            this.tsmiBusqUsu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiEjPrest,
+            this.tsmiPrestCad});
             this.tsmiBusqUsu.Name = "tsmiBusqUsu";
-            this.tsmiBusqUsu.Size = new System.Drawing.Size(157, 26);
+            this.tsmiBusqUsu.Size = new System.Drawing.Size(224, 26);
             this.tsmiBusqUsu.Text = "Búsqueda";
+            this.tsmiBusqUsu.Click += new System.EventHandler(this.tsmiBusqUsu_Click);
+            // 
+            // listadoToolStripMenuItem
+            // 
+            this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
+            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.listadoToolStripMenuItem.Text = "Listado";
             // 
             // tsmiLibros
             // 
@@ -97,7 +111,6 @@
             this.tsmiEjemplares.Name = "tsmiEjemplares";
             this.tsmiEjemplares.Size = new System.Drawing.Size(96, 24);
             this.tsmiEjemplares.Text = "Ejemplares";
-            this.tsmiEjemplares.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // tsmiPrestamos
             // 
@@ -118,6 +131,18 @@
             this.tsmiCerrarSes.Name = "tsmiCerrarSes";
             this.tsmiCerrarSes.Size = new System.Drawing.Size(224, 26);
             this.tsmiCerrarSes.Text = "Cerrar sesión";
+            // 
+            // tsmiEjPrest
+            // 
+            this.tsmiEjPrest.Name = "tsmiEjPrest";
+            this.tsmiEjPrest.Size = new System.Drawing.Size(261, 26);
+            this.tsmiEjPrest.Text = "Ver ejemplares prestados";
+            // 
+            // tsmiPrestCad
+            // 
+            this.tsmiPrestCad.Name = "tsmiPrestCad";
+            this.tsmiPrestCad.Size = new System.Drawing.Size(261, 26);
+            this.tsmiPrestCad.Text = "Ver préstamos caducados";
             // 
             // FormGestionBiblioteca
             // 
@@ -148,6 +173,9 @@
         protected System.Windows.Forms.ToolStripMenuItem tsmiEjemplares;
         private System.Windows.Forms.ToolStripMenuItem tsmiCerrarSes;
         protected System.Windows.Forms.ToolStripMenuItem tsmiPrestamos;
+        private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEjPrest;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPrestCad;
     }
 }
 

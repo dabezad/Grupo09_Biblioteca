@@ -12,12 +12,18 @@ namespace LogicaNegocio
 
     public class LNBiblioteca 
     {
-        private GestorBD gbd;
+        protected GestorBD gbd;
 
         public LNBiblioteca()
         {
             gbd = new GestorBD();
         }
+
+        public void IniciarBD()
+        {
+            gbd.CargarBD();
+        }
+
         public bool AltaUsuario(Usuario usuario)
         {
             return gbd.CrearUsuario(usuario);
@@ -46,13 +52,16 @@ namespace LogicaNegocio
         public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 
         {
             var presJUsu = gbd.RecorrerPrestamos().Where((p) => p.Usuario.Equals(u) && p.Estado == EstadoEnum.EnProceso); //Es necesario crear el objeto EjemplarEnPrestamo para la consulta
+            var resjoin = 
+                from eeps in gbd.RecorrerEEP()
+                join pres in presJUsu on eeps.CodPr equals pres.Codigo
+                select eeps;
             var l =
-                from prestamos in presJUsu
-                join eeps in gbd.RecorrerEEP() on prestamos.Codigo equals eeps.CodPr
-                join ejemplares in gbd.RecorrerEjemplares() on eeps.CodEj equals ejemplares.Codigo
+                from ejemplares in gbd.RecorrerEjemplares()
+                join eep in resjoin on ejemplares.Codigo equals eep.CodEj 
                 where ejemplares.Estado == EstadoEjemplarEnum.Prestado
                 select ejemplares;
-            return new List<Ejemplar>(l); //Otra tryhardeada masiva (esta aun mas)
+            return new List<Ejemplar>(l); 
 
             
         }
