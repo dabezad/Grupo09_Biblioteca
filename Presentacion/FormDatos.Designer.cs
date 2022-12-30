@@ -36,6 +36,7 @@
             // 
             // btAceptar
             // 
+            this.btAceptar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btAceptar.Location = new System.Drawing.Point(120, 383);
             this.btAceptar.Margin = new System.Windows.Forms.Padding(4);

@@ -58,6 +58,12 @@
     <Compile Include="CtrlDatosLib.Designer.cs">
       <DependentUpon>CtrlDatosLib.cs</DependentUpon>
     </Compile>
+    <Compile Include="CtrlDatosPersonal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDatosPersonal.Designer.cs">
+      <DependentUpon>CtrlDatosPersonal.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlDatosPrestamo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,12 @@
     <Compile Include="FormGestionBiblioteca.Designer.cs">
       <DependentUpon>FormGestionBiblioteca.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNavig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNavig.Designer.cs">
+      <DependentUpon>FormNavig.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSala.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosLib.resx">
       <DependentUpon>CtrlDatosLib.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlDatosPersonal.resx">
+      <DependentUpon>CtrlDatosPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosPrestamo.resx">
       <DependentUpon>CtrlDatosPrestamo.cs</DependentUpon>
@@ -125,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGestionBiblioteca.resx">
       <DependentUpon>FormGestionBiblioteca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNavig.resx">
+      <DependentUpon>FormNavig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSala.resx">
       <DependentUpon>FormSala.cs</DependentUpon>

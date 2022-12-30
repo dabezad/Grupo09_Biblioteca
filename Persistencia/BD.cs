@@ -53,7 +53,34 @@ namespace Persistencia
         /// </summary>
         public static void LOAD()
         {
-            //Iniciar tablas e insertar datos para hacer pruebas
+            PersonalBibliotecaDato per1 = new PersonalBibliotecaDato("Pepa", "123", "PersonalAdquisiciones");
+            UsuarioDato u1 = new UsuarioDato("11111111A", "Ana", "Pepa");
+            UsuarioDato u2 = new UsuarioDato("22222222B", "Roberto", "Pepa");
+            LibroDato l1 = new LibroDato("1111", "Prueba 1", "Anónimo", "Santillán", "Pepa");
+            LibroDato l2 = new LibroDato("2222", "Prueba 2", "Cervantes", "", "Pepe");
+            EjemplarDato e1 = new EjemplarDato("e11", EstadoEjemplarEnum.Disponible, "1111", "Pepa");
+            EjemplarDato e2 = new EjemplarDato("e12", EstadoEjemplarEnum.Prestado, "1111", "Pepa"); 
+            EjemplarDato e3 = new EjemplarDato("e21", EstadoEjemplarEnum.Disponible, "2222", "Pepa"); 
+            EjemplarDato e4 = new EjemplarDato("e22", EstadoEjemplarEnum.Prestado, "2222", "Pepa");
+            PrestamoDato p1 = new PrestamoDato("p1", "11111111A", DateTime.Now, DateTime.Now.AddDays(15), EstadoEnum.EnProceso, "Pepa");
+            EjemplarEnPrestamoDato eep1 = new EjemplarEnPrestamoDato("p1", "e11");
+            EjemplarEnPrestamoDato eep2 = new EjemplarEnPrestamoDato("p1", "e21");
+
+            BD.CREATE<string, PersonalBibliotecaDato>(per1);
+            BD.CREATE<string, UsuarioDato>(u1);
+            BD.CREATE<string, UsuarioDato>(u2);
+            BD.CREATE<string, LibroDato>(l1);
+            BD.CREATE<string, LibroDato>(l2);
+            BD.CREATE<string, EjemplarDato>(e1);
+            BD.CREATE<string, EjemplarDato>(e2);
+            BD.CREATE<string, EjemplarDato>(e3);
+            BD.CREATE<string, EjemplarDato>(e4);
+            
+            //BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
+            //BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
+            //BD.CREATE<string, PrestamoDato>(p1);
+
+
         }
 
         /// <summary>
@@ -79,11 +106,6 @@ namespace Persistencia
             else
             if (u is PrestamoDato)
             {
-                Prestamo p = Transformadores.DatoAPrestamo(u as PrestamoDato);
-                foreach (Ejemplar e in p.Ejemplares)
-                {
-                    BD.TEjemplarEnPrestamo.Add(new EjemplarEnPrestamoDato(p.Codigo, e.Codigo));
-                }
                 BD.TPrestamo.Add(u as PrestamoDato);
                 return true;
             }
@@ -108,6 +130,11 @@ namespace Persistencia
                 BD.TPersonalBiblioteca.Add(u as PersonalBibliotecaDato);
                 return true;
             }//en caso de no funcionar añadir 3 if con los distintos personales
+            else if (u is EjemplarEnPrestamoDato)
+            {
+                BD.TEjemplarEnPrestamo.Add(u as EjemplarEnPrestamoDato);
+                return true;
+            }
             return false;
         }
 
@@ -130,7 +157,23 @@ namespace Persistencia
                     if (BD.TLibro.Contains(t as string)) x = Transformadores.DatoALibro(BD.TLibro[t as string]);
                     break;
                 case "PersonalBibliotecaDato":
-                    if (BD.TPersonalBiblioteca.Contains(t as string)) x = Transformadores.DatoAPersonal(BD.TPersonalBiblioteca[t as string]);
+                    if (BD.TPersonalBiblioteca.Contains(t as string))
+                    {
+                        PersonalBibliotecaDato personal = BD.TPersonalBiblioteca[t as string];
+                        switch (personal.Tipo)
+                        {
+                            case "PersonalBiblioteca":
+                                x = Transformadores.DatoAPersonal(personal);
+                                break;
+                            case "PersonalAdquisiciones":
+                                x = Transformadores.DatoAPersonalAdq(personal);
+                                break;
+                            case "PersonalSala":
+                                x = Transformadores.DatoAPersonalSala(personal);
+                                break;
+                        }
+                        
+                    }
                     break;
                 /*case "EjemplarEnPrestamoDato":
                     if (BD.TEjemplarEnPrestamo.Contains(t as ClaveEEP)) x = Transformadores.DatoAPersonal(BD.TEjemplarEnPrestamo[t as ClaveEEP]);

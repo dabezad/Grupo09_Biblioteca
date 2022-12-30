@@ -12,11 +12,10 @@ namespace LogicaNegocio
 {
     public class LNAdquisiciones : LNBiblioteca
     {
-        private GestorBD gbd;
 
-        public LNAdquisiciones()
+        public LNAdquisiciones(): base()
         {
-            gbd = new GestorBD();
+            
         }
         public bool AltaLibro(Libro l)
         {
