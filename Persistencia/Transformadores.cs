@@ -79,9 +79,22 @@ namespace Persistencia
 
         public static PersonalBiblioteca DatoAPersonal(PersonalBibliotecaDato pd)
         {
-            PersonalBiblioteca p = new PersonalBiblioteca(pd.Nombre, pd.Contraseña);
+            PersonalBiblioteca p = null;
+            if (pd.Tipo == "PersonalBiblioteca")
+            {
+                p = new PersonalBiblioteca(pd.Nombre, pd.Contraseña);
+            }
+            else if (pd.Tipo == "PersonalAdquisiciones")//aca mierdon
+            {
+                p = new PersonalAdquisiciones(pd.Nombre, pd.Contraseña);
+            }
+            else if(pd.Tipo == "PersonalSala")
+            {
+                p = new PersonalSala(pd.Nombre, pd.Contraseña);
+            }
             return p;
         }
+        
 
         public static EjemplarEnPrestamo DatoAEEP(EjemplarEnPrestamoDato datoEEP)
         {
