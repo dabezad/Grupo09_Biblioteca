@@ -25,7 +25,6 @@ namespace Presentacion
         public FormSala(PersonalSala pers) : base(pers)
         {
             lnSala = new LNSala();
-            lnSala.IniciarBD();
             this.pers = pers;
             this.Text = pers.Nombre + " - Gestión de biblioteca - Sala";
 

@@ -27,7 +27,6 @@ namespace Presentacion
         {
             this.personal = pers;
             lnB = new LNBiblioteca();
-            lnB.AltaPersonal(pers);
             InitializeComponent();
             
         }

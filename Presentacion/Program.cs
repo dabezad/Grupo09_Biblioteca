@@ -17,7 +17,15 @@ namespace Presentacion
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FormAdquisiciones(new ModeloDominio.PersonalAdquisiciones("Pepe", "123")));
-            Application.Run(new FormSala(new ModeloDominio.PersonalSala("Pepe", "123")));
+            //Application.Run(new FormSala(new ModeloDominio.PersonalSala("Pepe", "123")));
+            FormInicial login = new FormInicial();
+            Application.Run(login);
+
+            if (login.AutentificacionCorrecta)
+            {
+                Application.Run(login.FormGestion);
+            }
+
         }
     }
 }

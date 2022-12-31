@@ -33,6 +33,11 @@ namespace LogicaNegocio
             return gbd.CrearPersonal(personal);
         }
 
+        public PersonalBiblioteca BuscarPersonal(string nombre)
+        {
+            return gbd.BuscarPersonal(nombre);
+        }
+
         public bool BajaUsuario(string id)
         {
             return gbd.EliminarUsuario(id);
