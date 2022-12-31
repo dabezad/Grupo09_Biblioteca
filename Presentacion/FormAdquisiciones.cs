@@ -120,8 +120,19 @@ namespace Presentacion
                     Ejemplar ej = lnAdq.BuscarEjemplar(cod);
                     if (ej != null)
                     {
-                        MostrarFormBajaEj(ej);
-                    }
+                        if (ej.Estado == EstadoEjemplarEnum.Prestado)
+                        {
+                            DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "El ejemplar introducido está actualmente prestado.", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (res == DialogResult.Yes)
+                            {
+                                tsmiBajaEj_Click(sender, e);
+                            }
+                        } else
+                        {
+                            MostrarFormBajaEj(ej);
+                        }
+                        
+                    } 
                     else
                     {
                         DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún ejemplar con ese código", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

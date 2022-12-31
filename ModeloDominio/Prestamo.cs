@@ -27,6 +27,16 @@ namespace ModeloDominio
             this.personalBAlta = personalBAlta;
         }
 
+        public Prestamo(string codigo, Usuario usuario, List<Ejemplar> lejemplares, DateTime fRealizado, DateTime fFin, EstadoEnum estadoP, PersonalSala personalBAlta)
+        {
+            this.codigo = codigo;
+            this.usuario = usuario;
+            this.ejemplares = lejemplares;
+            this.fRealizado = fRealizado;
+            this.fFinPrestamo = fFin;
+            this.estado = estadoP;
+            this.personalBAlta = personalBAlta;
+        }
 
         public string Codigo { get { return this.codigo; } }
         public Usuario Usuario { get { return this.usuario; } }

@@ -33,14 +33,14 @@
             this.tsmiAltaUsu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBajaUsu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBusqUsu = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEjPrest = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPrestCad = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLibros = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEjemplares = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCerrarSes = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiEjPrest = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiPrestCad = new System.Windows.Forms.ToolStripMenuItem();
             this.msPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,14 +73,14 @@
             // tsmiAltaUsu
             // 
             this.tsmiAltaUsu.Name = "tsmiAltaUsu";
-            this.tsmiAltaUsu.Size = new System.Drawing.Size(235, 26);
+            this.tsmiAltaUsu.Size = new System.Drawing.Size(224, 26);
             this.tsmiAltaUsu.Text = "Alta";
             this.tsmiAltaUsu.Click += new System.EventHandler(this.tsmiAltaUsu_Click);
             // 
             // tsmiBajaUsu
             // 
             this.tsmiBajaUsu.Name = "tsmiBajaUsu";
-            this.tsmiBajaUsu.Size = new System.Drawing.Size(235, 26);
+            this.tsmiBajaUsu.Size = new System.Drawing.Size(224, 26);
             this.tsmiBajaUsu.Text = "Baja";
             this.tsmiBajaUsu.Click += new System.EventHandler(this.tsmiBajaUsu_Click);
             // 
@@ -94,10 +94,23 @@
             this.tsmiBusqUsu.Text = "Búsqueda";
             this.tsmiBusqUsu.Click += new System.EventHandler(this.tsmiBusqUsu_Click);
             // 
+            // tsmiEjPrest
+            // 
+            this.tsmiEjPrest.Name = "tsmiEjPrest";
+            this.tsmiEjPrest.Size = new System.Drawing.Size(261, 26);
+            this.tsmiEjPrest.Text = "Ver ejemplares prestados";
+            this.tsmiEjPrest.Click += new System.EventHandler(this.tsmiEjPrest_Click);
+            // 
+            // tsmiPrestCad
+            // 
+            this.tsmiPrestCad.Name = "tsmiPrestCad";
+            this.tsmiPrestCad.Size = new System.Drawing.Size(261, 26);
+            this.tsmiPrestCad.Text = "Ver préstamos caducados";
+            // 
             // listadoToolStripMenuItem
             // 
             this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
-            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.listadoToolStripMenuItem.Text = "Listado";
             // 
             // tsmiLibros
@@ -129,20 +142,8 @@
             // tsmiCerrarSes
             // 
             this.tsmiCerrarSes.Name = "tsmiCerrarSes";
-            this.tsmiCerrarSes.Size = new System.Drawing.Size(224, 26);
+            this.tsmiCerrarSes.Size = new System.Drawing.Size(177, 26);
             this.tsmiCerrarSes.Text = "Cerrar sesión";
-            // 
-            // tsmiEjPrest
-            // 
-            this.tsmiEjPrest.Name = "tsmiEjPrest";
-            this.tsmiEjPrest.Size = new System.Drawing.Size(261, 26);
-            this.tsmiEjPrest.Text = "Ver ejemplares prestados";
-            // 
-            // tsmiPrestCad
-            // 
-            this.tsmiPrestCad.Name = "tsmiPrestCad";
-            this.tsmiPrestCad.Size = new System.Drawing.Size(261, 26);
-            this.tsmiPrestCad.Text = "Ver préstamos caducados";
             // 
             // FormGestionBiblioteca
             // 

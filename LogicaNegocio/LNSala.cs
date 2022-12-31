@@ -82,17 +82,15 @@ namespace LogicaNegocio
             bool finalizado = true;
             ejemplar.Estado = EstadoEjemplarEnum.Disponible;
             gbd.ActualizarEjemplar(ejemplar);
-            foreach (Ejemplar e in prestamo.Ejemplares)
+            Prestamo prestamoBD = gbd.BuscarPrestamo(prestamo.Codigo);
+            if (prestamoBD.Ejemplares.Count > 0)
             {
-                if (finalizado && e.Estado == EstadoEjemplarEnum.Prestado)
-                {
-                    finalizado = false;
-                }
+                finalizado = false;
             }
             if (finalizado)
             {
-                prestamo.Estado = EstadoEnum.Finalizado;
-                gbd.ActualizarPrestamo(prestamo); 
+                prestamoBD.Estado = EstadoEnum.Finalizado;
+                gbd.ActualizarPrestamo(prestamoBD); 
             }
             
         }
@@ -137,6 +135,16 @@ namespace LogicaNegocio
                 select ejemplares;
             return new List<Ejemplar>(l);
             
+        }
+
+        public Prestamo ObtenerPrestamoDeEjemplar(Ejemplar e)
+        {
+            var eeps = gbd.RecorrerEEP().Where((eep) => eep.CodEj == e.Codigo);
+            var l =
+                from ejemplares in eeps
+                join prestamos in gbd.RecorrerPrestamos() on ejemplares.CodPr equals prestamos.Codigo
+                select prestamos;
+            return new List<Prestamo>(l).First();
         }
     }
 }

@@ -153,7 +153,7 @@ namespace Persistencia
         public List<EjemplarEnPrestamo> RecorrerEEP()
         {
             List<EjemplarEnPrestamo> res = new List<EjemplarEnPrestamo>();
-            List<EjemplarEnPrestamoDato> listaEEPDatos = BD.TEjemplarEnPrestamo.ToList();
+            List<EjemplarEnPrestamoDato> listaEEPDatos = BD.TEEP.ToList();
             foreach (EjemplarEnPrestamoDato datoEEP in listaEEPDatos)
             {
                 res.Add(Transformadores.DatoAEEP(datoEEP));

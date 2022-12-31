@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,9 +44,9 @@ namespace Presentacion
             ToolStripMenuItem tsmiListado = new ToolStripMenuItem("Listado");
             tsmiListado.Click += TsmiListado_Click;
             ToolStripMenuItem tsmiPrestLib = new ToolStripMenuItem("Préstamos de libro");
-            tsmiPrestLib.Click += tsmiPrestLib_Click;
-            ToolStripMenuItem tsmiDevEj = new ToolStripMenuItem("Devolver ejemplar");
             tsmiPrestLib.Click += TsmiPrestLib_Click;
+            ToolStripMenuItem tsmiDevEj = new ToolStripMenuItem("Devolver ejemplar");
+            tsmiDevEj.Click += TsmiDevEj_Click;
             ToolStripMenuItem tsmiPrestPasad = new ToolStripMenuItem("Ver préstamos pasados");
             tsmiPrestPasad.Click += TsmiPrestPasad_Click;
             ToolStripMenuItem tsmiEjNoDev = new ToolStripMenuItem("Ver ejemplares no devueltos");
@@ -65,6 +66,94 @@ namespace Presentacion
             subListado.DropDownItems.Add(tsmiPrestPasad);
             subListado.DropDownItems.Add(tsmiPrestAct);
 
+        }
+
+        private void TsmiDevEj_Click(object sender, EventArgs e)
+        {
+            FormClave formISBN = new FormClave();
+            formISBN.Text = "Introducir código";
+            formISBN.LbClave.Text = "Código";
+            DialogResult d = formISBN.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formISBN.Close();
+            }
+            else if (d == DialogResult.OK)
+            {
+                string cod = formISBN.TbClave.Text;
+                if (cod != "")
+                {
+                    Ejemplar ej = lnSala.BuscarEjemplar(cod);
+                    if (ej != null)
+                    {
+                        if (ej.Estado == EstadoEjemplarEnum.Prestado)
+                        {
+                            MostrarFormDevEj(ej);
+                        } else
+                        {
+                            DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "El ejemplar introducido no está actualmente prestado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (res == DialogResult.Yes)
+                            {
+                                TsmiDevEj_Click(sender, e);
+                            }
+                        }
+                        
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún ejemplar con ese código", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            TsmiDevEj_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            formISBN.Dispose();
+        }
+
+        private void MostrarFormDevEj(Ejemplar e)
+        {
+            Prestamo p = lnSala.ObtenerPrestamoDeEjemplar(e);
+            CtrlDatosLib control = new CtrlDatosLib(100, 50);
+            FormDatos formDevEj = new FormDatos();
+            formDevEj.Text = "Devolución de un ejemplar";
+            formDevEj.LbClave.Text = "Código";
+            formDevEj.BtAceptar.Text = "Devolver ejemplar";
+            formDevEj.TbClave.Text = e.Codigo;
+
+            control.LbTitulo.Text = "Código de préstamo";
+            control.LbTitulo.Left -= 60;
+            control.TbTitulo.Text = p.Codigo;
+            control.TbTitulo.ReadOnly = true;
+            control.LbAutor.Text = "Usuario";
+            control.TbAutor.Text = p.Usuario.Dni;
+            control.TbAutor.ReadOnly = true;
+            control.LbEditorial.Text = "Fecha de devolución";
+            control.LbEditorial.Left -= 60;
+            control.TbEditorial.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+            control.TbEditorial.ReadOnly = true;
+            control.TbEditorial.Width += 10;
+            control.BtAniadirEj.Hide();
+            formDevEj.Controls.Add(control);
+
+            DialogResult dDev = formDevEj.ShowDialog();
+            if (dDev == DialogResult.Cancel)
+            {
+                formDevEj.Close();
+            }
+            else if (dDev == DialogResult.OK)
+            {
+                lnSala.DevolverEjemplarPrestado(p, e);
+                if (lnSala.BuscarPrestamo(p.Codigo).Estado == EstadoEnum.Finalizado)
+                {
+                    MessageBox.Show("Se ha devuelto el ejemplar correctamente y el préstamo ha sido finalizado.", "Devolución de un ejemplar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                } else
+                {
+                    MessageBox.Show("Se ha devuelto el ejemplar correctamente", "Devolución de un ejemplar", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
+            }
+            formDevEj.Dispose();
         }
 
         private void TsmiPrestAct_Click(object sender, EventArgs e)
@@ -87,10 +176,6 @@ namespace Presentacion
             throw new NotImplementedException();
         }
 
-        private void tsmiPrestLib_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void TsmiListado_Click(object sender, EventArgs e)
         {
@@ -246,7 +331,8 @@ namespace Presentacion
             fAltaPres.LbClave.Text = "Código";
             fAltaPres.TbClave.Text = p.Codigo;
             fAltaPres.BtAceptar.Hide();
-            fAltaPres.BtCancelar.Text = "Salir";
+            fAltaPres.BtCancelar.Text = "Finalizar";
+            fAltaPres.BtCancelar.DialogResult = DialogResult.Yes;
 
             control.TbUsuario.Text = p.Usuario.Dni;
             control.TbUsuario.ReadOnly = true;
@@ -272,7 +358,7 @@ namespace Presentacion
 
             fAltaPres.Controls.Add(control);
             DialogResult d = fAltaPres.ShowDialog();
-            if (d == DialogResult.Cancel)
+            if (d == DialogResult.Yes)
             {
                 if (lnSala.VerEjemplaresNoDevueltos(p).Count == 0)
                 {
@@ -288,15 +374,24 @@ namespace Presentacion
                     fAltaPres.Close();
                 }
             }
-            else
+            else if (d == DialogResult.OK)
             {
                 Ejemplar ej = AniadirEjs(p);
                 if (ej != null)
                 {
                     p.Ejemplares.Add(ej); //Se añade al OBJETO prestamo (no en la BD)
+                    
+                    
                 }
                 
                 AniadirEjsAPres(p);
+            } else if (d == DialogResult.Cancel)
+            {
+                DialogResult dCanc = MessageBox.Show("¿Está seguro que desea salir? Se perderá toda la información relacionada con el préstamo.", "Alta de un préstamo",  MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (dCanc == DialogResult.Cancel)
+                {
+                    AniadirEjsAPres(p);
+                }
             }
             fAltaPres.Dispose();
         }
@@ -329,7 +424,11 @@ namespace Presentacion
                     ej = lnSala.BuscarEjemplar(codEj);
                     if (ej != null)
                     {
-                        if (ej.Estado == EstadoEjemplarEnum.Disponible)
+                        if (p.Ejemplares.Contains(ej))
+                        {
+                            MessageBox.Show("No se ha podido añadir el ejemplar al préstamo porque ya lo contiene", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (ej.Estado == EstadoEjemplarEnum.Disponible)
                         {
                             ej.Estado = EstadoEjemplarEnum.Prestado;
                             

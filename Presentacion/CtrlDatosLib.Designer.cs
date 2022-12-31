@@ -40,7 +40,7 @@
             // lbTitulo
             // 
             this.lbTitulo.AutoSize = true;
-            this.lbTitulo.Location = new System.Drawing.Point(53, 28);
+            this.lbTitulo.Location = new System.Drawing.Point(95, 28);
             this.lbTitulo.Name = "lbTitulo";
             this.lbTitulo.Size = new System.Drawing.Size(40, 16);
             this.lbTitulo.TabIndex = 1;
@@ -49,7 +49,7 @@
             // lbAutor
             // 
             this.lbAutor.AutoSize = true;
-            this.lbAutor.Location = new System.Drawing.Point(53, 88);
+            this.lbAutor.Location = new System.Drawing.Point(95, 88);
             this.lbAutor.Name = "lbAutor";
             this.lbAutor.Size = new System.Drawing.Size(38, 16);
             this.lbAutor.TabIndex = 2;
@@ -58,7 +58,7 @@
             // lbEditorial
             // 
             this.lbEditorial.AutoSize = true;
-            this.lbEditorial.Location = new System.Drawing.Point(53, 148);
+            this.lbEditorial.Location = new System.Drawing.Point(95, 148);
             this.lbEditorial.Name = "lbEditorial";
             this.lbEditorial.Size = new System.Drawing.Size(56, 16);
             this.lbEditorial.TabIndex = 3;
@@ -68,7 +68,7 @@
             // 
             this.btAniadirEj.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btAniadirEj.Enabled = false;
-            this.btAniadirEj.Location = new System.Drawing.Point(200, 195);
+            this.btAniadirEj.Location = new System.Drawing.Point(242, 195);
             this.btAniadirEj.Name = "btAniadirEj";
             this.btAniadirEj.Size = new System.Drawing.Size(100, 53);
             this.btAniadirEj.TabIndex = 4;
@@ -78,21 +78,21 @@
             // 
             // tbTitulo
             // 
-            this.tbTitulo.Location = new System.Drawing.Point(115, 25);
+            this.tbTitulo.Location = new System.Drawing.Point(157, 25);
             this.tbTitulo.Name = "tbTitulo";
             this.tbTitulo.Size = new System.Drawing.Size(132, 22);
             this.tbTitulo.TabIndex = 6;
             // 
             // tbAutor
             // 
-            this.tbAutor.Location = new System.Drawing.Point(115, 85);
+            this.tbAutor.Location = new System.Drawing.Point(157, 85);
             this.tbAutor.Name = "tbAutor";
             this.tbAutor.Size = new System.Drawing.Size(132, 22);
             this.tbAutor.TabIndex = 7;
             // 
             // tbEditorial
             // 
-            this.tbEditorial.Location = new System.Drawing.Point(115, 145);
+            this.tbEditorial.Location = new System.Drawing.Point(157, 145);
             this.tbEditorial.Name = "tbEditorial";
             this.tbEditorial.Size = new System.Drawing.Size(132, 22);
             this.tbEditorial.TabIndex = 8;
@@ -110,7 +110,7 @@
             this.Controls.Add(this.lbAutor);
             this.Controls.Add(this.lbTitulo);
             this.Name = "CtrlDatosLib";
-            this.Size = new System.Drawing.Size(350, 264);
+            this.Size = new System.Drawing.Size(469, 264);
             this.ResumeLayout(false);
             this.PerformLayout();
 

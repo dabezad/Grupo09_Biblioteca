@@ -51,7 +51,7 @@ namespace Persistencia
             foreach (Ejemplar e in p.Ejemplares)
             {
                 bool existe = false;
-                foreach(EjemplarEnPrestamoDato eepd in BD.TEjemplarEnPrestamo.ToList())
+                foreach(EjemplarEnPrestamoDato eepd in BD.TEEP.ToList()) 
                 {
                     if (eepd.CodEjemplar == e.Codigo)
                     {
@@ -61,8 +61,8 @@ namespace Persistencia
                 }
                 if (!existe)
                 {
-                    BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(new EjemplarEnPrestamoDato(p.Codigo, e.Codigo)); //Se crea la instancia de la tabla intermedia correspondiente
                     BD.UPDATE<string, EjemplarDato>(new EjemplarDato(e.Codigo, EstadoEjemplarEnum.Prestado, e.Libro.Isbn, e.PersonalBAlta.Nombre)); //El ejemplar se pone a prestado
+                    BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(new EjemplarEnPrestamoDato(p.Codigo, e.Codigo)); //Se crea la instancia de la tabla intermedia correspondiente
                 }
             }
             return pd;
@@ -74,7 +74,7 @@ namespace Persistencia
         {
             
             List<Ejemplar> ejemplares = new List<Ejemplar>();
-            foreach (EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
+            foreach (EjemplarEnPrestamoDato elem in BD.TEEP.ToList())
             {
                 if (elem.Id.CodPres == pd.Codigo)
                 {
@@ -82,7 +82,7 @@ namespace Persistencia
                     ejemplares.Add(e);
                 }
             }
-            Prestamo p = new Prestamo(pd.Codigo, BD.READ<string, UsuarioDato>(pd.Usuario, "UsuarioDato") as Usuario, ejemplares, pd.FRealizado, pd.FFinPrestamo,  BD.READ<string, PersonalBibliotecaDato>(pd.PersonalBAlta,"PersonalBibliotecaDato") as PersonalSala);
+            Prestamo p = new Prestamo(pd.Codigo, BD.READ<string, UsuarioDato>(pd.Usuario, "UsuarioDato") as Usuario, ejemplares, pd.FRealizado, pd.FFinPrestamo, pd.Estado, BD.READ<string, PersonalBibliotecaDato>(pd.PersonalBAlta,"PersonalBibliotecaDato") as PersonalSala);
 
             return p;
         }

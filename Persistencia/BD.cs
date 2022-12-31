@@ -45,7 +45,7 @@ namespace Persistencia
             get { return tPersonalBiblioteca; }
         }
 
-        public static Tabla<ClaveEEP, EjemplarEnPrestamoDato> TEjemplarEnPrestamo { 
+        public static Tabla<ClaveEEP, EjemplarEnPrestamoDato> TEEP { 
             get { return tEjemplarEnPrestamo; }
         }
         /// <summary>
@@ -58,13 +58,13 @@ namespace Persistencia
             UsuarioDato u2 = new UsuarioDato("22222222B", "Roberto", "Pepa");
             LibroDato l1 = new LibroDato("1111", "Prueba 1", "Anónimo", "Santillán", "Pepa");
             LibroDato l2 = new LibroDato("2222", "Prueba 2", "Cervantes", "", "Pepe");
-            EjemplarDato e1 = new EjemplarDato("e11", EstadoEjemplarEnum.Disponible, "1111", "Pepa");
-            EjemplarDato e2 = new EjemplarDato("e12", EstadoEjemplarEnum.Prestado, "1111", "Pepa"); 
+            EjemplarDato e1 = new EjemplarDato("e11", EstadoEjemplarEnum.Prestado, "1111", "Pepa");
+            EjemplarDato e2 = new EjemplarDato("e12", EstadoEjemplarEnum.Disponible, "1111", "Pepa"); 
             EjemplarDato e3 = new EjemplarDato("e21", EstadoEjemplarEnum.Disponible, "2222", "Pepa"); 
             EjemplarDato e4 = new EjemplarDato("e22", EstadoEjemplarEnum.Prestado, "2222", "Pepa");
             PrestamoDato p1 = new PrestamoDato("p1", "11111111A", DateTime.Now, DateTime.Now.AddDays(15), EstadoEnum.EnProceso, "Pepa");
             EjemplarEnPrestamoDato eep1 = new EjemplarEnPrestamoDato("p1", "e11");
-            EjemplarEnPrestamoDato eep2 = new EjemplarEnPrestamoDato("p1", "e21");
+            EjemplarEnPrestamoDato eep2 = new EjemplarEnPrestamoDato("p1", "e22");
 
             BD.CREATE<string, PersonalBibliotecaDato>(per1);
             BD.CREATE<string, UsuarioDato>(u1);
@@ -132,7 +132,7 @@ namespace Persistencia
             }//en caso de no funcionar añadir 3 if con los distintos personales
             else if (u is EjemplarEnPrestamoDato)
             {
-                BD.TEjemplarEnPrestamo.Add(u as EjemplarEnPrestamoDato);
+                BD.tEjemplarEnPrestamo.Add(u as EjemplarEnPrestamoDato);
                 return true;
             }
             return false;
@@ -262,46 +262,24 @@ namespace Persistencia
 
 
                 case "PrestamoDato":
-                    foreach (EjemplarEnPrestamoDato elem in BD.TEjemplarEnPrestamo.ToList())
+                    foreach (EjemplarEnPrestamoDato elem in BD.TEEP.ToList())
                     {
                         if (elem.Id.CodPres == t as string)
                         {
-                            BD.TEjemplarEnPrestamo.Remove(elem.Id);
+                            BD.TEEP.Remove(elem.Id);
                         }
                     }
                     return BD.TPrestamo.Remove(t as string);
                 case "EjemplarDato":
                     string codEj = t as string;
                     Ejemplar e = BD.READ<string, EjemplarDato>(codEj, "EjemplarDato") as Ejemplar;
-                    if (e.Estado != EstadoEjemplarEnum.Prestado) //Si el ejemplar a eliminar esta prestado, no se podra eliminar de la BD
-                    {
-                        var l = BD.TEjemplarEnPrestamo.ToList().Where((eep) => eep.CodEjemplar == codEj);
+                        var l = BD.TEEP.ToList().Where((eep) => eep.CodEjemplar == codEj);
                         List<EjemplarEnPrestamoDato> listEEP = new List<EjemplarEnPrestamoDato>(l); //EEPs del ejemplar
-
-                        List<PrestamoDato> listP = new List<PrestamoDato>();
-                        foreach (PrestamoDato pd in BD.TPrestamo.ToList())
-                        {
-                            foreach (EjemplarEnPrestamoDato eep in listEEP)
-                            {
-                                if (pd.Id == eep.CodPrestamo)
-                                {
-                                    listP.Add(pd);
-                                }
-                            }
-                        }
-                        foreach (PrestamoDato p in listP)
-                        {
-                            BD.TPrestamo.Remove(p.Codigo);
-                        }
                         foreach (EjemplarEnPrestamoDato eep in listEEP)
                         {
-                            BD.TEjemplarEnPrestamo.Remove(eep.Id);
+                            BD.TEEP.Remove(eep.Id);
                         }
-                        return BD.TEjemplar.Remove(codEj);
-                    } else
-                    {
-                        return false;
-                    }
+                        return BD.TEjemplar.Remove(codEj); 
                 case "LibroDato":
                     var b = BD.TEjemplar.ToList().Exists((ej) => ej.Estado == EstadoEjemplarEnum.Prestado);
                     if (b)

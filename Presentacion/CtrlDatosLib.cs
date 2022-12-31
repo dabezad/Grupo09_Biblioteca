@@ -14,6 +14,18 @@ namespace Presentacion
 {
     public partial class CtrlDatosLib : UserControl
     {
+        public Label LbEditorial
+        {
+            get { return lbEditorial; }
+        }
+        public Label LbAutor
+        {
+            get { return lbAutor; }
+        }
+        public Label LbTitulo
+        {
+            get { return lbTitulo; }
+        }
         public TextBox TbTitulo
         {
             get { return tbTitulo;  }
