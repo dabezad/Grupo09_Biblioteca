@@ -259,7 +259,7 @@ namespace Presentacion
             {
                 List<Ejemplar> l = lnSala.ObtenerEjemplaresDePrestamo(p.Codigo);
                 CtrlDatosEjemplar ctrlEj = new CtrlDatosEjemplar(50, 50);
-                FormNavig listaEjs = new FormNavig(l);
+                FormNavig listaEjs = new FormNavig();
                 listaEjs.Text = "Lista de ejemplares";
 
                 ctrlEj.TbCodigo.ReadOnly = true;

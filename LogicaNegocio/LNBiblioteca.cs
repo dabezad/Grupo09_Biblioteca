@@ -50,8 +50,7 @@ namespace LogicaNegocio
 
         public List<Usuario> MostrarUsuarios()
         {
-            List<Usuario> lista = new List<Usuario>();
-            return lista;
+            return gbd.RecorrerUsuarios();
         }
 
         public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 

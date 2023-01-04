@@ -41,6 +41,8 @@
             this.tsmiPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCerrarSes = new System.Windows.Forms.ToolStripMenuItem();
+            this.búsquedaPorDNIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRecorrido = new System.Windows.Forms.ToolStripMenuItem();
             this.msPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,6 +89,8 @@
             // tsmiBusqUsu
             // 
             this.tsmiBusqUsu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.búsquedaPorDNIToolStripMenuItem,
+            this.tsmiRecorrido,
             this.tsmiEjPrest,
             this.tsmiPrestCad});
             this.tsmiBusqUsu.Name = "tsmiBusqUsu";
@@ -112,6 +116,7 @@
             this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
             this.listadoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.listadoToolStripMenuItem.Text = "Listado";
+            this.listadoToolStripMenuItem.Click += new System.EventHandler(this.listadoToolStripMenuItem_Click);
             // 
             // tsmiLibros
             // 
@@ -145,6 +150,20 @@
             this.tsmiCerrarSes.Size = new System.Drawing.Size(177, 26);
             this.tsmiCerrarSes.Text = "Cerrar sesión";
             // 
+            // búsquedaPorDNIToolStripMenuItem
+            // 
+            this.búsquedaPorDNIToolStripMenuItem.Name = "búsquedaPorDNIToolStripMenuItem";
+            this.búsquedaPorDNIToolStripMenuItem.Size = new System.Drawing.Size(261, 26);
+            this.búsquedaPorDNIToolStripMenuItem.Text = "Búsqueda por DNI";
+            this.búsquedaPorDNIToolStripMenuItem.Click += new System.EventHandler(this.búsquedaPorDNIToolStripMenuItem_Click);
+            // 
+            // tsmiRecorrido
+            // 
+            this.tsmiRecorrido.Name = "tsmiRecorrido";
+            this.tsmiRecorrido.Size = new System.Drawing.Size(261, 26);
+            this.tsmiRecorrido.Text = "Recorrido uno a uno";
+            this.tsmiRecorrido.Click += new System.EventHandler(this.tsmiRecorrido_Click);
+            // 
             // FormGestionBiblioteca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -177,6 +196,8 @@
         private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiEjPrest;
         private System.Windows.Forms.ToolStripMenuItem tsmiPrestCad;
+        private System.Windows.Forms.ToolStripMenuItem búsquedaPorDNIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRecorrido;
     }
 }
 
