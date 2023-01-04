@@ -230,11 +230,14 @@ namespace Presentacion
             control.BtEjsPres.Text = "Ver ejemplares";
             control.BtEjsPres.Enabled = true;
             control.BtEjsPres.DialogResult = DialogResult.Yes;
+            control.BtEjsPres.Top += 30;
             control.TbUsuario.Text = p.Usuario.Dni;
             control.TbUsuario.ReadOnly = true;
 
             Label lbNombreU = new Label();
             TextBox tbNombreU = new TextBox();
+            Label lbEstadoP = new Label();
+            TextBox tbEstadoP = new TextBox();
 
             lbNombreU.Text = "Nombre";
             lbNombreU.Top = 63;
@@ -247,31 +250,118 @@ namespace Presentacion
             tbNombreU.Width = 98;
             tbNombreU.Height = 22;
             tbNombreU.Text = p.Usuario.Nombre;
+
+            lbEstadoP.Text = "Estado";
+            lbEstadoP.Top = 103;
+            lbEstadoP.Left = 42;
+            lbEstadoP.Size = new Size(51, 16);
+
+            tbEstadoP.ReadOnly = true;
+            tbEstadoP.Top = 101;
+            tbEstadoP.Left = 90;
+            tbEstadoP.Width = 98;
+            tbEstadoP.Height = 22;
+            tbEstadoP.Text = Enum.GetName(typeof(EstadoEnum), p.Estado);
+
             control.Controls.Add(lbNombreU);
             control.Controls.Add(tbNombreU);
+            control.Controls.Add(lbEstadoP);
+            control.Controls.Add(tbEstadoP);
 
             formBajaPres.Controls.Add(control);
             DialogResult dBaja = formBajaPres.ShowDialog();
             if (dBaja == DialogResult.Cancel)
             {
                 formBajaPres.Close();
-            } else if (dBaja == DialogResult.Yes) //Mostrar menu con ejemplares
+            } else if (dBaja == DialogResult.Yes) 
             {
-                List<Ejemplar> l = lnSala.ObtenerEjemplaresDePrestamo(p.Codigo);
-                CtrlDatosEjemplar ctrlEj = new CtrlDatosEjemplar(50, 50);
-                FormNavig listaEjs = new FormNavig();
-                listaEjs.Text = "Lista de ejemplares";
+                List<Ejemplar> ejemplares = lnSala.ObtenerEjemplaresDePrestamo(p.Codigo);
+                if (ejemplares.Count > 0)
+                {
+                    CtrlDatosEjemplar ctrlEj = new CtrlDatosEjemplar(50, 35);
+                    FormNavig listaEjs = new FormNavig();
+                    BindingSource bnDatos = new BindingSource();
 
-                ctrlEj.TbCodigo.ReadOnly = true;
-                ctrlEj.CbEstadoEj.Enabled = false;
+                    ctrlEj.TbCodigo.Hide();
+                    ctrlEj.LbCodigo.Hide();
+                    ctrlEj.CbEstadoEj.Enabled = false;
+                    listaEjs.LbClave.Text = "Código";
+                    listaEjs.Text = "Datos de ejemplares";
+
+                    listaEjs.BnDatos.BindingSource = bnDatos;
+                    listaEjs.BnDatos.BindingSource.DataSource = ejemplares;
+
+                    Ejemplar ej = ((Ejemplar)listaEjs.BnDatos.BindingSource.Current);
+                    listaEjs.TbClave.Text = ej.Codigo;
+                    if (ej.Estado == EstadoEjemplarEnum.Disponible) { ctrlEj.CbEstadoEj.SelectedIndex = 0; }
+                    else { ctrlEj.CbEstadoEj.SelectedIndex = 1; }
 
 
-                listaEjs.Controls.Add(ctrlEj);
-                listaEjs.ShowDialog();
+                    listaEjs.BtPrimero.Click += (s, ev) => PrimerEjemplar(s, ev, listaEjs);
+                    listaEjs.BtAnterior.Click += (s, ev) => RetrocederEjemplar(s, ev, listaEjs);
+                    listaEjs.BtSiguiente.Click += (s, ev) => SiguienteEjemplar(s, ev, listaEjs);
+                    listaEjs.BtUltimo.Click += (s, ev) => UltimoEjemplar(s, ev, listaEjs);
 
-                
+                    listaEjs.Controls.Add(ctrlEj);
+                    listaEjs.ShowDialog();
+                    
+                } else
+                {
+                    MessageBox.Show("El préstamo actualmente no tiene ejemplares por devolver.", "Baja de un préstamo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                }
+                MostrarFormBajaPres(p);
+
+
+            } else if (dBaja == DialogResult.OK)
+            {
+                if (p.Estado == EstadoEnum.Finalizado)
+                {
+                    if (lnSala.BajaPrestamo(p.Codigo))
+                    {
+                        MessageBox.Show("El préstamo se ha dado de baja correctamente", "Baja de un préstamo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } else
+                    {
+                        MessageBox.Show("El préstamo no se ha podido dar de baja correctamente", "Baja de un préstamo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } else
+                {
+                    MessageBox.Show("El préstamo no se puede dar de baja porque todavía está en proceso", "Baja de un préstamo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             formBajaPres.Dispose();
+        }
+
+        private void PonerDatos(FormNavig listaEjs)
+        {
+            Ejemplar ej = ((Ejemplar)listaEjs.BnDatos.BindingSource.Current);
+            listaEjs.TbClave.Text = ej.Codigo;
+            if (ej.Estado == EstadoEjemplarEnum.Disponible) { ((CtrlDatosEjemplar)listaEjs.Controls["CtrlDatosEjemplar"]).CbEstadoEj.SelectedIndex = 0; }
+            else { ((CtrlDatosEjemplar)listaEjs.Controls["CtrlDatosEjemplar"]).CbEstadoEj.SelectedIndex = 1; }
+        }
+
+        private void UltimoEjemplar(object s, EventArgs ev, FormNavig listaEjs)
+        {
+            listaEjs.BnDatos.BindingSource.MoveLast();
+            PonerDatos(listaEjs);
+        }
+
+        private void SiguienteEjemplar(object s, EventArgs ev, FormNavig listaEjs)
+        {
+            listaEjs.BnDatos.BindingSource.MoveNext();
+            PonerDatos(listaEjs);
+        }
+
+        private void RetrocederEjemplar(object s, EventArgs ev, FormNavig listaEjs)
+        {
+            listaEjs.BnDatos.BindingSource.MovePrevious();
+            PonerDatos(listaEjs);
+        }
+
+        private void PrimerEjemplar(object s, EventArgs ev, FormNavig listaEjs)
+        {
+            listaEjs.BnDatos.BindingSource.MoveFirst();
+            PonerDatos(listaEjs);
         }
 
         private void MostrarFormAltaPres(string codP)

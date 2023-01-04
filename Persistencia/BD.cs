@@ -54,6 +54,7 @@ namespace Persistencia
         public static void LOAD()
         {
             PersonalBibliotecaDato per1 = new PersonalBibliotecaDato("Pepa", "123", "PersonalAdquisiciones");
+            PersonalBibliotecaDato per2 = new PersonalBibliotecaDato("Jose", "321", "PersonalSala");
             UsuarioDato u1 = new UsuarioDato("11111111A", "Ana", "Pepa");
             UsuarioDato u2 = new UsuarioDato("22222222B", "Roberto", "Pepa");
             LibroDato l1 = new LibroDato("1111", "Prueba 1", "Anónimo", "Santillán", "Pepa");
@@ -67,6 +68,7 @@ namespace Persistencia
             EjemplarEnPrestamoDato eep2 = new EjemplarEnPrestamoDato("p1", "e22");
 
             BD.CREATE<string, PersonalBibliotecaDato>(per1);
+            BD.CREATE<string, PersonalBibliotecaDato>(per2);
             BD.CREATE<string, UsuarioDato>(u1);
             BD.CREATE<string, UsuarioDato>(u2);
             BD.CREATE<string, LibroDato>(l1);

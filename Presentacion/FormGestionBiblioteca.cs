@@ -388,6 +388,7 @@ namespace Presentacion
             fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
             control.TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
 
+
             fRecorrido.BtPrimero.Click += (s, ev) => PrimerUsuario(sender, e, fRecorrido);
             fRecorrido.BtAnterior.Click += (s, ev) => RetrocederUsuario(sender, e, fRecorrido);
             fRecorrido.BtSiguiente.Click += (s, ev) => SiguienteUsuario(sender, e, fRecorrido);

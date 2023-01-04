@@ -10,5 +10,7 @@ namespace ModeloDominio
     {
         EnProceso,
         Finalizado
+
     }
+
 }
