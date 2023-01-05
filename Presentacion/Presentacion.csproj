@@ -52,11 +52,23 @@
     <Compile Include="CtrlDatosEjemplar.Designer.cs">
       <DependentUpon>CtrlDatosEjemplar.cs</DependentUpon>
     </Compile>
+    <Compile Include="CtrlDatosEjemplarPrestado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDatosEjemplarPrestado.Designer.cs">
+      <DependentUpon>CtrlDatosEjemplarPrestado.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlDatosLib.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CtrlDatosLib.Designer.cs">
       <DependentUpon>CtrlDatosLib.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlDatosLibRecorrido.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDatosLibRecorrido.Designer.cs">
+      <DependentUpon>CtrlDatosLibRecorrido.cs</DependentUpon>
     </Compile>
     <Compile Include="CtrlDatosPersonal.cs">
       <SubType>UserControl</SubType>
@@ -124,6 +136,12 @@
     <Compile Include="FormListadoUsu.Designer.cs">
       <DependentUpon>FormListadoUsu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormListPrestEnProc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListPrestEnProc.Designer.cs">
+      <DependentUpon>FormListPrestEnProc.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNavig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,8 +159,14 @@
     <EmbeddedResource Include="CtrlDatosEjemplar.resx">
       <DependentUpon>CtrlDatosEjemplar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CtrlDatosEjemplarPrestado.resx">
+      <DependentUpon>CtrlDatosEjemplarPrestado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosLib.resx">
       <DependentUpon>CtrlDatosLib.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlDatosLibRecorrido.resx">
+      <DependentUpon>CtrlDatosLibRecorrido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosPersonal.resx">
       <DependentUpon>CtrlDatosPersonal.cs</DependentUpon>
@@ -176,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormListadoUsu.resx">
       <DependentUpon>FormListadoUsu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListPrestEnProc.resx">
+      <DependentUpon>FormListPrestEnProc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNavig.resx">
       <DependentUpon>FormNavig.cs</DependentUpon>

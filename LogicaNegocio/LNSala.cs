@@ -56,6 +56,20 @@ namespace LogicaNegocio
             return noDevueltos;
         }
 
+        public List<Ejemplar> VerEjemplaresNoDevueltos()
+        {
+            List<Ejemplar> noDevueltos = new List<Ejemplar>();
+            foreach (Ejemplar e in gbd.RecorrerEjemplares())
+            {
+
+                if (e.Estado == EstadoEjemplarEnum.Prestado)
+                {
+                    noDevueltos.Add(e);
+                }
+            }
+            return noDevueltos;
+        }
+
         public Prestamo BuscarPrestamo(string id)
         {
             return gbd.BuscarPrestamo(id);
@@ -145,6 +159,19 @@ namespace LogicaNegocio
                 join prestamos in gbd.RecorrerPrestamos() on ejemplares.CodPr equals prestamos.Codigo
                 select prestamos;
             return new List<Prestamo>(l).First();
+        }
+
+        public List<Prestamo> ObtenerPrestamosEnProceso()
+        {
+            List<Prestamo> resultado = new List<Prestamo>();
+            foreach (Prestamo p in gbd.RecorrerPrestamos())
+            {
+                if (p.Estado == EstadoEnum.EnProceso)
+                {
+                    resultado.Add(p);
+                }
+            }
+            return resultado;
         }
     }
 }

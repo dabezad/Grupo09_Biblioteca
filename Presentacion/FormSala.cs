@@ -30,6 +30,8 @@ namespace Presentacion
             this.Text = pers.Nombre + " - Gestión de biblioteca - Sala";
 
             this.Aniadir_tsmis();
+            this.tsmiEjemplares.Enabled = false;
+            this.tsmiLibros.Enabled = false;
             InitializeComponent();
         }
 
@@ -163,7 +165,65 @@ namespace Presentacion
 
         private void TsmiEjNoDev_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            List<Ejemplar> ejemplares = lnSala.VerEjemplaresNoDevueltos();
+            if (ejemplares.Count > 0)
+            {
+                FormNavig fEjNoDev = new FormNavig();
+                CtrlDatosEjemplarPrestado control = new CtrlDatosEjemplarPrestado(100, 0);
+
+                BindingSource datos = new BindingSource();
+
+                fEjNoDev.LbClave.Text = "Código de ejemplar";
+                fEjNoDev.LbClave.Left -= 30;
+                fEjNoDev.TbClave.Left += 35;
+                fEjNoDev.Text = "Ejemplares no devueltos";
+
+                fEjNoDev.BnDatos.BindingSource = datos;
+                fEjNoDev.BnDatos.BindingSource.DataSource = ejemplares;
+                fEjNoDev.TbClave.Text = ((Ejemplar)fEjNoDev.BnDatos.BindingSource.Current).Codigo;
+                Ejemplar ejCurrent = (Ejemplar)fEjNoDev.BnDatos.BindingSource.Current;
+                Prestamo p = lnSala.ObtenerPrestamoDeEjemplar(ejCurrent);
+                fEjNoDev.TbClave.Text = ejCurrent.Codigo;
+                control.TbCodPres.Text = p.Codigo;
+                control.TbFechaDev.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+
+                fEjNoDev.BtPrimero.Click += delegate (object s, EventArgs ev) {
+                    fEjNoDev.BnDatos.BindingSource.MoveFirst();
+                    PonerDatosEjemplarPrestado(fEjNoDev);
+                };
+                fEjNoDev.BtAnterior.Click += delegate (object s, EventArgs ev) {
+                    fEjNoDev.BnDatos.BindingSource.MovePrevious();
+                    PonerDatosEjemplarPrestado(fEjNoDev);
+                }; ;
+                fEjNoDev.BtSiguiente.Click += delegate (object s, EventArgs ev) {
+                    fEjNoDev.BnDatos.BindingSource.MoveNext();
+                    PonerDatosEjemplarPrestado(fEjNoDev);
+                }; ;
+                fEjNoDev.BtUltimo.Click += delegate (object s, EventArgs ev) {
+                    fEjNoDev.BnDatos.BindingSource.MoveLast();
+                    PonerDatosEjemplarPrestado(fEjNoDev);
+                }; ;
+
+                fEjNoDev.Controls.Add(control);
+                fEjNoDev.Show();
+            }else
+            {
+                MessageBox.Show("Actualmente no hay ningún ejemplar prestado en el sistema", "Ver ejemplares no devueltos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
+            
+        }
+
+        private void PonerDatosEjemplarPrestado(FormNavig form)
+        {
+            Ejemplar e = (Ejemplar)form.BnDatos.BindingSource.Current;
+            Prestamo p = lnSala.ObtenerPrestamoDeEjemplar(e);
+            CtrlDatosEjemplarPrestado control = (CtrlDatosEjemplarPrestado) form.Controls["CtrlDatosEjemplarPrestado"];
+            form.TbClave.Text = e.Codigo;
+            control.TbCodPres.Text = p.Codigo;
+            control.TbFechaDev.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+
         }
 
         private void TsmiPrestPasad_Click(object sender, EventArgs e)
@@ -179,7 +239,8 @@ namespace Presentacion
 
         private void TsmiListado_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormListPrestEnProc fListado = new FormListPrestEnProc(lnSala);
+            fListado.Show();
         }
 
         private void TsmiBusqPres_Click(object sender, EventArgs e)
