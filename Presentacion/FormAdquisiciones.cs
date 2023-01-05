@@ -26,6 +26,7 @@ namespace Presentacion
         public FormAdquisiciones(PersonalAdquisiciones pers) : base(pers)
         {
             lnAdq = new LNAdquisiciones();
+            this.lnB = lnAdq;
             this.pers = pers;
             this.Text = pers.Nombre + " - Gestión de biblioteca - Adquisiciones";
 

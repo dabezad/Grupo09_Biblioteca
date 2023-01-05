@@ -26,7 +26,6 @@ namespace Presentacion
         public FormGestionBiblioteca(PersonalBiblioteca pers)
         {
             this.personal = pers;
-            lnB = new LNBiblioteca();
             InitializeComponent();
             
         }
