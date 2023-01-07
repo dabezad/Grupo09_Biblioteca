@@ -230,7 +230,60 @@ namespace Presentacion
 
         private void TsmiBusqPres_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormClave formClave = new FormClave();
+            formClave.Text = "Introducir Código";
+            formClave.LbClave.Text = "Código";
+            DialogResult d = formClave.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formClave.Close();
+            }
+            else
+            {
+                string cod = formClave.TbClave.Text;
+                if ( cod != "")
+                {
+                    Prestamo p = lnSala.BuscarPrestamo(cod);
+                    if (p != null)
+                    {
+                        MostrarFormBusqPres(p);
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún prestamo con ese código", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            TsmiBusqPres_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            formClave.Dispose();
+        }
+        private void MostrarFormBusqPres(Prestamo p)
+        {
+            CtrlDatosPrestamoBusq control = new CtrlDatosPrestamoBusq(100, 100);
+            FormDatos formBusqPres = new FormDatos();
+            formBusqPres.Text = "Búsqueda de un usuario";
+            formBusqPres.LbClave.Text = "Codigo";
+            formBusqPres.BtAceptar.Text = "Ver personal alta";
+            formBusqPres.TbClave.Text = p.Codigo;
+            formBusqPres.BtCancelar.Text = "Salir";
+            control.Tbusuario.Text = p.Usuario.Dni;
+            control.Tbfecha.Text= p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+            control.Tbdevolucion.Text= p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+            formBusqPres.Controls.Add(control);
+            DialogResult dAlta = formBusqPres.ShowDialog();
+            if (dAlta == DialogResult.Cancel)
+            {
+                formBusqPres.Close();
+            }
+            else if (dAlta == DialogResult.OK)
+            {
+                MostrarFormPersAlta(p.PersonalBAlta);
+                MostrarFormBusqPres(p);
+            }
+            formBusqPres.Dispose();
         }
 
         private void TsmiBajaPres_Click(object sender, EventArgs e)
