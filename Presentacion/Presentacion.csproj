@@ -70,6 +70,12 @@
     <Compile Include="CtrlDatosPrestamo.Designer.cs">
       <DependentUpon>CtrlDatosPrestamo.cs</DependentUpon>
     </Compile>
+    <Compile Include="CtrlDatosPrestamoBusq.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDatosPrestamoBusq.Designer.cs">
+      <DependentUpon>CtrlDatosPrestamoBusq.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlDatosUsu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosPrestamo.resx">
       <DependentUpon>CtrlDatosPrestamo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CtrlDatosPrestamoBusq.resx">
+      <DependentUpon>CtrlDatosPrestamoBusq.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosUsu.resx">
       <DependentUpon>CtrlDatosUsu.cs</DependentUpon>

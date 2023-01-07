@@ -232,7 +232,7 @@ namespace Presentacion
             formBusqUsu.Dispose();
         }
 
-        private void MostrarFormPersAlta(PersonalBiblioteca pers)
+        protected void MostrarFormPersAlta(PersonalBiblioteca pers)
         {
             FormDatos formPers = new FormDatos();
             CtrlDatosPersonal control = new CtrlDatosPersonal(100, 100);
