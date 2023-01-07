@@ -31,17 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNavig));
             this.bnDatos = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.btPrimero = new System.Windows.Forms.ToolStripButton();
             this.btAnterior = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btSiguiente = new System.Windows.Forms.ToolStripButton();
             this.btUltimo = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.lbClave = new System.Windows.Forms.Label();
             this.tbClave = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bnDatos)).BeginInit();
@@ -73,15 +73,42 @@
             this.bnDatos.MovePreviousItem = this.btAnterior;
             this.bnDatos.Name = "bnDatos";
             this.bnDatos.PositionItem = this.bindingNavigatorPositionItem;
-            this.bnDatos.Size = new System.Drawing.Size(379, 27);
+            this.bnDatos.Size = new System.Drawing.Size(395, 27);
             this.bnDatos.TabIndex = 0;
             this.bnDatos.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Enabled = false;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
+            this.bindingNavigatorCountItem.Text = "de {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Enabled = false;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Eliminar";
             // 
             // btPrimero
             // 
             this.btPrimero.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btPrimero.Image = ((System.Drawing.Image)(resources.GetObject("btPrimero.Image")));
-            this.btPrimero.Name = "bindingNavigatorMoveFirstItem";
+            this.btPrimero.Name = "btPrimero";
             this.btPrimero.RightToLeftAutoMirrorImage = true;
             this.btPrimero.Size = new System.Drawing.Size(29, 24);
             this.btPrimero.Text = "Mover primero";
@@ -90,7 +117,7 @@
             // 
             this.btAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btAnterior.Image = ((System.Drawing.Image)(resources.GetObject("btAnterior.Image")));
-            this.btAnterior.Name = "bindingNavigatorMovePreviousItem";
+            this.btAnterior.Name = "btAnterior";
             this.btAnterior.RightToLeftAutoMirrorImage = true;
             this.btAnterior.Size = new System.Drawing.Size(29, 24);
             this.btAnterior.Text = "Mover anterior";
@@ -110,23 +137,16 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Posición actual";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
-            this.bindingNavigatorCountItem.Text = "de {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // btSiguiente
             // 
             this.btSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btSiguiente.Image = ((System.Drawing.Image)(resources.GetObject("btSiguiente.Image")));
-            this.btSiguiente.Name = "bindingNavigatorMoveNextItem";
+            this.btSiguiente.Name = "btSiguiente";
             this.btSiguiente.RightToLeftAutoMirrorImage = true;
             this.btSiguiente.Size = new System.Drawing.Size(29, 24);
             this.btSiguiente.Text = "Mover siguiente";
@@ -135,35 +155,15 @@
             // 
             this.btUltimo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btUltimo.Image = ((System.Drawing.Image)(resources.GetObject("btUltimo.Image")));
-            this.btUltimo.Name = "bindingNavigatorMoveLastItem";
+            this.btUltimo.Name = "btUltimo";
             this.btUltimo.RightToLeftAutoMirrorImage = true;
             this.btUltimo.Size = new System.Drawing.Size(29, 24);
             this.btUltimo.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Enabled = false;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Enabled = false;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Eliminar";
             // 
             // lbClave
             // 
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 302);
+            this.ClientSize = new System.Drawing.Size(395, 430);
             this.Controls.Add(this.tbClave);
             this.Controls.Add(this.lbClave);
             this.Controls.Add(this.bnDatos);

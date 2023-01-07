@@ -226,7 +226,7 @@ namespace Presentacion
                 formBusqUsu.Close();
             } else if (dAlta == DialogResult.OK)
             {
-                MostrarFormPersAlta(this.personal);
+                MostrarFormPersAlta(u.PersonalBAlta);
                 MostrarFormBusqUsu(u);
             }
             formBusqUsu.Dispose();
@@ -309,7 +309,7 @@ namespace Presentacion
                 string dni = formDNI.TbClave.Text;
                 if (dni != "")
                 {
-                    Usuario u = lnB.BuscarUsuario(dni); //Problema con la LNBiblioteca
+                    Usuario u = lnB.BuscarUsuario(dni); 
                     if (u != null)
                     {
                         MostrarPrestCaducados(u);

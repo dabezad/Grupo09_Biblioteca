@@ -31,6 +31,7 @@ namespace Presentacion
             this.Text = pers.Nombre + " - Gestión de biblioteca - Adquisiciones";
 
             this.Aniadir_tsmis();
+            this.tsmiPrestamos.Enabled = false;
             InitializeComponent();
         }
 
@@ -56,6 +57,8 @@ namespace Presentacion
             tsmiListadoEj.Click += TsmiListadoEj_Click;
             ToolStripMenuItem tsmiLibMasLeido = new ToolStripMenuItem("Libro más leído");
             tsmiLibMasLeido.Click += TsmiLibMasLeido_Click;
+            ToolStripMenuItem tsmiRecorrido = new ToolStripMenuItem("Recorrido uno a uno");
+            tsmiRecorrido.Click += TsmiRecorrido_Click;
 
 
             this.tsmiLibros.DropDownItems.Add(tsmiAltaLib);
@@ -71,6 +74,67 @@ namespace Presentacion
             this.tsmiEjemplares.DropDownItems.Add(tsmiListadoEj);
             this.tsmiEjemplares.DropDownItems.Add(tsmiEjDisp);
 
+            ToolStripMenuItem subListado = this.tsmiLibros.DropDownItems[3] as ToolStripMenuItem;
+            subListado.DropDownItems.Add(tsmiRecorrido);
+
+        }
+
+        private void TsmiRecorrido_Click(object sender, EventArgs e)
+        {
+            List<Libro> libros = lnAdq.ListarLibros();
+            if (libros.Count > 0)
+            {
+                FormNavig fRecorrido = new FormNavig();
+                CtrlDatosLibRecorrido control = new CtrlDatosLibRecorrido(100, 40);
+                BindingSource datos = new BindingSource();
+
+                fRecorrido.LbClave.Text = "ISBN";
+                fRecorrido.Text = "Datos de un libro";
+
+                fRecorrido.BnDatos.BindingSource = datos;
+                fRecorrido.BnDatos.BindingSource.DataSource = libros;
+                Libro l = (Libro) fRecorrido.BnDatos.BindingSource.Current;
+                fRecorrido.TbClave.Text = l.Isbn;
+                control.TbTitulo.Text = l.Titulo;
+                control.TbAutor.Text = l.Autor;
+                control.TbEditorial.Text = l.Editorial;
+                control.TbNumEjs.Text = lnAdq.ListarEjemplares(l.Isbn).Count.ToString();
+
+                fRecorrido.BtPrimero.Click += delegate (object s, EventArgs ev) {
+                    fRecorrido.BnDatos.BindingSource.MoveFirst();
+                    PonerDatos(fRecorrido);
+                };
+                fRecorrido.BtAnterior.Click += delegate (object s, EventArgs ev) {
+                    fRecorrido.BnDatos.BindingSource.MovePrevious();
+                    PonerDatos(fRecorrido);
+                }; 
+                fRecorrido.BtSiguiente.Click += delegate (object s, EventArgs ev) {
+                    fRecorrido.BnDatos.BindingSource.MoveNext();
+                    PonerDatos(fRecorrido);
+                }; 
+                fRecorrido.BtUltimo.Click += delegate (object s, EventArgs ev) {
+                    fRecorrido.BnDatos.BindingSource.MoveLast();
+                    PonerDatos(fRecorrido);
+                }; 
+
+                fRecorrido.Controls.Add(control);
+                fRecorrido.Show();
+            } else
+            {
+                MessageBox.Show("Actualmente no hay ningún libro registrado en el sistema", "Datos de un libro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void PonerDatos(FormNavig fRecorrido)
+        {
+            Libro l = (Libro)fRecorrido.BnDatos.BindingSource.Current;
+            CtrlDatosLibRecorrido control = (CtrlDatosLibRecorrido)fRecorrido.Controls["CtrlDatosLibRecorrido"];
+            fRecorrido.TbClave.Text = l.Isbn;
+            control.TbTitulo.Text = l.Titulo;
+            control.TbAutor.Text = l.Autor;
+            control.TbEditorial.Text = l.Editorial;
+            control.TbNumEjs.Text = lnAdq.ListarEjemplares(l.Isbn).Count.ToString();
         }
 
         private void TsmiLibMasLeido_Click(object sender, EventArgs e)

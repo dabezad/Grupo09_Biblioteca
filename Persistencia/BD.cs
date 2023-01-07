@@ -78,9 +78,9 @@ namespace Persistencia
             BD.CREATE<string, EjemplarDato>(e3);
             BD.CREATE<string, EjemplarDato>(e4);
             
-            //BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
-            //BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
-            //BD.CREATE<string, PrestamoDato>(p1);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
+            BD.CREATE<string, PrestamoDato>(p1);
 
 
         }
