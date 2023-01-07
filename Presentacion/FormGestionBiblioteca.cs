@@ -199,7 +199,7 @@ namespace Presentacion
                         DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún usuario con ese DNI", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (res == DialogResult.Yes)
                         {
-                            tsmiBajaUsu_Click(sender, e);
+                            tsmiBusqUsu_Click(sender, e);
                         }
                     }
                 }
@@ -232,7 +232,7 @@ namespace Presentacion
             formBusqUsu.Dispose();
         }
 
-        private void MostrarFormPersAlta(PersonalBiblioteca pers)
+        protected void MostrarFormPersAlta(PersonalBiblioteca pers)
         {
             FormDatos formPers = new FormDatos();
             CtrlDatosPersonal control = new CtrlDatosPersonal(100, 100);
@@ -240,7 +240,7 @@ namespace Presentacion
             formPers.BtAceptar.Hide();
             formPers.LbClave.Text = "Nombre";
             formPers.TbClave.Text = pers.Nombre;
-            formPers.Text = "Búsqueda de un usuario";
+            formPers.Text = "Búsqueda del personal de alta";
             formPers.BtCancelar.Text = "Salir";
             formPers.Controls.Add(control);
             DialogResult d = formPers.ShowDialog();
@@ -345,7 +345,7 @@ namespace Presentacion
         private void búsquedaPorDNIToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<string> dnis = lnB.MostrarUsuarios().Select(x => x.Dni).ToList();
-            FormBusqPorClave FBusq = new FormBusqPorClave(lnB);
+            FormBusqPorClave FBusq = new FormBusqPorClave();
             CtrlDatosUsu control = new CtrlDatosUsu(100, 100);
             control.TbNombre.Size = new Size(135,24);
             control.TbNombre.ReadOnly = true;
@@ -366,6 +366,7 @@ namespace Presentacion
             {
                 string nomUsu = lnB.BuscarUsuario(dni).Nombre;
                 control.TbNombre.Text = nomUsu;
+                
             }
        
         }
@@ -387,42 +388,17 @@ namespace Presentacion
             fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
             control.TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
 
-
-            fRecorrido.BtPrimero.Click += (s, ev) => PrimerUsuario(sender, e, fRecorrido);
-            fRecorrido.BtAnterior.Click += (s, ev) => RetrocederUsuario(sender, e, fRecorrido);
-            fRecorrido.BtSiguiente.Click += (s, ev) => SiguienteUsuario(sender, e, fRecorrido);
-            fRecorrido.BtUltimo.Click += (s, ev) => UltimoUsuario(sender, e, fRecorrido);
+            fRecorrido.PsItem.TextChanged += delegate (object s, EventArgs ev)
+            {
+                fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
+                control.TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
+            };
 
             fRecorrido.Controls.Add(control);
-            fRecorrido.Show();
+            fRecorrido.ShowDialog();
         }
 
-        private void UltimoUsuario(object sender, EventArgs e, FormNavig fRecorrido)
-        {
-            fRecorrido.BnDatos.BindingSource.MoveLast();
-            fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
-            ((CtrlDatosUsu)fRecorrido.Controls["CtrlAltaUsu"]).TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
-        }
 
-        private void SiguienteUsuario(object sender, EventArgs e, FormNavig fRecorrido)
-        {
-            fRecorrido.BnDatos.BindingSource.MoveNext();
-            fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
-            ((CtrlDatosUsu)fRecorrido.Controls["CtrlAltaUsu"]).TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
-        }
 
-        private void RetrocederUsuario(object sender, EventArgs e, FormNavig fRecorrido)
-        {
-            fRecorrido.BnDatos.BindingSource.MovePrevious();
-            fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
-            ((CtrlDatosUsu)fRecorrido.Controls["CtrlAltaUsu"]).TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
-        }
-
-        private void PrimerUsuario(object sender, EventArgs e, FormNavig fRecorrido)
-        {
-            fRecorrido.BnDatos.BindingSource.MoveFirst();
-            fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
-            ((CtrlDatosUsu)fRecorrido.Controls["CtrlAltaUsu"]).TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
-        }
     }
 }

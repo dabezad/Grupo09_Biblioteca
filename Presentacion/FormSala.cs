@@ -187,22 +187,7 @@ namespace Presentacion
                 control.TbCodPres.Text = p.Codigo;
                 control.TbFechaDev.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
 
-                fEjNoDev.BtPrimero.Click += delegate (object s, EventArgs ev) {
-                    fEjNoDev.BnDatos.BindingSource.MoveFirst();
-                    PonerDatosEjemplarPrestado(fEjNoDev);
-                };
-                fEjNoDev.BtAnterior.Click += delegate (object s, EventArgs ev) {
-                    fEjNoDev.BnDatos.BindingSource.MovePrevious();
-                    PonerDatosEjemplarPrestado(fEjNoDev);
-                }; ;
-                fEjNoDev.BtSiguiente.Click += delegate (object s, EventArgs ev) {
-                    fEjNoDev.BnDatos.BindingSource.MoveNext();
-                    PonerDatosEjemplarPrestado(fEjNoDev);
-                }; ;
-                fEjNoDev.BtUltimo.Click += delegate (object s, EventArgs ev) {
-                    fEjNoDev.BnDatos.BindingSource.MoveLast();
-                    PonerDatosEjemplarPrestado(fEjNoDev);
-                }; ;
+                fEjNoDev.PsItem.TextChanged += (s, ev) => PonerDatosEjemplarPrestado(fEjNoDev);
 
                 fEjNoDev.Controls.Add(control);
                 fEjNoDev.Show();
@@ -359,10 +344,7 @@ namespace Presentacion
                     else { ctrlEj.CbEstadoEj.SelectedIndex = 1; }
 
 
-                    listaEjs.BtPrimero.Click += (s, ev) => PrimerEjemplar(s, ev, listaEjs);
-                    listaEjs.BtAnterior.Click += (s, ev) => RetrocederEjemplar(s, ev, listaEjs);
-                    listaEjs.BtSiguiente.Click += (s, ev) => SiguienteEjemplar(s, ev, listaEjs);
-                    listaEjs.BtUltimo.Click += (s, ev) => UltimoEjemplar(s, ev, listaEjs);
+                    listaEjs.PsItem.TextChanged += (s, ev) => PonerDatos(listaEjs);
 
                     listaEjs.Controls.Add(ctrlEj);
                     listaEjs.ShowDialog();
@@ -402,29 +384,7 @@ namespace Presentacion
             else { ((CtrlDatosEjemplar)listaEjs.Controls["CtrlDatosEjemplar"]).CbEstadoEj.SelectedIndex = 1; }
         }
 
-        private void UltimoEjemplar(object s, EventArgs ev, FormNavig listaEjs)
-        {
-            listaEjs.BnDatos.BindingSource.MoveLast();
-            PonerDatos(listaEjs);
-        }
-
-        private void SiguienteEjemplar(object s, EventArgs ev, FormNavig listaEjs)
-        {
-            listaEjs.BnDatos.BindingSource.MoveNext();
-            PonerDatos(listaEjs);
-        }
-
-        private void RetrocederEjemplar(object s, EventArgs ev, FormNavig listaEjs)
-        {
-            listaEjs.BnDatos.BindingSource.MovePrevious();
-            PonerDatos(listaEjs);
-        }
-
-        private void PrimerEjemplar(object s, EventArgs ev, FormNavig listaEjs)
-        {
-            listaEjs.BnDatos.BindingSource.MoveFirst();
-            PonerDatos(listaEjs);
-        }
+        
 
         private void MostrarFormAltaPres(string codP)
         {

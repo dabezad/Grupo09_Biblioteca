@@ -110,7 +110,7 @@
             this.Controls.Add(this.lbAutor);
             this.Controls.Add(this.lbTitulo);
             this.Name = "CtrlDatosLib";
-            this.Size = new System.Drawing.Size(487, 264);
+            this.Size = new System.Drawing.Size(411, 264);
             this.ResumeLayout(false);
             this.PerformLayout();
 

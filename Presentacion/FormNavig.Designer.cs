@@ -37,7 +37,7 @@
             this.btPrimero = new System.Windows.Forms.ToolStripButton();
             this.btAnterior = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.psItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btSiguiente = new System.Windows.Forms.ToolStripButton();
             this.btUltimo = new System.Windows.Forms.ToolStripButton();
@@ -58,7 +58,7 @@
             this.btPrimero,
             this.btAnterior,
             this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
+            this.psItem,
             this.bindingNavigatorCountItem,
             this.bindingNavigatorSeparator1,
             this.btSiguiente,
@@ -72,7 +72,7 @@
             this.bnDatos.MoveNextItem = this.btSiguiente;
             this.bnDatos.MovePreviousItem = this.btAnterior;
             this.bnDatos.Name = "bnDatos";
-            this.bnDatos.PositionItem = this.bindingNavigatorPositionItem;
+            this.bnDatos.PositionItem = this.psItem;
             this.bnDatos.Size = new System.Drawing.Size(395, 27);
             this.bnDatos.TabIndex = 0;
             this.bnDatos.Text = "bindingNavigator1";
@@ -127,15 +127,16 @@
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
             this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
             // 
-            // bindingNavigatorPositionItem
+            // psItem
             // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Posición";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 27);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Posición actual";
+            this.psItem.AccessibleName = "Posición";
+            this.psItem.AutoSize = false;
+            this.psItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.psItem.Name = "psItem";
+            this.psItem.ReadOnly = true;
+            this.psItem.Size = new System.Drawing.Size(50, 27);
+            this.psItem.Text = "0";
+            this.psItem.ToolTipText = "Posición actual";
             // 
             // bindingNavigatorSeparator1
             // 
@@ -211,7 +212,7 @@
         private System.Windows.Forms.ToolStripButton btPrimero;
         private System.Windows.Forms.ToolStripButton btAnterior;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
+        private System.Windows.Forms.ToolStripTextBox psItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
         private System.Windows.Forms.ToolStripButton btSiguiente;
         private System.Windows.Forms.ToolStripButton btUltimo;

@@ -44,6 +44,10 @@ namespace Presentacion
             get { return this.tbClave; }
         }
 
+        public ToolStripTextBox PsItem
+        {
+            get { return this.psItem; }
+        }
         public FormNavig()
         {
             InitializeComponent();

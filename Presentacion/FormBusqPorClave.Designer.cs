@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.lbClave = new System.Windows.Forms.Label();
             this.cbClave = new System.Windows.Forms.ComboBox();
-            this.btCerrar = new System.Windows.Forms.Button();
             this.bsClave = new System.Windows.Forms.BindingSource(this.components);
+            this.btCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bsClave)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,9 +54,13 @@
             this.cbClave.Size = new System.Drawing.Size(178, 24);
             this.cbClave.TabIndex = 1;
             // 
+            // bsClave
+            // 
+            this.bsClave.DataSource = typeof(LogicaNegocio.LNSala);
+            // 
             // btCerrar
             // 
-            this.btCerrar.Location = new System.Drawing.Point(210, 253);
+            this.btCerrar.Location = new System.Drawing.Point(210, 457);
             this.btCerrar.Name = "btCerrar";
             this.btCerrar.Size = new System.Drawing.Size(80, 30);
             this.btCerrar.TabIndex = 2;
@@ -64,15 +68,11 @@
             this.btCerrar.UseVisualStyleBackColor = true;
             this.btCerrar.Click += new System.EventHandler(this.btCerrar_Click);
             // 
-            // bsClave
-            // 
-            this.bsClave.DataSource = typeof(LogicaNegocio.LNSala);
-            // 
             // FormBusqPorClave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(540, 335);
+            this.ClientSize = new System.Drawing.Size(542, 540);
             this.Controls.Add(this.btCerrar);
             this.Controls.Add(this.cbClave);
             this.Controls.Add(this.lbClave);

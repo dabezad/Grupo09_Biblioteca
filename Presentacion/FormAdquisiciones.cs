@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -59,7 +60,10 @@ namespace Presentacion
             tsmiLibMasLeido.Click += TsmiLibMasLeido_Click;
             ToolStripMenuItem tsmiRecorrido = new ToolStripMenuItem("Recorrido uno a uno");
             tsmiRecorrido.Click += TsmiRecorrido_Click;
-
+            ToolStripMenuItem tsmiBusqLibIsbn = new ToolStripMenuItem("Búsqueda por ISBN");
+            tsmiBusqLibIsbn.Click += TsmiBusqLibIsbn_Click;
+            ToolStripMenuItem tsmiBusqEjCod = new ToolStripMenuItem("Búsqueda por código");
+            tsmiBusqEjCod.Click += TsmiBusqEjCod_Click;
 
             this.tsmiLibros.DropDownItems.Add(tsmiAltaLib);
             this.tsmiLibros.DropDownItems.Add(tsmiBajaLib);
@@ -77,11 +81,149 @@ namespace Presentacion
             ToolStripMenuItem subListado = this.tsmiLibros.DropDownItems[3] as ToolStripMenuItem;
             subListado.DropDownItems.Add(tsmiRecorrido);
 
+            ToolStripMenuItem subListadoLib = this.tsmiLibros.DropDownItems[2] as ToolStripMenuItem;
+            subListadoLib.DropDownItems.Add(tsmiBusqLibIsbn);
+
+            ToolStripMenuItem subListadoEj = this.tsmiEjemplares.DropDownItems[2] as ToolStripMenuItem;
+            subListadoEj.DropDownItems.Add(tsmiBusqEjCod);
+
         }
+
+        private void TsmiBusqEjCod_Click(object sender, EventArgs e)
+        {
+            List<string> codigos = lnAdq.MostrarEjemplares().Select(x=>x.Codigo).ToList();
+            FormBusqPorClave FBusq = new FormBusqPorClave();
+            CtrlDatosEjBusq control = new CtrlDatosEjBusq(100, 52);
+
+            FBusq.Text = "Datos de un ejemplar";
+            FBusq.LbClave.Text = "Código";
+            FBusq.BsClave.DataSource = codigos;
+            FBusq.CbClave.SelectedIndex = -1;
+            FBusq.CbClave.SelectedIndexChanged += delegate (object s, EventArgs ev)
+            {
+                if (FBusq.CbClave.SelectedValue != null)
+                {
+                    string cod = (string)FBusq.CbClave.SelectedValue;
+                    Ejemplar ej = lnAdq.BuscarEjemplar(cod);
+                    control.TbIsbn.Text = ej.Libro.Isbn;
+                    if (ej.Estado == EstadoEjemplarEnum.Disponible)
+                    {
+                        control.CbEstadoEj.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        control.CbEstadoEj.SelectedIndex = 1;
+                    }
+                }
+            };
+            control.BtVerLibro.Click += delegate (object s, EventArgs ev)
+            {
+                if (FBusq.CbClave.SelectedValue != null)
+                {
+                    Ejemplar ej = lnAdq.BuscarEjemplar(FBusq.CbClave.SelectedValue as string);
+                    MostrarFormBusqLib(ej.Libro);
+                }
+            };
+            FBusq.Controls.Add(control);
+            DialogResult d = FBusq.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                FBusq.Close();
+            }
+            FBusq.Dispose();
+           
+        }
+
+        
+        private void TsmiBusqLibIsbn_Click(object sender, EventArgs e)
+        {
+            List<string> isbns = lnAdq.MostrarLibros().Select(x => x.Isbn).ToList();
+            FormBusqPorClave FBusq = new FormBusqPorClave();
+            CtrlDatosLib control = new CtrlDatosLib(100, 60);
+            control.TbAutor.ReadOnly = true;
+            control.TbEditorial.ReadOnly = true;
+            control.TbTitulo.ReadOnly = true;
+            control.BtAniadirEj.Text = "Ver ejemplares";
+            control.BtAniadirEj.Enabled = true;
+            FBusq.Text = "Datos de un libro";
+            FBusq.LbClave.Text = "ISBN";
+            FBusq.BsClave.DataSource = isbns;
+            FBusq.CbClave.SelectedIndex = -1;
+            FBusq.CbClave.SelectedIndexChanged += delegate (object s, EventArgs ev)
+            {
+                string isbn = (string)FBusq.CbClave.SelectedValue;
+                if (isbn != null)
+                {
+                    Libro l = lnAdq.BuscarLibro(isbn);
+                    control.TbTitulo.Text = l.Titulo;
+                    control.TbAutor.Text = l.Autor;
+                    control.TbEditorial.Text = l.Editorial;
+
+                }
+            };
+            control.BtAniadirEj.Click += delegate (object s, EventArgs ev)
+            {
+                if (FBusq.CbClave.SelectedValue != null)
+                {
+                    string isbn = FBusq.CbClave.SelectedValue as string;
+                    List<Ejemplar> ejemplares = lnAdq.ListarEjemplares(isbn);
+                    if (ejemplares.Count > 0)
+                    {
+                        FormNavig listadoEjemplares = new FormNavig();
+                        CtrlDatosUsu controlEj = new CtrlDatosUsu(100, 35);
+                        BindingSource datos = new BindingSource();
+
+                        listadoEjemplares.LbClave.Text = "Código";
+                        listadoEjemplares.Text = "Datos de un ejemplar";
+
+                        listadoEjemplares.BnDatos.BindingSource = datos;
+                        listadoEjemplares.BnDatos.BindingSource.DataSource = ejemplares;
+                        Ejemplar ej = (Ejemplar)listadoEjemplares.BnDatos.BindingSource.Current;
+                        listadoEjemplares.TbClave.Text = ej.Codigo;
+                        listadoEjemplares.TbClave.ReadOnly = true;
+                        controlEj.LbNombre.Text = "Estado";
+                        controlEj.TbNombre.Text = ej.Estado.ToString();
+
+                        listadoEjemplares.PsItem.TextChanged += (se, eve) => PonerDatosEjemplar(listadoEjemplares);
+
+                        listadoEjemplares.Controls.Add(controlEj);
+                        DialogResult d = listadoEjemplares.ShowDialog();
+                        if (d == DialogResult.Cancel)
+                        {
+                            listadoEjemplares.Close();
+                            listadoEjemplares.Dispose();
+                        }
+
+
+                    } else
+                    {
+                        MessageBox.Show("El libro no tiene ejemplares actualmente", "Listado de ejemplares de un libro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            };
+            FBusq.Controls.Add(control);
+            DialogResult dF = FBusq.ShowDialog();
+            if (dF == DialogResult.Cancel)
+            {
+                FBusq.Close();
+                
+            }
+            FBusq.Dispose();
+        }
+
+        private void PonerDatosEjemplar(FormNavig listadoEjemplares)
+        {
+            Ejemplar e = (Ejemplar)listadoEjemplares.BnDatos.BindingSource.Current;
+            CtrlDatosUsu control = (CtrlDatosUsu)listadoEjemplares.Controls["CtrlAltaUsu"];
+            listadoEjemplares.TbClave.Text = e.Codigo;
+            control.TbNombre.Text = e.Estado.ToString();
+            
+        }
+
 
         private void TsmiRecorrido_Click(object sender, EventArgs e)
         {
-            List<Libro> libros = lnAdq.ListarLibros();
+            List<Libro> libros = lnAdq.MostrarLibros();
             if (libros.Count > 0)
             {
                 FormNavig fRecorrido = new FormNavig();
@@ -100,25 +242,11 @@ namespace Presentacion
                 control.TbEditorial.Text = l.Editorial;
                 control.TbNumEjs.Text = lnAdq.ListarEjemplares(l.Isbn).Count.ToString();
 
-                fRecorrido.BtPrimero.Click += delegate (object s, EventArgs ev) {
-                    fRecorrido.BnDatos.BindingSource.MoveFirst();
-                    PonerDatos(fRecorrido);
-                };
-                fRecorrido.BtAnterior.Click += delegate (object s, EventArgs ev) {
-                    fRecorrido.BnDatos.BindingSource.MovePrevious();
-                    PonerDatos(fRecorrido);
-                }; 
-                fRecorrido.BtSiguiente.Click += delegate (object s, EventArgs ev) {
-                    fRecorrido.BnDatos.BindingSource.MoveNext();
-                    PonerDatos(fRecorrido);
-                }; 
-                fRecorrido.BtUltimo.Click += delegate (object s, EventArgs ev) {
-                    fRecorrido.BnDatos.BindingSource.MoveLast();
-                    PonerDatos(fRecorrido);
-                }; 
+                fRecorrido.PsItem.TextChanged += (s,ev) => PonerDatos(fRecorrido);
+                
 
                 fRecorrido.Controls.Add(control);
-                fRecorrido.Show();
+                fRecorrido.ShowDialog();
             } else
             {
                 MessageBox.Show("Actualmente no hay ningún libro registrado en el sistema", "Datos de un libro", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -159,12 +287,142 @@ namespace Presentacion
 
         private void TsmiBusqEj_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormClave formCodigo = new FormClave();
+            formCodigo.Text = "Introducir código";
+            formCodigo.LbClave.Text = "Código";
+            DialogResult d = formCodigo.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formCodigo.Close();
+            }
+            else
+            {
+                string cod = formCodigo.TbClave.Text;
+                if (cod != "")
+                {
+                    Ejemplar ej = lnAdq.BuscarEjemplar(cod);
+                    if (ej != null)
+                    {
+                        MostrarFormBusqEj(ej);
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún ejemplar con ese código", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            TsmiBusqEj_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            formCodigo.Dispose();
+        }
+
+        private void MostrarFormBusqEj(Ejemplar ej)
+        {
+            CtrlDatosEjBusq control = new CtrlDatosEjBusq(100, 63);
+            FormDatos formBusqUsu = new FormDatos();
+            formBusqUsu.Text = "Búsqueda de un ejemplar";
+            formBusqUsu.LbClave.Text = "Código";
+            formBusqUsu.BtAceptar.Text = "Ver personal alta";
+            formBusqUsu.TbClave.Text = ej.Codigo;
+            formBusqUsu.BtCancelar.Text = "Salir";
+
+            control.TbIsbn.Text = ej.Libro.Isbn;
+            if (ej.Estado == EstadoEjemplarEnum.Prestado)
+            {
+                control.CbEstadoEj.SelectedIndex = 1;
+            } else
+            {
+                control.CbEstadoEj.SelectedIndex = 0;
+            }
+
+
+            formBusqUsu.Controls.Add(control);
+
+            DialogResult dAlta = formBusqUsu.ShowDialog();
+            if (dAlta == DialogResult.Cancel)
+            {
+                formBusqUsu.Close();
+            }
+            else if (dAlta == DialogResult.OK)
+            {
+                MostrarFormPersAlta(ej.PersonalBAlta);
+                MostrarFormBusqEj(ej);
+            } else if (dAlta == DialogResult.Yes)
+            {
+                MostrarFormBusqLib(ej.Libro);
+                MostrarFormBusqEj(ej);
+            }
+            formBusqUsu.Dispose();
         }
 
         private void TsmiBusqLib_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormClave formIsbn = new FormClave();
+            formIsbn.Text = "Introducir ISBN";
+            formIsbn.LbClave.Text = "ISBN";
+            DialogResult d = formIsbn.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formIsbn.Close();
+            }
+            else
+            {
+                string isbn = formIsbn.TbClave.Text;
+                if (isbn != "")
+                {
+                    Libro l = lnAdq.BuscarLibro(isbn);
+                    if (l != null)
+                    {
+                        MostrarFormBusqLib(l);
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún libro con ese ISBN", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            TsmiBusqLib_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            formIsbn.Dispose();
+        }
+
+        private void MostrarFormBusqLib(Libro l)
+        {
+            CtrlDatosLib control = new CtrlDatosLib(100, 50);
+            FormDatos formBusqUsu = new FormDatos();
+            formBusqUsu.Text = "Búsqueda de un libro";
+            formBusqUsu.LbClave.Text = "ISBN";
+            formBusqUsu.BtAceptar.Text = "Ver personal alta";
+            formBusqUsu.TbClave.Text = l.Isbn;
+            formBusqUsu.BtCancelar.Text = "Salir";
+
+            control.BtAniadirEj.Hide();
+            control.TbAutor.Text = l.Autor;
+            control.TbAutor.ReadOnly = true;
+            control.LbAutor.Left += 10;
+            control.TbEditorial.Text = l.Editorial;
+            control.TbEditorial.ReadOnly = true;
+            control.TbTitulo.Text = l.Titulo;
+            control.TbTitulo.ReadOnly = true;
+            control.LbTitulo.Left += 10;
+
+            formBusqUsu.Controls.Add(control);
+
+            DialogResult dAlta = formBusqUsu.ShowDialog();
+            if (dAlta == DialogResult.Cancel)
+            {
+                formBusqUsu.Close();
+            }
+            else if (dAlta == DialogResult.OK)
+            {
+                MostrarFormPersAlta(l.PersonalBAlta);
+                MostrarFormBusqLib(l);
+            }
+            formBusqUsu.Dispose();
         }
 
         private void tsmiBajaEj_Click(object sender, EventArgs e)

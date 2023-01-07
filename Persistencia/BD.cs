@@ -57,6 +57,8 @@ namespace Persistencia
             PersonalBibliotecaDato per2 = new PersonalBibliotecaDato("Jose", "321", "PersonalSala");
             UsuarioDato u1 = new UsuarioDato("11111111A", "Ana", "Pepa");
             UsuarioDato u2 = new UsuarioDato("22222222B", "Roberto", "Pepa");
+            UsuarioDato u3 = new UsuarioDato("33333333C", "Federico", "Pepa");
+            UsuarioDato u4 = new UsuarioDato("44444444D", "Eduardo", "Pepa");
             LibroDato l1 = new LibroDato("1111", "Prueba 1", "Anónimo", "Santillán", "Pepa");
             LibroDato l2 = new LibroDato("2222", "Prueba 2", "Cervantes", "", "Pepe");
             EjemplarDato e1 = new EjemplarDato("e11", EstadoEjemplarEnum.Prestado, "1111", "Pepa");
@@ -71,6 +73,8 @@ namespace Persistencia
             BD.CREATE<string, PersonalBibliotecaDato>(per2);
             BD.CREATE<string, UsuarioDato>(u1);
             BD.CREATE<string, UsuarioDato>(u2);
+            BD.CREATE<string, UsuarioDato>(u3);
+            BD.CREATE<string, UsuarioDato>(u4);
             BD.CREATE<string, LibroDato>(l1);
             BD.CREATE<string, LibroDato>(l2);
             BD.CREATE<string, EjemplarDato>(e1);

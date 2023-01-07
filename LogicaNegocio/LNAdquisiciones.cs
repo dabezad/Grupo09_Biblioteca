@@ -22,6 +22,16 @@ namespace LogicaNegocio
             return gbd.CrearLibro(l);
         }
 
+        public List<Libro> MostrarLibros()
+        {
+            return gbd.RecorrerLibros();
+        }
+
+        public List<Ejemplar> MostrarEjemplares()
+        {
+            return gbd.RecorrerEjemplares();
+        }
+
         public bool BajaLibro(string id)
         {
             return gbd.EliminarLibro(id);
@@ -77,11 +87,6 @@ namespace LogicaNegocio
                 }
             }
             return ejemplarDeLibro;
-        }
-
-        public List<Libro> ListarLibros()
-        {
-            return gbd.RecorrerLibros();
         }
 
         public Libro MostrarLibroMasLeido()

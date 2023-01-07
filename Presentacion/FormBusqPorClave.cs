@@ -13,7 +13,6 @@ namespace Presentacion
 {
     public partial class FormBusqPorClave : Form
     {
-        private LNBiblioteca lnB;
         public ComboBox CbClave
         {
             get { return this.cbClave; }
@@ -34,12 +33,7 @@ namespace Presentacion
             InitializeComponent();
         }
 
-        public FormBusqPorClave(LNBiblioteca lnB)
-        {
-            this.lnB = lnB;
-            InitializeComponent();
-        }
-
+      
         private void btCerrar_Click(object sender, EventArgs e)
         {
             this.Close();

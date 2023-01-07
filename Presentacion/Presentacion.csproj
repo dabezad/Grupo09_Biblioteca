@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CtrlDatosEjBusq.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CtrlDatosEjBusq.Designer.cs">
+      <DependentUpon>CtrlDatosEjBusq.cs</DependentUpon>
+    </Compile>
     <Compile Include="CtrlDatosEjemplar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CtrlDatosEjBusq.resx">
+      <DependentUpon>CtrlDatosEjBusq.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CtrlDatosEjemplar.resx">
       <DependentUpon>CtrlDatosEjemplar.cs</DependentUpon>
     </EmbeddedResource>
