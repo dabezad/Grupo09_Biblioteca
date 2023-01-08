@@ -41,75 +41,85 @@
             // lbusuario
             // 
             this.lbusuario.AutoSize = true;
-            this.lbusuario.Location = new System.Drawing.Point(16, 33);
+            this.lbusuario.Location = new System.Drawing.Point(18, 15);
+            this.lbusuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbusuario.Name = "lbusuario";
-            this.lbusuario.Size = new System.Drawing.Size(43, 13);
+            this.lbusuario.Size = new System.Drawing.Size(54, 16);
             this.lbusuario.TabIndex = 2;
             this.lbusuario.Text = "Usuario";
             // 
             // lbejemplares
             // 
             this.lbejemplares.AutoSize = true;
-            this.lbejemplares.Location = new System.Drawing.Point(16, 63);
+            this.lbejemplares.Location = new System.Drawing.Point(18, 52);
+            this.lbejemplares.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbejemplares.Name = "lbejemplares";
-            this.lbejemplares.Size = new System.Drawing.Size(58, 13);
+            this.lbejemplares.Size = new System.Drawing.Size(76, 16);
             this.lbejemplares.TabIndex = 3;
             this.lbejemplares.Text = "Ejemplares";
             // 
             // lbfecharealizado
             // 
             this.lbfecharealizado.AutoSize = true;
-            this.lbfecharealizado.Location = new System.Drawing.Point(16, 92);
+            this.lbfecharealizado.Location = new System.Drawing.Point(18, 87);
+            this.lbfecharealizado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbfecharealizado.Name = "lbfecharealizado";
-            this.lbfecharealizado.Size = new System.Drawing.Size(37, 13);
+            this.lbfecharealizado.Size = new System.Drawing.Size(45, 16);
             this.lbfecharealizado.TabIndex = 4;
             this.lbfecharealizado.Text = "Fecha";
             // 
             // lbfechadevolucion
             // 
             this.lbfechadevolucion.AutoSize = true;
-            this.lbfechadevolucion.Location = new System.Drawing.Point(16, 122);
+            this.lbfechadevolucion.Location = new System.Drawing.Point(18, 124);
+            this.lbfechadevolucion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbfechadevolucion.Name = "lbfechadevolucion";
-            this.lbfechadevolucion.Size = new System.Drawing.Size(61, 13);
+            this.lbfechadevolucion.Size = new System.Drawing.Size(75, 16);
             this.lbfechadevolucion.TabIndex = 5;
             this.lbfechadevolucion.Text = "Devolución";
             // 
             // tbusuario
             // 
-            this.tbusuario.Location = new System.Drawing.Point(88, 30);
+            this.tbusuario.Location = new System.Drawing.Point(114, 11);
+            this.tbusuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbusuario.Name = "tbusuario";
             this.tbusuario.ReadOnly = true;
-            this.tbusuario.Size = new System.Drawing.Size(100, 20);
+            this.tbusuario.Size = new System.Drawing.Size(132, 22);
             this.tbusuario.TabIndex = 6;
             // 
             // tbfecha
             // 
-            this.tbfecha.Location = new System.Drawing.Point(88, 89);
+            this.tbfecha.Location = new System.Drawing.Point(114, 84);
+            this.tbfecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbfecha.Name = "tbfecha";
             this.tbfecha.ReadOnly = true;
-            this.tbfecha.Size = new System.Drawing.Size(100, 20);
+            this.tbfecha.Size = new System.Drawing.Size(150, 22);
             this.tbfecha.TabIndex = 7;
             // 
             // tbdevolucion
             // 
-            this.tbdevolucion.Location = new System.Drawing.Point(88, 119);
+            this.tbdevolucion.Location = new System.Drawing.Point(114, 120);
+            this.tbdevolucion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbdevolucion.Name = "tbdevolucion";
             this.tbdevolucion.ReadOnly = true;
-            this.tbdevolucion.Size = new System.Drawing.Size(100, 20);
+            this.tbdevolucion.Size = new System.Drawing.Size(150, 22);
             this.tbdevolucion.TabIndex = 9;
             // 
             // btejemplares
             // 
-            this.btejemplares.Location = new System.Drawing.Point(88, 60);
+            this.btejemplares.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btejemplares.Location = new System.Drawing.Point(114, 48);
+            this.btejemplares.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btejemplares.Name = "btejemplares";
-            this.btejemplares.Size = new System.Drawing.Size(100, 23);
+            this.btejemplares.Size = new System.Drawing.Size(133, 28);
             this.btejemplares.TabIndex = 10;
             this.btejemplares.Text = "Ver ejemplares";
             this.btejemplares.UseVisualStyleBackColor = true;
+            this.btejemplares.Click += new System.EventHandler(this.btejemplares_Click);
             // 
             // CtrlDatosPrestamoBusq
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btejemplares);
             this.Controls.Add(this.tbdevolucion);
@@ -119,8 +129,9 @@
             this.Controls.Add(this.lbfecharealizado);
             this.Controls.Add(this.lbejemplares);
             this.Controls.Add(this.lbusuario);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CtrlDatosPrestamoBusq";
-            this.Size = new System.Drawing.Size(225, 222);
+            this.Size = new System.Drawing.Size(287, 160);
             this.ResumeLayout(false);
             this.PerformLayout();
 

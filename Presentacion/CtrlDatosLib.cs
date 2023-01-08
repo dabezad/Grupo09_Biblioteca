@@ -71,5 +71,19 @@ namespace Presentacion
                 
             }
         }
+
+        private void tbTitulo_TextChanged(object sender, EventArgs e)
+        {
+            Size size = TextRenderer.MeasureText(tbTitulo.Text, tbTitulo.Font);
+            tbTitulo.Width = size.Width;
+            tbTitulo.Height = size.Height;
+        }
+
+        private void tbAutor_TextChanged(object sender, EventArgs e)
+        {
+            Size size = TextRenderer.MeasureText(tbAutor.Text, tbAutor.Font);
+            tbAutor.Width = size.Width;
+            tbAutor.Height = size.Height;
+        }
     }
 }

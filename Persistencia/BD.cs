@@ -55,36 +55,80 @@ namespace Persistencia
         {
             PersonalBibliotecaDato per1 = new PersonalBibliotecaDato("Pepa", "123", "PersonalAdquisiciones");
             PersonalBibliotecaDato per2 = new PersonalBibliotecaDato("Jose", "321", "PersonalSala");
+            
             UsuarioDato u1 = new UsuarioDato("11111111A", "Ana", "Pepa");
             UsuarioDato u2 = new UsuarioDato("22222222B", "Roberto", "Pepa");
             UsuarioDato u3 = new UsuarioDato("33333333C", "Federico", "Pepa");
             UsuarioDato u4 = new UsuarioDato("44444444D", "Eduardo", "Pepa");
-            LibroDato l1 = new LibroDato("1111", "Prueba 1", "Anónimo", "Santillán", "Pepa");
-            LibroDato l2 = new LibroDato("2222", "Prueba 2", "Cervantes", "", "Pepe");
+           
+            LibroDato l1 = new LibroDato("1111", "Viaje al fin de la noche", "Louis-Ferdinand Céline", "Santillán", "Pepa");
+            LibroDato l2 = new LibroDato("2222", "Divina comedia", "Dante Alighieri", "Alianza", "Pepa");
+            LibroDato l3 = new LibroDato("3333", "Don Quijote de la Mancha", "Miguel de Cervantes", "Cátedra", "Pepa");
+            LibroDato l4 = new LibroDato("3355", "1984", "George Orwell", "Planeta", "Pepa");
+            LibroDato l5 = new LibroDato("6565", "Hamlet", "William Shakespeare", "Valdemar", "Pepa");
+            LibroDato l6 = new LibroDato("7769", "Viaje al centro de la tierra", "Julio Verne", "Urano", "Pepa");
+            
             EjemplarDato e1 = new EjemplarDato("e11", EstadoEjemplarEnum.Prestado, "1111", "Pepa");
             EjemplarDato e2 = new EjemplarDato("e12", EstadoEjemplarEnum.Disponible, "1111", "Pepa"); 
             EjemplarDato e3 = new EjemplarDato("e21", EstadoEjemplarEnum.Disponible, "2222", "Pepa"); 
             EjemplarDato e4 = new EjemplarDato("e22", EstadoEjemplarEnum.Prestado, "2222", "Pepa");
-            PrestamoDato p1 = new PrestamoDato("p1", "11111111A", DateTime.Now, DateTime.Now.AddDays(15), EstadoEnum.EnProceso, "Pepa");
+            EjemplarDato e5 = new EjemplarDato("e31", EstadoEjemplarEnum.Disponible, "3333", "Pepa");
+            EjemplarDato e6 = new EjemplarDato("e32", EstadoEjemplarEnum.Disponible, "3333", "Pepa");
+            EjemplarDato e7 = new EjemplarDato("e33", EstadoEjemplarEnum.Prestado, "3333", "Pepa");
+            EjemplarDato e8 = new EjemplarDato("e41", EstadoEjemplarEnum.Prestado, "3355", "Pepa");
+            EjemplarDato e9 = new EjemplarDato("e42", EstadoEjemplarEnum.Disponible, "3355", "Pepa");
+            EjemplarDato e10 = new EjemplarDato("e51", EstadoEjemplarEnum.Prestado, "6565", "Pepa");
+            EjemplarDato e11 = new EjemplarDato("e61", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
+            EjemplarDato e12 = new EjemplarDato("e62", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
+            EjemplarDato e13 = new EjemplarDato("e63", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
+            
+            PrestamoDato p1 = new PrestamoDato("p1", "11111111A", DateTime.Now, DateTime.Now.AddDays(15), EstadoEnum.EnProceso, "Jose");
+            PrestamoDato p2 = new PrestamoDato("p2", "33333333C", DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-15), EstadoEnum.EnProceso, "Jose");
+
             EjemplarEnPrestamoDato eep1 = new EjemplarEnPrestamoDato("p1", "e11");
             EjemplarEnPrestamoDato eep2 = new EjemplarEnPrestamoDato("p1", "e22");
+            EjemplarEnPrestamoDato eep3 = new EjemplarEnPrestamoDato("p2", "e33");
+            EjemplarEnPrestamoDato eep4 = new EjemplarEnPrestamoDato("p2", "e41");
+            EjemplarEnPrestamoDato eep5 = new EjemplarEnPrestamoDato("p2", "e51");
 
             BD.CREATE<string, PersonalBibliotecaDato>(per1);
             BD.CREATE<string, PersonalBibliotecaDato>(per2);
+            
             BD.CREATE<string, UsuarioDato>(u1);
             BD.CREATE<string, UsuarioDato>(u2);
             BD.CREATE<string, UsuarioDato>(u3);
             BD.CREATE<string, UsuarioDato>(u4);
+            
             BD.CREATE<string, LibroDato>(l1);
             BD.CREATE<string, LibroDato>(l2);
+            BD.CREATE<string, LibroDato>(l3);
+            BD.CREATE<string, LibroDato>(l4);
+            BD.CREATE<string, LibroDato>(l5);
+            BD.CREATE<string, LibroDato>(l6);
+            
             BD.CREATE<string, EjemplarDato>(e1);
             BD.CREATE<string, EjemplarDato>(e2);
             BD.CREATE<string, EjemplarDato>(e3);
             BD.CREATE<string, EjemplarDato>(e4);
-            
-            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
-            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
-            BD.CREATE<string, PrestamoDato>(p1);
+            BD.CREATE<string, EjemplarDato>(e5);
+            BD.CREATE<string, EjemplarDato>(e6);
+            BD.CREATE<string, EjemplarDato>(e7);
+            BD.CREATE<string, EjemplarDato>(e8);
+            BD.CREATE<string, EjemplarDato>(e9);
+            BD.CREATE<string, EjemplarDato>(e10);
+            BD.CREATE<string, EjemplarDato>(e11);
+            BD.CREATE<string, EjemplarDato>(e12);
+            BD.CREATE<string, EjemplarDato>(e13);
+
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep3);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep4);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep5);
+
+            BD.CREATE<string, PrestamoDato>(p2);
+
+            //BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
+            //BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
+            //BD.CREATE<string, PrestamoDato>(p1);
 
 
         }

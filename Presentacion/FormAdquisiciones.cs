@@ -93,7 +93,7 @@ namespace Presentacion
         {
             List<string> codigos = lnAdq.MostrarEjemplares().Select(x=>x.Codigo).ToList();
             FormBusqPorClave FBusq = new FormBusqPorClave();
-            CtrlDatosEjBusq control = new CtrlDatosEjBusq(100, 52);
+            CtrlDatosEjBusq control = new CtrlDatosEjBusq(100, 60);
 
             FBusq.Text = "Datos de un ejemplar";
             FBusq.LbClave.Text = "Código";
@@ -116,19 +116,19 @@ namespace Presentacion
                     }
                 }
             };
-            control.BtVerLibro.Click += delegate (object s, EventArgs ev)
+            FBusq.Controls.Add(control);
+            DialogResult d = FBusq.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                FBusq.Close();
+            } else if (d == DialogResult.Yes)
             {
                 if (FBusq.CbClave.SelectedValue != null)
                 {
                     Ejemplar ej = lnAdq.BuscarEjemplar(FBusq.CbClave.SelectedValue as string);
                     MostrarFormBusqLib(ej.Libro);
                 }
-            };
-            FBusq.Controls.Add(control);
-            DialogResult d = FBusq.ShowDialog();
-            if (d == DialogResult.Cancel)
-            {
-                FBusq.Close();
+                TsmiBusqEjCod_Click(sender, e);
             }
             FBusq.Dispose();
            
@@ -139,7 +139,7 @@ namespace Presentacion
         {
             List<string> isbns = lnAdq.MostrarLibros().Select(x => x.Isbn).ToList();
             FormBusqPorClave FBusq = new FormBusqPorClave();
-            CtrlDatosLib control = new CtrlDatosLib(100, 60);
+            CtrlDatosLib control = new CtrlDatosLib(100, 55);
             control.TbAutor.ReadOnly = true;
             control.TbEditorial.ReadOnly = true;
             control.TbTitulo.ReadOnly = true;
@@ -161,7 +161,9 @@ namespace Presentacion
 
                 }
             };
-            control.BtAniadirEj.Click += delegate (object s, EventArgs ev)
+            FBusq.Controls.Add(control);
+            DialogResult d = FBusq.ShowDialog();
+            if (d == DialogResult.OK)
             {
                 if (FBusq.CbClave.SelectedValue != null)
                 {
@@ -182,41 +184,37 @@ namespace Presentacion
                         listadoEjemplares.TbClave.Text = ej.Codigo;
                         listadoEjemplares.TbClave.ReadOnly = true;
                         controlEj.LbNombre.Text = "Estado";
+                        controlEj.TbNombre.ReadOnly = true;
                         controlEj.TbNombre.Text = ej.Estado.ToString();
 
                         listadoEjemplares.PsItem.TextChanged += (se, eve) => PonerDatosEjemplar(listadoEjemplares);
 
                         listadoEjemplares.Controls.Add(controlEj);
-                        DialogResult d = listadoEjemplares.ShowDialog();
-                        if (d == DialogResult.Cancel)
-                        {
-                            listadoEjemplares.Close();
-                            listadoEjemplares.Dispose();
-                        }
 
-
-                    } else
+                        listadoEjemplares.ShowDialog();
+                    }
+                    else
                     {
                         MessageBox.Show("El libro no tiene ejemplares actualmente", "Listado de ejemplares de un libro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    TsmiBusqLibIsbn_Click(sender, e);
                 }
-            };
-            FBusq.Controls.Add(control);
-            DialogResult dF = FBusq.ShowDialog();
-            if (dF == DialogResult.Cancel)
+            } else
             {
                 FBusq.Close();
-                
             }
             FBusq.Dispose();
         }
 
         private void PonerDatosEjemplar(FormNavig listadoEjemplares)
         {
-            Ejemplar e = (Ejemplar)listadoEjemplares.BnDatos.BindingSource.Current;
-            CtrlDatosUsu control = (CtrlDatosUsu)listadoEjemplares.Controls["CtrlAltaUsu"];
-            listadoEjemplares.TbClave.Text = e.Codigo;
-            control.TbNombre.Text = e.Estado.ToString();
+            if (listadoEjemplares.BnDatos.BindingSource != null)
+            {
+                Ejemplar e = (Ejemplar)listadoEjemplares.BnDatos.BindingSource.Current;
+                CtrlDatosUsu control = (CtrlDatosUsu)listadoEjemplares.Controls["CtrlAltaUsu"];
+                listadoEjemplares.TbClave.Text = e.Codigo;
+                control.TbNombre.Text = e.Estado.ToString();
+            }
             
         }
 
@@ -277,7 +275,13 @@ namespace Presentacion
 
         private void TsmiListadoLib_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormListadoLib fListadoLib = new FormListadoLib(lnAdq);
+            DialogResult dr = fListadoLib.ShowDialog();
+            if (dr == DialogResult.Cancel)
+            {
+                fListadoLib.Close();
+            }
+            fListadoLib.Dispose();
         }
 
         private void TsmiEjDisp_Click(object sender, EventArgs e)
@@ -320,7 +324,7 @@ namespace Presentacion
 
         private void MostrarFormBusqEj(Ejemplar ej)
         {
-            CtrlDatosEjBusq control = new CtrlDatosEjBusq(100, 63);
+            CtrlDatosEjBusq control = new CtrlDatosEjBusq(100, 65);
             FormDatos formBusqUsu = new FormDatos();
             formBusqUsu.Text = "Búsqueda de un ejemplar";
             formBusqUsu.LbClave.Text = "Código";

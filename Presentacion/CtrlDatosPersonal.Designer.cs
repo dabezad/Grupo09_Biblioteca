@@ -46,7 +46,7 @@
             this.tbRol.Location = new System.Drawing.Point(115, 25);
             this.tbRol.Name = "tbRol";
             this.tbRol.ReadOnly = true;
-            this.tbRol.Size = new System.Drawing.Size(132, 22);
+            this.tbRol.Size = new System.Drawing.Size(152, 22);
             this.tbRol.TabIndex = 5;
             // 
             // CtrlDatosPersonal

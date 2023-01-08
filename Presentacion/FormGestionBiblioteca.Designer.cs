@@ -33,16 +33,16 @@
             this.tsmiAltaUsu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBajaUsu = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBusqUsu = new System.Windows.Forms.ToolStripMenuItem();
+            this.búsquedaPorDNIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRecorrido = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEjPrest = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPrestCad = new System.Windows.Forms.ToolStripMenuItem();
-            this.listadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiListado = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLibros = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEjemplares = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCerrarSes = new System.Windows.Forms.ToolStripMenuItem();
-            this.búsquedaPorDNIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRecorrido = new System.Windows.Forms.ToolStripMenuItem();
             this.msPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@
             this.tsmiAltaUsu,
             this.tsmiBajaUsu,
             this.tsmiBusqUsu,
-            this.listadoToolStripMenuItem});
+            this.tsmiListado});
             this.tsmiUsuario.Name = "tsmiUsuario";
             this.tsmiUsuario.Size = new System.Drawing.Size(79, 24);
             this.tsmiUsuario.Text = "Usuarios";
@@ -98,6 +98,20 @@
             this.tsmiBusqUsu.Text = "Búsqueda";
             this.tsmiBusqUsu.Click += new System.EventHandler(this.tsmiBusqUsu_Click);
             // 
+            // búsquedaPorDNIToolStripMenuItem
+            // 
+            this.búsquedaPorDNIToolStripMenuItem.Name = "búsquedaPorDNIToolStripMenuItem";
+            this.búsquedaPorDNIToolStripMenuItem.Size = new System.Drawing.Size(261, 26);
+            this.búsquedaPorDNIToolStripMenuItem.Text = "Búsqueda por DNI";
+            this.búsquedaPorDNIToolStripMenuItem.Click += new System.EventHandler(this.búsquedaPorDNIToolStripMenuItem_Click);
+            // 
+            // tsmiRecorrido
+            // 
+            this.tsmiRecorrido.Name = "tsmiRecorrido";
+            this.tsmiRecorrido.Size = new System.Drawing.Size(261, 26);
+            this.tsmiRecorrido.Text = "Recorrido uno a uno";
+            this.tsmiRecorrido.Click += new System.EventHandler(this.tsmiRecorrido_Click);
+            // 
             // tsmiEjPrest
             // 
             this.tsmiEjPrest.Name = "tsmiEjPrest";
@@ -110,13 +124,14 @@
             this.tsmiPrestCad.Name = "tsmiPrestCad";
             this.tsmiPrestCad.Size = new System.Drawing.Size(261, 26);
             this.tsmiPrestCad.Text = "Ver préstamos caducados";
+            this.tsmiPrestCad.Click += new System.EventHandler(this.tsmiPrestCad_Click);
             // 
-            // listadoToolStripMenuItem
+            // tsmiListado
             // 
-            this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
-            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.listadoToolStripMenuItem.Text = "Listado";
-            this.listadoToolStripMenuItem.Click += new System.EventHandler(this.listadoToolStripMenuItem_Click);
+            this.tsmiListado.Name = "tsmiListado";
+            this.tsmiListado.Size = new System.Drawing.Size(224, 26);
+            this.tsmiListado.Text = "Listado";
+            this.tsmiListado.Click += new System.EventHandler(this.tsmiListado_Click);
             // 
             // tsmiLibros
             // 
@@ -150,20 +165,6 @@
             this.tsmiCerrarSes.Size = new System.Drawing.Size(177, 26);
             this.tsmiCerrarSes.Text = "Cerrar sesión";
             // 
-            // búsquedaPorDNIToolStripMenuItem
-            // 
-            this.búsquedaPorDNIToolStripMenuItem.Name = "búsquedaPorDNIToolStripMenuItem";
-            this.búsquedaPorDNIToolStripMenuItem.Size = new System.Drawing.Size(261, 26);
-            this.búsquedaPorDNIToolStripMenuItem.Text = "Búsqueda por DNI";
-            this.búsquedaPorDNIToolStripMenuItem.Click += new System.EventHandler(this.búsquedaPorDNIToolStripMenuItem_Click);
-            // 
-            // tsmiRecorrido
-            // 
-            this.tsmiRecorrido.Name = "tsmiRecorrido";
-            this.tsmiRecorrido.Size = new System.Drawing.Size(261, 26);
-            this.tsmiRecorrido.Text = "Recorrido uno a uno";
-            this.tsmiRecorrido.Click += new System.EventHandler(this.tsmiRecorrido_Click);
-            // 
             // FormGestionBiblioteca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -193,7 +194,7 @@
         protected System.Windows.Forms.ToolStripMenuItem tsmiEjemplares;
         private System.Windows.Forms.ToolStripMenuItem tsmiCerrarSes;
         protected System.Windows.Forms.ToolStripMenuItem tsmiPrestamos;
-        private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiListado;
         private System.Windows.Forms.ToolStripMenuItem tsmiEjPrest;
         private System.Windows.Forms.ToolStripMenuItem tsmiPrestCad;
         private System.Windows.Forms.ToolStripMenuItem búsquedaPorDNIToolStripMenuItem;

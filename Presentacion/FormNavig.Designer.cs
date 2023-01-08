@@ -73,7 +73,7 @@
             this.bnDatos.MovePreviousItem = this.btAnterior;
             this.bnDatos.Name = "bnDatos";
             this.bnDatos.PositionItem = this.psItem;
-            this.bnDatos.Size = new System.Drawing.Size(395, 27);
+            this.bnDatos.Size = new System.Drawing.Size(395, 31);
             this.bnDatos.TabIndex = 0;
             this.bnDatos.Text = "bindingNavigator1";
             // 
@@ -84,13 +84,13 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 24);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(48, 28);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
             // 
@@ -101,7 +101,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorDeleteItem.Text = "Eliminar";
             // 
             // btPrimero
@@ -110,7 +110,7 @@
             this.btPrimero.Image = ((System.Drawing.Image)(resources.GetObject("btPrimero.Image")));
             this.btPrimero.Name = "btPrimero";
             this.btPrimero.RightToLeftAutoMirrorImage = true;
-            this.btPrimero.Size = new System.Drawing.Size(29, 24);
+            this.btPrimero.Size = new System.Drawing.Size(29, 28);
             this.btPrimero.Text = "Mover primero";
             // 
             // btAnterior
@@ -119,13 +119,13 @@
             this.btAnterior.Image = ((System.Drawing.Image)(resources.GetObject("btAnterior.Image")));
             this.btAnterior.Name = "btAnterior";
             this.btAnterior.RightToLeftAutoMirrorImage = true;
-            this.btAnterior.Size = new System.Drawing.Size(29, 24);
+            this.btAnterior.Size = new System.Drawing.Size(29, 28);
             this.btAnterior.Text = "Mover anterior";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
             // 
             // psItem
             // 
@@ -141,7 +141,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // btSiguiente
             // 
@@ -149,7 +149,7 @@
             this.btSiguiente.Image = ((System.Drawing.Image)(resources.GetObject("btSiguiente.Image")));
             this.btSiguiente.Name = "btSiguiente";
             this.btSiguiente.RightToLeftAutoMirrorImage = true;
-            this.btSiguiente.Size = new System.Drawing.Size(29, 24);
+            this.btSiguiente.Size = new System.Drawing.Size(29, 28);
             this.btSiguiente.Text = "Mover siguiente";
             // 
             // btUltimo
@@ -158,13 +158,13 @@
             this.btUltimo.Image = ((System.Drawing.Image)(resources.GetObject("btUltimo.Image")));
             this.btUltimo.Name = "btUltimo";
             this.btUltimo.RightToLeftAutoMirrorImage = true;
-            this.btUltimo.Size = new System.Drawing.Size(29, 24);
+            this.btUltimo.Size = new System.Drawing.Size(29, 28);
             this.btUltimo.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
             // 
             // lbClave
             // 

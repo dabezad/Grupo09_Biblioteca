@@ -90,13 +90,13 @@
             // 
             // btCerrar
             // 
+            this.btCerrar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCerrar.Location = new System.Drawing.Point(290, 375);
             this.btCerrar.Name = "btCerrar";
             this.btCerrar.Size = new System.Drawing.Size(75, 30);
             this.btCerrar.TabIndex = 4;
             this.btCerrar.Text = "Cerrar";
             this.btCerrar.UseVisualStyleBackColor = true;
-            this.btCerrar.Click += new System.EventHandler(this.btCerrar_Click);
             // 
             // FormListadoUsu
             // 

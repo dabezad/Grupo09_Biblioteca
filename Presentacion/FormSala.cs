@@ -231,7 +231,7 @@ namespace Presentacion
         private void TsmiBusqPres_Click(object sender, EventArgs e)
         {
             FormClave formClave = new FormClave();
-            formClave.Text = "Introducir Código";
+            formClave.Text = "Introducir código";
             formClave.LbClave.Text = "Código";
             DialogResult d = formClave.ShowDialog();
             if (d == DialogResult.Cancel)
@@ -262,9 +262,9 @@ namespace Presentacion
         }
         private void MostrarFormBusqPres(Prestamo p)
         {
-            CtrlDatosPrestamoBusq control = new CtrlDatosPrestamoBusq(100, 100);
+            CtrlDatosPrestamoBusq control = new CtrlDatosPrestamoBusq(100, 100, lnSala.ObtenerEjemplaresDePrestamo(p.Codigo));
             FormDatos formBusqPres = new FormDatos();
-            formBusqPres.Text = "Búsqueda de un usuario";
+            formBusqPres.Text = "Búsqueda de un préstamo";
             formBusqPres.LbClave.Text = "Codigo";
             formBusqPres.BtAceptar.Text = "Ver personal alta";
             formBusqPres.TbClave.Text = p.Codigo;
@@ -281,6 +281,9 @@ namespace Presentacion
             else if (dAlta == DialogResult.OK)
             {
                 MostrarFormPersAlta(p.PersonalBAlta);
+                MostrarFormBusqPres(p);
+            } else if (dAlta == DialogResult.Yes)
+            {
                 MostrarFormBusqPres(p);
             }
             formBusqPres.Dispose();

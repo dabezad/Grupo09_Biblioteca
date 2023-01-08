@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -292,6 +293,52 @@ namespace Presentacion
             {
                 MessageBox.Show("El usuario no tiene ningún ejemplar en su posesión actualmente", "Ejemplares prestados de un usuario", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
+            else
+            {
+                FormNavig fRecorrido = new FormNavig();
+                BindingSource bnDatos = new BindingSource();
+                CtrlDatosEjemplarPrestado control = new CtrlDatosEjemplarPrestado(100, -40);
+
+                fRecorrido.BnDatos.BindingSource = bnDatos;
+                fRecorrido.BnDatos.BindingSource.DataSource = ejemplares;
+
+                Ejemplar e = (Ejemplar)fRecorrido.BnDatos.BindingSource.Current;
+                Prestamo p = lnB.ObtenerPrestamoDeEjemplar(e);
+
+                fRecorrido.LbClave.Text = "Código de ejemplar";
+                fRecorrido.LbClave.Left -= 45;
+                fRecorrido.TbClave.Left += 6;
+                fRecorrido.Text = "Ejemplares prestados de un usuario";
+
+                fRecorrido.TbClave.Text = e.Codigo;
+                control.TbCodPres.Text = p.Codigo;
+                control.TbFechaDev.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+
+                
+                fRecorrido.PsItem.TextChanged += (s, ev) => PonerDatosEjemplar(fRecorrido);
+                
+
+                fRecorrido.Controls.Add(control);
+                DialogResult d = fRecorrido.ShowDialog();
+                if (d == DialogResult.Cancel)
+                {
+                    fRecorrido.Close();
+                }
+                fRecorrido.Dispose();
+            }
+        }
+
+        private void PonerDatosEjemplar(FormNavig fRecorrido)
+        {
+            if (fRecorrido.BnDatos.BindingSource != null)
+            {
+                Ejemplar e = (Ejemplar)fRecorrido.BnDatos.BindingSource.Current;
+                Prestamo p = lnB.ObtenerPrestamoDeEjemplar(e);
+                CtrlDatosEjemplarPrestado control = (CtrlDatosEjemplarPrestado)fRecorrido.Controls["CtrlDatosEjemplarPrestado"];
+                fRecorrido.TbClave.Text = e.Codigo;
+                control.TbCodPres.Text = p.Codigo;
+                control.TbFechaDev.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+            }
         }
 
         private void tsmiPrestCad_Click(object sender, EventArgs e)
@@ -333,13 +380,64 @@ namespace Presentacion
             if (prestamos.Count == 0)
             {
                 MessageBox.Show("El usuario no tiene ningún préstamo caducado", "Préstamos caducados de un usuario", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            } else
+            {
+                FormNavig fRecorrido = new FormNavig();
+                BindingSource bnDatos = new BindingSource();
+                fRecorrido.BnDatos.BindingSource = bnDatos;
+                fRecorrido.BnDatos.BindingSource.DataSource = prestamos;
+
+                Prestamo p = (Prestamo)fRecorrido.BnDatos.BindingSource.Current;
+
+                CtrlDatosPrestamoBusq control = new CtrlDatosPrestamoBusq(100, 35, lnB.ObtenerEjemplaresDePrestamo(p.Codigo));
+               
+                fRecorrido.LbClave.Text = "Código de préstamo";
+                fRecorrido.LbClave.Left -= 60;
+                fRecorrido.Text = "Préstamos caducados de un usuario";
+
+                fRecorrido.TbClave.Text = p.Codigo;
+                control.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                control.Tbusuario.Text = p.Usuario.Dni;
+                control.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+
+                fRecorrido.PsItem.TextChanged += (s, e) => PonerDatos(fRecorrido);
+
+                fRecorrido.Controls.Add(control);
+                DialogResult d = fRecorrido.ShowDialog();
+                if (d == DialogResult.Cancel)
+                {
+                    fRecorrido.Close();
+                } else
+                {
+                    MostrarPrestCaducados(u);
+                }
+                fRecorrido.Dispose();
             }
         }
 
-        private void listadoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PonerDatos(FormNavig fRecorrido)
+        {
+            if (fRecorrido.BnDatos.BindingSource != null)
+            {
+                Prestamo p = (Prestamo)fRecorrido.BnDatos.BindingSource.Current;
+                CtrlDatosPrestamoBusq control = (CtrlDatosPrestamoBusq)fRecorrido.Controls["CtrlDatosPrestamoBusq"];
+                fRecorrido.TbClave.Text = p.Codigo;
+                control.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                control.Tbusuario.Text = p.Usuario.Dni;
+                control.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+            }
+            
+        }
+
+        private void tsmiListado_Click(object sender, EventArgs e)
         {
             FormListadoUsu FListado = new FormListadoUsu(lnB);
-            FListado.Show();
+            DialogResult d = FListado.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                FListado.Close();
+            }
+            FListado.Dispose();
         }
 
         private void búsquedaPorDNIToolStripMenuItem_Click(object sender, EventArgs e)
@@ -390,15 +488,21 @@ namespace Presentacion
 
             fRecorrido.PsItem.TextChanged += delegate (object s, EventArgs ev)
             {
-                fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
-                control.TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
+                if (fRecorrido.BnDatos.BindingSource != null)
+                {
+                    fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
+                    control.TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;
+                }
+
             };
 
             fRecorrido.Controls.Add(control);
-            fRecorrido.ShowDialog();
+            DialogResult d = fRecorrido.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                fRecorrido.Close();
+            }
+            fRecorrido.Dispose();
         }
-
-
-
     }
 }

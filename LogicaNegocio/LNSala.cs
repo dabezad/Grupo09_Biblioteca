@@ -140,26 +140,9 @@ namespace LogicaNegocio
             return new List<Libro>(l);
         }
 
-        public List<Ejemplar> ObtenerEjemplaresDePrestamo(string codP)
-        {
-            var eeps = gbd.RecorrerEEP().Where((eep) => eep.CodPr == codP);
-            var l =
-                from prestamos in eeps
-                join ejemplares in gbd.RecorrerEjemplares() on prestamos.CodEj equals ejemplares.Codigo
-                select ejemplares;
-            return new List<Ejemplar>(l);
-            
-        }
+        
 
-        public Prestamo ObtenerPrestamoDeEjemplar(Ejemplar e)
-        {
-            var eeps = gbd.RecorrerEEP().Where((eep) => eep.CodEj == e.Codigo);
-            var l =
-                from ejemplares in eeps
-                join prestamos in gbd.RecorrerPrestamos() on ejemplares.CodPr equals prestamos.Codigo
-                select prestamos;
-            return new List<Prestamo>(l).First();
-        }
+        
 
         public List<Prestamo> ObtenerPrestamosEnProceso()
         {

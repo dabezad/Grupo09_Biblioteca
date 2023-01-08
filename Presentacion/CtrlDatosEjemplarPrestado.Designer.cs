@@ -37,7 +37,7 @@
             // lbPrest
             // 
             this.lbPrest.AutoSize = true;
-            this.lbPrest.Location = new System.Drawing.Point(40, 28);
+            this.lbPrest.Location = new System.Drawing.Point(57, 28);
             this.lbPrest.Name = "lbPrest";
             this.lbPrest.Size = new System.Drawing.Size(130, 16);
             this.lbPrest.TabIndex = 0;
@@ -46,7 +46,7 @@
             // lbFechaDev
             // 
             this.lbFechaDev.AutoSize = true;
-            this.lbFechaDev.Location = new System.Drawing.Point(37, 88);
+            this.lbFechaDev.Location = new System.Drawing.Point(54, 88);
             this.lbFechaDev.Name = "lbFechaDev";
             this.lbFechaDev.Size = new System.Drawing.Size(133, 16);
             this.lbFechaDev.TabIndex = 1;
@@ -77,7 +77,7 @@
             this.Controls.Add(this.lbFechaDev);
             this.Controls.Add(this.lbPrest);
             this.Name = "CtrlDatosEjemplarPrestado";
-            this.Size = new System.Drawing.Size(422, 164);
+            this.Size = new System.Drawing.Size(362, 136);
             this.ResumeLayout(false);
             this.PerformLayout();
 

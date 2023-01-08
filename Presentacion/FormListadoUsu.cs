@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace Presentacion
 {
     public partial class FormListadoUsu : Form
     {
-        private LNBiblioteca lnB;
+        private List<Usuario> usuarios;
         public FormListadoUsu()
         {
             InitializeComponent();
@@ -22,44 +23,37 @@ namespace Presentacion
 
         public FormListadoUsu(LNBiblioteca lnB)
         {
-            this.lnB = lnB;
+            this.usuarios = lnB.MostrarUsuarios();
             InitializeComponent();
         }
 
-        private void FormListadoUsu_Load(object sender, EventArgs e)
+        private void CargarDatos()
         {
-            List<string> dnis = lnB.MostrarUsuarios().Select(x => x.Dni).ToList();
-            List<string> nombres = lnB.MostrarUsuarios().Select(x => x.Nombre).ToList();
-            bsClaves.DataSource = dnis;
-            bsDatos.DataSource = nombres;
+            bsClaves.DataSource = usuarios.Select(x => x.Dni).ToList();
+            bsDatos.DataSource = usuarios.Select(x => x.Nombre).ToList();
             lbClave.DataSource = bsClaves;
             lbDato.DataSource = bsDatos;
-
+        }
+        private void FormListadoUsu_Load(object sender, EventArgs e)
+        {
+            CargarDatos();
+           
         }
 
         private void btOrdClave_Click(object sender, EventArgs e)
         {
-            List<Usuario> usuarios = lnB.MostrarUsuarios();
             usuarios.Sort((p, q) => string.Compare(p.Dni, q.Dni));
-            bsClaves.DataSource = usuarios.Select(x => x.Dni).ToList();
-            bsDatos.DataSource = usuarios.Select(x => x.Nombre).ToList();
-            lbClave.DataSource = bsClaves;
-            lbDato.DataSource = bsDatos;
+            CargarDatos();
+
         }
 
         private void btOrdDato_Click(object sender, EventArgs e)
         {
-            List<Usuario> usuarios = lnB.MostrarUsuarios();
             usuarios.Sort((p, q) => string.Compare(p.Nombre, q.Nombre));
-            bsClaves.DataSource = usuarios.Select(x => x.Dni).ToList();
-            bsDatos.DataSource = usuarios.Select(x => x.Nombre).ToList();
-            lbClave.DataSource = bsClaves;
-            lbDato.DataSource = bsDatos;
+            CargarDatos();
+
         }
 
-        private void btCerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
     }
 }

@@ -142,6 +142,12 @@
     <Compile Include="FormInicial.Designer.cs">
       <DependentUpon>FormInicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormListadoLib.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListadoLib.Designer.cs">
+      <DependentUpon>FormListadoLib.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormListadoUsu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInicial.resx">
       <DependentUpon>FormInicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListadoLib.resx">
+      <DependentUpon>FormListadoLib.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListadoUsu.resx">
       <DependentUpon>FormListadoUsu.cs</DependentUpon>

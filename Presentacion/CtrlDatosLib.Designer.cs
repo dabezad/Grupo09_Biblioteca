@@ -79,16 +79,20 @@
             // tbTitulo
             // 
             this.tbTitulo.Location = new System.Drawing.Point(157, 25);
+            this.tbTitulo.MinimumSize = new System.Drawing.Size(132, 22);
             this.tbTitulo.Name = "tbTitulo";
             this.tbTitulo.Size = new System.Drawing.Size(132, 22);
             this.tbTitulo.TabIndex = 6;
+            this.tbTitulo.TextChanged += new System.EventHandler(this.tbTitulo_TextChanged);
             // 
             // tbAutor
             // 
             this.tbAutor.Location = new System.Drawing.Point(157, 85);
+            this.tbAutor.MinimumSize = new System.Drawing.Size(132, 22);
             this.tbAutor.Name = "tbAutor";
             this.tbAutor.Size = new System.Drawing.Size(132, 22);
             this.tbAutor.TabIndex = 7;
+            this.tbAutor.TextChanged += new System.EventHandler(this.tbAutor_TextChanged);
             // 
             // tbEditorial
             // 
