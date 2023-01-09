@@ -508,5 +508,11 @@ namespace Presentacion
             }
             fRecorrido.Dispose();
         }
+
+        private void tsmiCerrarSes_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Retry;
+
+        }
     }
 }

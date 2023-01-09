@@ -94,7 +94,7 @@
             this.Controls.Add(this.lbEstado);
             this.Controls.Add(this.lbIsbn);
             this.Name = "CtrlDatosEjBusq";
-            this.Size = new System.Drawing.Size(390, 225);
+            this.Size = new System.Drawing.Size(388, 225);
             this.ResumeLayout(false);
             this.PerformLayout();
 

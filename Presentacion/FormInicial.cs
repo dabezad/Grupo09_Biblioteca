@@ -30,8 +30,7 @@ namespace Presentacion
         }
         public FormInicial()
         {
-            
-            lnB = new LNBiblioteca();
+            this.lnB = new LNBiblioteca();
             lnB.IniciarBD();
             InitializeComponent();
         }

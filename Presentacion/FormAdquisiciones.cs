@@ -326,6 +326,36 @@ namespace Presentacion
             List<Ejemplar> ejemplares = lnAdq.EjemplaresDisponibles(l.Isbn);
             if (ejemplares.Count > 0)
             {
+                FormNavig fListadoEjs = new FormNavig();
+                CtrlDatosEjBusq control = new CtrlDatosEjBusq(100, -2);
+                BindingSource datos = new BindingSource();
+
+                fListadoEjs.LbClave.Text = "Código";
+                fListadoEjs.Text = "Ver ejemplares disponibles";
+
+                fListadoEjs.BnDatos.BindingSource = datos;
+                fListadoEjs.BnDatos.BindingSource.DataSource = ejemplares;
+                Ejemplar ej = (Ejemplar)fListadoEjs.BnDatos.BindingSource.Current;
+                fListadoEjs.TbClave.Text = ej.Codigo;
+                control.TbIsbn.Text = ej.Libro.Isbn;
+                control.BtVerLibro.Hide();
+                if (ej.Estado == EstadoEjemplarEnum.Prestado)
+                {
+                    control.CbEstadoEj.SelectedIndex = 1;
+                } else
+                {
+                    control.CbEstadoEj.SelectedIndex = 0;
+                }
+
+                fListadoEjs.PsItem.TextChanged += (s, ev) => PonerDatosEjemplares(fListadoEjs);
+
+                fListadoEjs.Controls.Add(control);
+                DialogResult d = fListadoEjs.ShowDialog();
+                if (d == DialogResult.Cancel)
+                {
+                    fListadoEjs.Close();
+                }
+                fListadoEjs.Dispose();
 
             } else
             {
@@ -339,9 +369,29 @@ namespace Presentacion
                     }
                 }
 
-                DateTime fProxima = prestamos.Min((p) => p.FFinPrestamo);
+                DateTime fProxima = prestamos.Max((p) => p.FFinPrestamo);
                 MessageBox.Show(fProxima.ToString());
             }
+        }
+
+        private void PonerDatosEjemplares(FormNavig fListadoEjs)
+        {
+            if (Int32.Parse(fListadoEjs.PsItem.Text) > 0)
+            {
+                Ejemplar ej = (Ejemplar)fListadoEjs.BnDatos.BindingSource.Current;
+                fListadoEjs.TbClave.Text = ej.Codigo;
+                CtrlDatosEjBusq control = (CtrlDatosEjBusq)fListadoEjs.Controls["CtrlDatosEjBusq"];
+                control.TbIsbn.Text = ej.Libro.Isbn;
+                if (ej.Estado == EstadoEjemplarEnum.Prestado)
+                {
+                    control.CbEstadoEj.SelectedIndex = 1;
+                }
+                else
+                {
+                    control.CbEstadoEj.SelectedIndex = 0;
+                }
+            }
+            
         }
 
         private void TsmiBusqEj_Click(object sender, EventArgs e)

@@ -75,14 +75,14 @@
             // tsmiAltaUsu
             // 
             this.tsmiAltaUsu.Name = "tsmiAltaUsu";
-            this.tsmiAltaUsu.Size = new System.Drawing.Size(224, 26);
+            this.tsmiAltaUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiAltaUsu.Text = "Alta";
             this.tsmiAltaUsu.Click += new System.EventHandler(this.tsmiAltaUsu_Click);
             // 
             // tsmiBajaUsu
             // 
             this.tsmiBajaUsu.Name = "tsmiBajaUsu";
-            this.tsmiBajaUsu.Size = new System.Drawing.Size(224, 26);
+            this.tsmiBajaUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiBajaUsu.Text = "Baja";
             this.tsmiBajaUsu.Click += new System.EventHandler(this.tsmiBajaUsu_Click);
             // 
@@ -94,7 +94,7 @@
             this.tsmiEjPrest,
             this.tsmiPrestCad});
             this.tsmiBusqUsu.Name = "tsmiBusqUsu";
-            this.tsmiBusqUsu.Size = new System.Drawing.Size(224, 26);
+            this.tsmiBusqUsu.Size = new System.Drawing.Size(157, 26);
             this.tsmiBusqUsu.Text = "Búsqueda";
             this.tsmiBusqUsu.Click += new System.EventHandler(this.tsmiBusqUsu_Click);
             // 
@@ -129,7 +129,7 @@
             // tsmiListado
             // 
             this.tsmiListado.Name = "tsmiListado";
-            this.tsmiListado.Size = new System.Drawing.Size(224, 26);
+            this.tsmiListado.Size = new System.Drawing.Size(157, 26);
             this.tsmiListado.Text = "Listado";
             this.tsmiListado.Click += new System.EventHandler(this.tsmiListado_Click);
             // 
@@ -162,8 +162,9 @@
             // tsmiCerrarSes
             // 
             this.tsmiCerrarSes.Name = "tsmiCerrarSes";
-            this.tsmiCerrarSes.Size = new System.Drawing.Size(177, 26);
+            this.tsmiCerrarSes.Size = new System.Drawing.Size(224, 26);
             this.tsmiCerrarSes.Text = "Cerrar sesión";
+            this.tsmiCerrarSes.Click += new System.EventHandler(this.tsmiCerrarSes_Click);
             // 
             // FormGestionBiblioteca
             // 
