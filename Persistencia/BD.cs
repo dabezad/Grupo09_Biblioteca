@@ -78,18 +78,24 @@ namespace Persistencia
             EjemplarDato e8 = new EjemplarDato("e41", EstadoEjemplarEnum.Prestado, "3355", "Pepa");
             EjemplarDato e9 = new EjemplarDato("e42", EstadoEjemplarEnum.Disponible, "3355", "Pepa");
             EjemplarDato e10 = new EjemplarDato("e51", EstadoEjemplarEnum.Prestado, "6565", "Pepa");
-            EjemplarDato e11 = new EjemplarDato("e61", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
+            EjemplarDato e11 = new EjemplarDato("e61", EstadoEjemplarEnum.Prestado, "7769", "Pepa");
             EjemplarDato e12 = new EjemplarDato("e62", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
             EjemplarDato e13 = new EjemplarDato("e63", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
-            
+            EjemplarDato e14 = new EjemplarDato("e52", EstadoEjemplarEnum.Prestado, "6565", "Pepa");
+
             PrestamoDato p1 = new PrestamoDato("p1", "11111111A", DateTime.Now, DateTime.Now.AddDays(15), EstadoEnum.EnProceso, "Jose");
-            PrestamoDato p2 = new PrestamoDato("p2", "33333333C", DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-15), EstadoEnum.EnProceso, "Jose");
+            PrestamoDato p2 = new PrestamoDato("p2", "33333333C", DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-5), EstadoEnum.EnProceso, "Jose");
+            PrestamoDato p3 = new PrestamoDato("p3", "22222222B", DateTime.Now.AddDays(-30), DateTime.Now.AddDays(-15), EstadoEnum.EnProceso, "Jose");
+            PrestamoDato p4 = new PrestamoDato("p4", "22222222B", DateTime.Now.AddDays(-45), DateTime.Now.AddDays(-30), EstadoEnum.EnProceso, "Jose");
 
             EjemplarEnPrestamoDato eep1 = new EjemplarEnPrestamoDato("p1", "e11");
             EjemplarEnPrestamoDato eep2 = new EjemplarEnPrestamoDato("p1", "e22");
             EjemplarEnPrestamoDato eep3 = new EjemplarEnPrestamoDato("p2", "e33");
             EjemplarEnPrestamoDato eep4 = new EjemplarEnPrestamoDato("p2", "e41");
             EjemplarEnPrestamoDato eep5 = new EjemplarEnPrestamoDato("p2", "e51");
+            EjemplarEnPrestamoDato eep6 = new EjemplarEnPrestamoDato("p3", "e61");
+            EjemplarEnPrestamoDato eep7 = new EjemplarEnPrestamoDato("p4", "e52");
+
 
             BD.CREATE<string, PersonalBibliotecaDato>(per1);
             BD.CREATE<string, PersonalBibliotecaDato>(per2);
@@ -119,16 +125,20 @@ namespace Persistencia
             BD.CREATE<string, EjemplarDato>(e11);
             BD.CREATE<string, EjemplarDato>(e12);
             BD.CREATE<string, EjemplarDato>(e13);
+            BD.CREATE<string, EjemplarDato>(e14);
 
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep3);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep4);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep5);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep6);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep7);
 
+            BD.CREATE<string, PrestamoDato>(p1);
             BD.CREATE<string, PrestamoDato>(p2);
-
-            //BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
-            //BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
-            //BD.CREATE<string, PrestamoDato>(p1);
+            BD.CREATE<string, PrestamoDato>(p3);
+            BD.CREATE<string, PrestamoDato>(p4);
 
 
         }

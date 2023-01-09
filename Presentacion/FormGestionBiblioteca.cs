@@ -330,7 +330,8 @@ namespace Presentacion
 
         private void PonerDatosEjemplar(FormNavig fRecorrido)
         {
-            if (fRecorrido.BnDatos.BindingSource != null)
+            
+            if (Int32.Parse(fRecorrido.PsItem.Text) > 0)
             {
                 Ejemplar e = (Ejemplar)fRecorrido.BnDatos.BindingSource.Current;
                 Prestamo p = lnB.ObtenerPrestamoDeEjemplar(e);
@@ -417,14 +418,17 @@ namespace Presentacion
 
         private void PonerDatos(FormNavig fRecorrido)
         {
-            if (fRecorrido.BnDatos.BindingSource != null)
+            if (Int32.Parse(fRecorrido.PsItem.Text) > 0)
             {
                 Prestamo p = (Prestamo)fRecorrido.BnDatos.BindingSource.Current;
                 CtrlDatosPrestamoBusq control = (CtrlDatosPrestamoBusq)fRecorrido.Controls["CtrlDatosPrestamoBusq"];
+                fRecorrido.Controls.Remove(control);
+                CtrlDatosPrestamoBusq controlNuevo = new CtrlDatosPrestamoBusq(100, 35, lnB.ObtenerEjemplaresDePrestamo(p.Codigo));
                 fRecorrido.TbClave.Text = p.Codigo;
-                control.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
-                control.Tbusuario.Text = p.Usuario.Dni;
-                control.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                controlNuevo.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                controlNuevo.Tbusuario.Text = p.Usuario.Dni;
+                controlNuevo.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                fRecorrido.Controls.Add(controlNuevo);
             }
             
         }
@@ -488,7 +492,7 @@ namespace Presentacion
 
             fRecorrido.PsItem.TextChanged += delegate (object s, EventArgs ev)
             {
-                if (fRecorrido.BnDatos.BindingSource != null)
+                if (Int32.Parse(fRecorrido.PsItem.Text) > 0)
                 {
                     fRecorrido.TbClave.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Dni;
                     control.TbNombre.Text = ((Usuario)fRecorrido.BnDatos.BindingSource.Current).Nombre;

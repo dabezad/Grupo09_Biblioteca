@@ -202,18 +202,77 @@ namespace Presentacion
 
         private void PonerDatosEjemplarPrestado(FormNavig form)
         {
-            Ejemplar e = (Ejemplar)form.BnDatos.BindingSource.Current;
-            Prestamo p = lnSala.ObtenerPrestamoDeEjemplar(e);
-            CtrlDatosEjemplarPrestado control = (CtrlDatosEjemplarPrestado) form.Controls["CtrlDatosEjemplarPrestado"];
-            form.TbClave.Text = e.Codigo;
-            control.TbCodPres.Text = p.Codigo;
-            control.TbFechaDev.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+            if (Int32.Parse(form.PsItem.Text) > 0)
+            {
+                Ejemplar e = (Ejemplar)form.BnDatos.BindingSource.Current;
+                Prestamo p = lnSala.ObtenerPrestamoDeEjemplar(e);
+                CtrlDatosEjemplarPrestado control = (CtrlDatosEjemplarPrestado)form.Controls["CtrlDatosEjemplarPrestado"];
+                form.TbClave.Text = e.Codigo;
+                control.TbCodPres.Text = p.Codigo;
+                control.TbFechaDev.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+            }
+           
 
         }
 
         private void TsmiPrestPasad_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            List<Prestamo> prestamos = lnSala.ObtenerPrestamosEnProcesoPasados();
+            if (prestamos.Count > 0)
+            {
+                FormNavig fPrestCad = new FormNavig();
+                BindingSource bsDatos = new BindingSource();
+
+                fPrestCad.Text = "Préstamos caducados";
+                fPrestCad.LbClave.Text = "Código de préstamo";
+                fPrestCad.LbClave.Left -= 60;
+                fPrestCad.TbClave.ReadOnly = true;
+                
+
+                fPrestCad.BnDatos.BindingSource = bsDatos;
+                fPrestCad.BnDatos.BindingSource.DataSource = prestamos;
+                Prestamo p = (Prestamo)fPrestCad.BnDatos.BindingSource.Current;
+                CtrlDatosPrestamoBusq control = new CtrlDatosPrestamoBusq(100, 35, lnSala.ObtenerEjemplaresDePrestamo(p.Codigo));
+
+                fPrestCad.TbClave.Text = p.Codigo;
+                control.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                control.Tbusuario.Text = p.Usuario.Dni;
+                control.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+
+                fPrestCad.PsItem.TextChanged += (s, ev) => PonerDatosPrestamo(fPrestCad);
+
+                fPrestCad.Controls.Add(control);
+                DialogResult d = fPrestCad.ShowDialog();
+                if (d == DialogResult.Cancel)
+                {
+                    fPrestCad.Close();
+                } else
+                {
+                    TsmiPrestPasad_Click(sender, e);
+                }
+                fPrestCad.Dispose();
+
+
+            } else
+            {
+                MessageBox.Show("Actualmente no existen préstamos caducados en el sistema", "Ver préstamos caducados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void PonerDatosPrestamo(FormNavig fPrestCad)
+        {
+            if (Int32.Parse(fPrestCad.PsItem.Text) > 0)
+            {
+                Prestamo p = (Prestamo)fPrestCad.BnDatos.BindingSource.Current;
+                CtrlDatosPrestamoBusq control = (CtrlDatosPrestamoBusq)fPrestCad.Controls["CtrlDatosPrestamoBusq"];
+                fPrestCad.Controls.Remove(control);
+                CtrlDatosPrestamoBusq controlNuevo = new CtrlDatosPrestamoBusq(100, 35, lnSala.ObtenerEjemplaresDePrestamo(p.Codigo));
+                fPrestCad.TbClave.Text = p.Codigo;
+                controlNuevo.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                controlNuevo.Tbusuario.Text = p.Usuario.Dni;
+                controlNuevo.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                fPrestCad.Controls.Add(controlNuevo);
+            }
         }
 
         private void TsmiPrestLib_Click(object sender, EventArgs e)
@@ -434,10 +493,14 @@ namespace Presentacion
 
         private void PonerDatos(FormNavig listaEjs)
         {
-            Ejemplar ej = ((Ejemplar)listaEjs.BnDatos.BindingSource.Current);
-            listaEjs.TbClave.Text = ej.Codigo;
-            if (ej.Estado == EstadoEjemplarEnum.Disponible) { ((CtrlDatosEjemplar)listaEjs.Controls["CtrlDatosEjemplar"]).CbEstadoEj.SelectedIndex = 0; }
-            else { ((CtrlDatosEjemplar)listaEjs.Controls["CtrlDatosEjemplar"]).CbEstadoEj.SelectedIndex = 1; }
+            if(Int32.Parse(listaEjs.PsItem.Text) > 0)
+            {
+                Ejemplar ej = ((Ejemplar)listaEjs.BnDatos.BindingSource.Current);
+                listaEjs.TbClave.Text = ej.Codigo;
+                if (ej.Estado == EstadoEjemplarEnum.Disponible) { ((CtrlDatosEjemplar)listaEjs.Controls["CtrlDatosEjemplar"]).CbEstadoEj.SelectedIndex = 0; }
+                else { ((CtrlDatosEjemplar)listaEjs.Controls["CtrlDatosEjemplar"]).CbEstadoEj.SelectedIndex = 1; }
+            }
+            
         }
 
         

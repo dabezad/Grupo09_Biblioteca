@@ -50,7 +50,7 @@ namespace Presentacion
             tsmiBusqLib.Click += TsmiBusqLib_Click;
             ToolStripMenuItem tsmiBusqEj = new ToolStripMenuItem("Búsqueda");
             tsmiBusqEj.Click += TsmiBusqEj_Click;
-            ToolStripMenuItem tsmiEjDisp = new ToolStripMenuItem("Ejemplares disponibles");
+            ToolStripMenuItem tsmiEjDisp = new ToolStripMenuItem("Ejemplares disponibles de un libro");
             tsmiEjDisp.Click += TsmiEjDisp_Click;
             ToolStripMenuItem tsmiListadoLib = new ToolStripMenuItem("Listado");
             tsmiListadoLib.Click += TsmiListadoLib_Click;
@@ -208,7 +208,7 @@ namespace Presentacion
 
         private void PonerDatosEjemplar(FormNavig listadoEjemplares)
         {
-            if (listadoEjemplares.BnDatos.BindingSource != null)
+            if (Int32.Parse(listadoEjemplares.PsItem.Text) > 0)
             {
                 Ejemplar e = (Ejemplar)listadoEjemplares.BnDatos.BindingSource.Current;
                 CtrlDatosUsu control = (CtrlDatosUsu)listadoEjemplares.Controls["CtrlAltaUsu"];
@@ -254,13 +254,17 @@ namespace Presentacion
 
         private void PonerDatos(FormNavig fRecorrido)
         {
-            Libro l = (Libro)fRecorrido.BnDatos.BindingSource.Current;
-            CtrlDatosLibRecorrido control = (CtrlDatosLibRecorrido)fRecorrido.Controls["CtrlDatosLibRecorrido"];
-            fRecorrido.TbClave.Text = l.Isbn;
-            control.TbTitulo.Text = l.Titulo;
-            control.TbAutor.Text = l.Autor;
-            control.TbEditorial.Text = l.Editorial;
-            control.TbNumEjs.Text = lnAdq.ListarEjemplares(l.Isbn).Count.ToString();
+            if (Int32.Parse(fRecorrido.PsItem.Text) > 0)
+            {
+                Libro l = (Libro)fRecorrido.BnDatos.BindingSource.Current;
+                CtrlDatosLibRecorrido control = (CtrlDatosLibRecorrido)fRecorrido.Controls["CtrlDatosLibRecorrido"];
+                fRecorrido.TbClave.Text = l.Isbn;
+                control.TbTitulo.Text = l.Titulo;
+                control.TbAutor.Text = l.Autor;
+                control.TbEditorial.Text = l.Editorial;
+                control.TbNumEjs.Text = lnAdq.ListarEjemplares(l.Isbn).Count.ToString();
+            }
+            
         }
 
         private void TsmiLibMasLeido_Click(object sender, EventArgs e)
@@ -270,7 +274,7 @@ namespace Presentacion
 
         private void TsmiListadoEj_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //HACERLO CON DATAGRIDVIEW
         }
 
         private void TsmiListadoLib_Click(object sender, EventArgs e)
@@ -286,7 +290,58 @@ namespace Presentacion
 
         private void TsmiEjDisp_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormClave formIsbn = new FormClave();
+            formIsbn.Text = "Introducir ISBN";
+            formIsbn.LbClave.Text = "ISBN";
+            DialogResult d = formIsbn.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formIsbn.Close();
+            }
+            else
+            {
+                string isbn = formIsbn.TbClave.Text;
+                if (isbn != "")
+                {
+                    Libro l = lnAdq.BuscarLibro(isbn);
+                    if (l != null)
+                    {
+                        MostrarEjemplaresDisponibles(l);
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún libro con ese ISBN", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            TsmiBusqLib_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            formIsbn.Dispose();
+        }
+
+        private void MostrarEjemplaresDisponibles(Libro l)
+        {
+            List<Ejemplar> ejemplares = lnAdq.EjemplaresDisponibles(l.Isbn);
+            if (ejemplares.Count > 0)
+            {
+
+            } else
+            {
+                List<Ejemplar> todosEjemplares = lnAdq.ListarEjemplares(l.Isbn);
+                List<Prestamo> prestamos = new List<Prestamo>();
+                foreach (Ejemplar ej in todosEjemplares)
+                {
+                    Prestamo p = lnAdq.ObtenerPrestamoDeEjemplar(ej);
+                    if (!prestamos.Contains(p)) {
+                        prestamos.Add(p);
+                    }
+                }
+
+                DateTime fProxima = prestamos.Min((p) => p.FFinPrestamo);
+                MessageBox.Show(fProxima.ToString());
+            }
         }
 
         private void TsmiBusqEj_Click(object sender, EventArgs e)
