@@ -370,7 +370,8 @@ namespace Presentacion
                 }
 
                 DateTime fProxima = prestamos.Max((p) => p.FFinPrestamo);
-                MessageBox.Show(fProxima.ToString());
+                MessageBox.Show("El libro no tiene ejemplares disponibles actualmente.\r\nLa fecha más próxima en la" +
+                    " que se espera que alguno de sus ejemplares sea devuelto más es : " + fProxima.ToString(), "Ver ejemplares disponibles", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -626,7 +627,7 @@ namespace Presentacion
 
         private void MostrarFormBajaLib(Libro l)
         {
-            CtrlDatosLib control = new CtrlDatosLib(100, 100);
+            CtrlDatosLib control = new CtrlDatosLib(100, 50);
             FormDatos formBajaLib = new FormDatos();
             formBajaLib.Text = "Baja de un libro";
             formBajaLib.LbClave.Text = "ISBN";

@@ -55,6 +55,7 @@ namespace Persistencia
         {
             PersonalBibliotecaDato per1 = new PersonalBibliotecaDato("Pepa", "123", "PersonalAdquisiciones");
             PersonalBibliotecaDato per2 = new PersonalBibliotecaDato("Jose", "321", "PersonalSala");
+            PersonalBibliotecaDato per3 = new PersonalBibliotecaDato("Eduardo", "456", "PersonalSala");
             
             UsuarioDato u1 = new UsuarioDato("11111111A", "Ana", "Pepa");
             UsuarioDato u2 = new UsuarioDato("22222222B", "Roberto", "Pepa");
@@ -87,6 +88,8 @@ namespace Persistencia
             PrestamoDato p2 = new PrestamoDato("p2", "33333333C", DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-5), EstadoEnum.EnProceso, "Jose");
             PrestamoDato p3 = new PrestamoDato("p3", "22222222B", DateTime.Now.AddDays(-30), DateTime.Now.AddDays(-15), EstadoEnum.EnProceso, "Jose");
             PrestamoDato p4 = new PrestamoDato("p4", "22222222B", DateTime.Now.AddDays(-45), DateTime.Now.AddDays(-30), EstadoEnum.EnProceso, "Jose");
+            PrestamoDato p5 = new PrestamoDato("p5", "11111111A", DateTime.Now, DateTime.Now.AddDays(15), EstadoEnum.Finalizado, "Eduardo");
+            PrestamoDato p6 = new PrestamoDato("p6", "33333333C", DateTime.Now.AddDays(-50), DateTime.Now.AddDays(-40), EstadoEnum.Finalizado, "Eduardo");
 
             EjemplarEnPrestamoDato eep1 = new EjemplarEnPrestamoDato("p1", "e11");
             EjemplarEnPrestamoDato eep2 = new EjemplarEnPrestamoDato("p1", "e22");
@@ -99,7 +102,8 @@ namespace Persistencia
 
             BD.CREATE<string, PersonalBibliotecaDato>(per1);
             BD.CREATE<string, PersonalBibliotecaDato>(per2);
-            
+            BD.CREATE<string, PersonalBibliotecaDato>(per3);
+
             BD.CREATE<string, UsuarioDato>(u1);
             BD.CREATE<string, UsuarioDato>(u2);
             BD.CREATE<string, UsuarioDato>(u3);
@@ -139,6 +143,9 @@ namespace Persistencia
             BD.CREATE<string, PrestamoDato>(p2);
             BD.CREATE<string, PrestamoDato>(p3);
             BD.CREATE<string, PrestamoDato>(p4);
+            BD.CREATE<string, PrestamoDato>(p5);
+            BD.CREATE<string, PrestamoDato>(p6);
+
 
 
         }

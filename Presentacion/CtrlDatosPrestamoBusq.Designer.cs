@@ -36,6 +36,8 @@
             this.tbfecha = new System.Windows.Forms.TextBox();
             this.tbdevolucion = new System.Windows.Forms.TextBox();
             this.btejemplares = new System.Windows.Forms.Button();
+            this.tbEstado = new System.Windows.Forms.TextBox();
+            this.lbEstado = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbusuario
@@ -81,7 +83,7 @@
             // tbusuario
             // 
             this.tbusuario.Location = new System.Drawing.Point(114, 11);
-            this.tbusuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbusuario.Margin = new System.Windows.Forms.Padding(4);
             this.tbusuario.Name = "tbusuario";
             this.tbusuario.ReadOnly = true;
             this.tbusuario.Size = new System.Drawing.Size(132, 22);
@@ -90,7 +92,7 @@
             // tbfecha
             // 
             this.tbfecha.Location = new System.Drawing.Point(114, 84);
-            this.tbfecha.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbfecha.Margin = new System.Windows.Forms.Padding(4);
             this.tbfecha.Name = "tbfecha";
             this.tbfecha.ReadOnly = true;
             this.tbfecha.Size = new System.Drawing.Size(150, 22);
@@ -99,7 +101,7 @@
             // tbdevolucion
             // 
             this.tbdevolucion.Location = new System.Drawing.Point(114, 120);
-            this.tbdevolucion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbdevolucion.Margin = new System.Windows.Forms.Padding(4);
             this.tbdevolucion.Name = "tbdevolucion";
             this.tbdevolucion.ReadOnly = true;
             this.tbdevolucion.Size = new System.Drawing.Size(150, 22);
@@ -109,7 +111,7 @@
             // 
             this.btejemplares.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.btejemplares.Location = new System.Drawing.Point(114, 48);
-            this.btejemplares.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btejemplares.Margin = new System.Windows.Forms.Padding(4);
             this.btejemplares.Name = "btejemplares";
             this.btejemplares.Size = new System.Drawing.Size(133, 28);
             this.btejemplares.TabIndex = 10;
@@ -117,10 +119,29 @@
             this.btejemplares.UseVisualStyleBackColor = true;
             this.btejemplares.Click += new System.EventHandler(this.btejemplares_Click);
             // 
+            // tbEstado
+            // 
+            this.tbEstado.Location = new System.Drawing.Point(114, 156);
+            this.tbEstado.Name = "tbEstado";
+            this.tbEstado.ReadOnly = true;
+            this.tbEstado.Size = new System.Drawing.Size(150, 22);
+            this.tbEstado.TabIndex = 11;
+            // 
+            // lbEstado
+            // 
+            this.lbEstado.AutoSize = true;
+            this.lbEstado.Location = new System.Drawing.Point(21, 161);
+            this.lbEstado.Name = "lbEstado";
+            this.lbEstado.Size = new System.Drawing.Size(50, 16);
+            this.lbEstado.TabIndex = 12;
+            this.lbEstado.Text = "Estado";
+            // 
             // CtrlDatosPrestamoBusq
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lbEstado);
+            this.Controls.Add(this.tbEstado);
             this.Controls.Add(this.btejemplares);
             this.Controls.Add(this.tbdevolucion);
             this.Controls.Add(this.tbfecha);
@@ -129,9 +150,9 @@
             this.Controls.Add(this.lbfecharealizado);
             this.Controls.Add(this.lbejemplares);
             this.Controls.Add(this.lbusuario);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CtrlDatosPrestamoBusq";
-            this.Size = new System.Drawing.Size(287, 160);
+            this.Size = new System.Drawing.Size(287, 194);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,5 +167,7 @@
         private System.Windows.Forms.TextBox tbfecha;
         private System.Windows.Forms.TextBox tbdevolucion;
         private System.Windows.Forms.Button btejemplares;
+        private System.Windows.Forms.TextBox tbEstado;
+        private System.Windows.Forms.Label lbEstado;
     }
 }

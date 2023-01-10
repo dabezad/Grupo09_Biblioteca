@@ -238,6 +238,7 @@ namespace Presentacion
                 control.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
                 control.Tbusuario.Text = p.Usuario.Dni;
                 control.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                control.TbEstado.Text = p.Estado.ToString();
 
                 fPrestCad.PsItem.TextChanged += (s, ev) => PonerDatosPrestamo(fPrestCad);
 
@@ -271,6 +272,7 @@ namespace Presentacion
                 controlNuevo.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
                 controlNuevo.Tbusuario.Text = p.Usuario.Dni;
                 controlNuevo.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                control.TbEstado.Text = p.Estado.ToString();
                 fPrestCad.Controls.Add(controlNuevo);
             }
         }
@@ -325,12 +327,14 @@ namespace Presentacion
             FormDatos formBusqPres = new FormDatos();
             formBusqPres.Text = "Búsqueda de un préstamo";
             formBusqPres.LbClave.Text = "Codigo";
+            formBusqPres.LbClave.Left -= 25;
             formBusqPres.BtAceptar.Text = "Ver personal alta";
             formBusqPres.TbClave.Text = p.Codigo;
             formBusqPres.BtCancelar.Text = "Salir";
             control.Tbusuario.Text = p.Usuario.Dni;
             control.Tbfecha.Text= p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
             control.Tbdevolucion.Text= p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+            control.TbEstado.Text = p.Estado.ToString();
             formBusqPres.Controls.Add(control);
             DialogResult dAlta = formBusqPres.ShowDialog();
             if (dAlta == DialogResult.Cancel)

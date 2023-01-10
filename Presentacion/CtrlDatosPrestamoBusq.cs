@@ -46,6 +46,11 @@ namespace Presentacion
             get { return tbdevolucion; }
         }
 
+        public TextBox TbEstado
+        {
+            get { return this.tbEstado; }
+        }
+
         private void btejemplares_Click(object sender, EventArgs e)
         {
             FormNavig listadoEjemplares = new FormNavig();

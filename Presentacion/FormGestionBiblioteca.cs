@@ -400,6 +400,7 @@ namespace Presentacion
                 control.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
                 control.Tbusuario.Text = p.Usuario.Dni;
                 control.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                control.TbEstado.Text = p.Estado.ToString();
 
                 fRecorrido.PsItem.TextChanged += (s, e) => PonerDatos(fRecorrido);
 
@@ -428,6 +429,7 @@ namespace Presentacion
                 controlNuevo.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
                 controlNuevo.Tbusuario.Text = p.Usuario.Dni;
                 controlNuevo.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                controlNuevo.TbEstado.Text = p.Estado.ToString();
                 fRecorrido.Controls.Add(controlNuevo);
             }
             
