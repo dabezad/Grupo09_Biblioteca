@@ -151,12 +151,12 @@ namespace Persistencia
         }
 
         /// <summary>
-        /// 
+        /// Añade a la BD el elemento pasado por parámetro en la correspondiente tabla
         /// </summary>
-        /// <typeparam name="T">Clave de tabla U</typeparam>
-        /// <typeparam name="U">Dato tipo Tabla con clave T</typeparam>
-        /// <param name="u"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">Clave de la tabla U</typeparam>
+        /// <typeparam name="U">Dato de tipo Tabla con clave T</typeparam>
+        /// <param name="u">Elemento a insertar, puede ser nulo</param>
+        /// <returns>True si ha podido insertar el elemento en la BD y falso en caso contrario o si el elemento a insertar es nulo</returns>
         public static bool CREATE<T, U>(U u) where U : Entity<T>
         {
             if (u == null)
@@ -204,7 +204,14 @@ namespace Persistencia
             }
             return false;
         }
-
+        /// <summary>
+        /// Obtiene el elemento de la BD a partir de su clave
+        /// </summary>
+        /// <typeparam name="T">Clave de la tabla U</typeparam>
+        /// <typeparam name="U">Dato de tipo Tabla con clave T</typeparam>
+        /// <param name="t">Clave del elemento a buscar</param>
+        /// <param name="tabla">Nombre de la tabla en la BD a la que pertenece la tabla</param>
+        /// <returns>El elemento en la BD cuya clave se corresponde con la pasada por parámetro</returns>
         public static object READ<T, U>(T t, string tabla) where U : Entity<T>
         {
             if (t == null) return null;
@@ -248,7 +255,13 @@ namespace Persistencia
             }
             return x;
         }
-
+        /// <summary>
+        /// Actualiza el elemento pasado por parámetro en la BD
+        /// </summary>
+        /// <typeparam name="T">Clave de la tabla U</typeparam>
+        /// <typeparam name="U">Dato de tipo Tabla con clave T</typeparam>
+        /// <param name="u">Elemento a insertar, puede ser nulo</param>
+        /// <returns>True si se ha podido actualizar correctamente el elemento en la BD y falso en caso contrario o si el elemento a actualizar es nulo</returns>
         public static bool UPDATE<T, U>(U u) where U : Entity<T>
         {
             bool b = false;
@@ -310,10 +323,16 @@ namespace Persistencia
             return b;
         }
 
-
+        /// <summary>
+        /// Elimina un elemento de la BD, si existe, a partir de su clave
+        /// </summary>
+        /// <typeparam name="T">Clave de la tabla U</typeparam>
+        /// <typeparam name="U">Dato de tipo Tabla con clave T</typeparam>
+        /// <param name="t">Clave del elemento a buscar</param>
+        /// <param name="tabla">Nombre de la tabla en la BD a la que pertenece la tabla</param>
+        /// <returns>True si se ha podido borrar el elemento en la BD con el que se corresponde la clave o falso en caso contrario</returns>
         public static bool DELETE<T, U>(T t, string tabla) where U : Entity<T>
         {
-            //porfavor
             switch (tabla)
             {
                 case "UsuarioDato":
