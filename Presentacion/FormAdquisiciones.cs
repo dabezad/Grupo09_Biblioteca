@@ -221,7 +221,7 @@ namespace Presentacion
 
         private void TsmiRecorrido_Click(object sender, EventArgs e)
         {
-            List<Libro> libros = lnAdq.MostrarLibros();
+            List<Libro> libros = lnAdq.MostrarLibros();//yokakin hace algo aca
             if (libros.Count > 0)
             {
                 FormNavig fRecorrido = new FormNavig();
@@ -269,7 +269,30 @@ namespace Presentacion
 
         private void TsmiLibMasLeido_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Libro l=lnAdq.MostrarLibroMasLeido();
+            FormDatos frm= new FormDatos();
+            CtrlDatosLib control = new CtrlDatosLib(100, 50);
+            CtrlDatosUsu controlVeces = new CtrlDatosUsu(350,50);
+            frm.Text = "Libro más leído";
+            frm.LbClave.Text = "ISBN";
+            frm.BtAceptar.Text = "Aceptar";
+            frm.TbClave.Text = l.Isbn;
+            control.TbTitulo.Text = l.Titulo;
+            control.TbTitulo.ReadOnly=true;
+            control.TbAutor.Text = l.Autor;
+            control.TbAutor.ReadOnly = true;
+            control.TbEditorial.Text = l.Editorial;
+            control.TbEditorial.ReadOnly = true;
+            control.BtAniadirEj.Hide();
+            controlVeces.LbNombre.Text = "Veces leídas";
+            controlVeces.TbNombre.Text="Yokakin bro haz algo";
+            frm.Controls.Add(control);
+            DialogResult dLibLeido = frm.ShowDialog();
+            if (dLibLeido == DialogResult.Cancel)
+            {
+                frm.Close();
+            }
+            frm.Dispose();            
         }
 
         private void TsmiListadoEj_Click(object sender, EventArgs e)
@@ -363,7 +386,7 @@ namespace Presentacion
                 List<Prestamo> prestamos = new List<Prestamo>();
                 foreach (Ejemplar ej in todosEjemplares)
                 {
-                    Prestamo p = lnAdq.ObtenerPrestamoDeEjemplar(ej);
+                    Prestamo p = lnB.ObtenerPrestamoDeEjemplar(ej);
                     if (!prestamos.Contains(p)) {
                         prestamos.Add(p);
                     }
@@ -371,7 +394,7 @@ namespace Presentacion
 
                 DateTime fProxima = prestamos.Max((p) => p.FFinPrestamo);
                 MessageBox.Show("El libro no tiene ejemplares disponibles actualmente.\r\nLa fecha más próxima en la" +
-                    " que se espera que alguno de sus ejemplares sea devuelto más es : " + fProxima.ToString(), "Ver ejemplares disponibles", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    " que se espera que alguno de sus ejemplares sea devuelto es : " + fProxima.ToString(), "Ver ejemplares disponibles", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
