@@ -27,6 +27,9 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Carga los datos
+        /// </summary>
         private void CargarDatos()
         {
             bsClaves.DataSource = usuarios.Select(x => x.Dni).ToList();
@@ -34,12 +37,23 @@ namespace Presentacion
             lbClave.DataSource = bsClaves;
             lbDato.DataSource = bsDatos;
         }
+
+        /// <summary>
+        /// Carga los datos en el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormListadoUsu_Load(object sender, EventArgs e)
         {
             CargarDatos();
            
         }
 
+        /// <summary>
+        /// Ordena por clave los datos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btOrdClave_Click(object sender, EventArgs e)
         {
             usuarios.Sort((p, q) => string.Compare(p.Dni, q.Dni));
@@ -47,6 +61,11 @@ namespace Presentacion
 
         }
 
+        /// <summary>
+        /// Ordena los datos por nombre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btOrdDato_Click(object sender, EventArgs e)
         {
             usuarios.Sort((p, q) => string.Compare(p.Nombre, q.Nombre));

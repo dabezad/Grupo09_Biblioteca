@@ -35,6 +35,11 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Boton que muestra el formualrio de registro de un personal de biblioteca
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btIniciarSesion_Click(object sender, EventArgs e)
         {
             PersonalBiblioteca personal = new PersonalBiblioteca(tbUsuario.Text, tbContraseña.Text);
@@ -67,6 +72,11 @@ namespace Presentacion
             
         }
 
+        /// <summary>
+        /// Registra un personal de biblioteca en la aplicacion y lo almacena
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btRegistrar_Click(object sender, EventArgs e)
         {
             CtrlRegistroPersonal control = new CtrlRegistroPersonal(100, 100);

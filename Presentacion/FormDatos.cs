@@ -35,10 +35,5 @@ namespace Presentacion
         {
             InitializeComponent();
         }
-
-        private void FormAlta_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -36,6 +36,9 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Añade al formulario los elementos que lo forman
+        /// </summary>
         private void Aniadir_tsmis()
         {
             ToolStripMenuItem tsmiAltaLib = new ToolStripMenuItem("Alta");
@@ -89,6 +92,11 @@ namespace Presentacion
 
         }
 
+        /// <summary>
+        /// Busca el ejemplar por código
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiBusqEjCod_Click(object sender, EventArgs e)
         {
             List<string> codigos = lnAdq.MostrarEjemplares().Select(x=>x.Codigo).ToList();
@@ -134,7 +142,11 @@ namespace Presentacion
            
         }
 
-        
+        /// <summary>
+        /// Busca libro por isbn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiBusqLibIsbn_Click(object sender, EventArgs e)
         {
             List<string> isbns = lnAdq.MostrarLibros().Select(x => x.Isbn).ToList();
@@ -206,6 +218,10 @@ namespace Presentacion
             FBusq.Dispose();
         }
 
+        /// <summary>
+        /// Carga el ejemplar actual en el formulario
+        /// </summary>
+        /// <param name="listadoEjemplares"></param>
         private void PonerDatosEjemplar(FormNavig listadoEjemplares)
         {
             if (Int32.Parse(listadoEjemplares.PsItem.Text) > 0)
@@ -218,10 +234,14 @@ namespace Presentacion
             
         }
 
-
+        /// <summary>
+        /// Reccorre todos los libros uno a uno
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiRecorrido_Click(object sender, EventArgs e)
         {
-            List<Libro> libros = lnAdq.MostrarLibros();//yokakin hace algo aca
+            List<Libro> libros = lnAdq.MostrarLibros();
             if (libros.Count > 0)
             {
                 FormNavig fRecorrido = new FormNavig();
@@ -252,6 +272,10 @@ namespace Presentacion
 
         }
 
+        /// <summary>
+        /// Carga los datos del libro en el formulario
+        /// </summary>
+        /// <param name="fRecorrido"></param>
         private void PonerDatos(FormNavig fRecorrido)
         {
             if (Int32.Parse(fRecorrido.PsItem.Text) > 0)
@@ -267,6 +291,11 @@ namespace Presentacion
             
         }
 
+        /// <summary>
+        /// Muestra el libro más leido
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiLibMasLeido_Click(object sender, EventArgs e)
         {
             Libro l=lnAdq.MostrarLibroMasLeido();
@@ -295,11 +324,21 @@ namespace Presentacion
             frm.Dispose();            
         }
 
+        /// <summary>
+        /// Muestra un listado con todos los ejemplares
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiListadoEj_Click(object sender, EventArgs e)
         {
             //HACERLO CON DATAGRIDVIEW
         }
 
+        /// <summary>
+        /// Muestra un listado con todos los libros
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiListadoLib_Click(object sender, EventArgs e)
         {
             FormListadoLib fListadoLib = new FormListadoLib(lnAdq);
@@ -310,7 +349,11 @@ namespace Presentacion
             }
             fListadoLib.Dispose();
         }
-
+        /// <summary>
+        /// Muestra un formulario que pide los datos del libro a buscar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiEjDisp_Click(object sender, EventArgs e)
         {
             FormClave formIsbn = new FormClave();
@@ -344,6 +387,10 @@ namespace Presentacion
             formIsbn.Dispose();
         }
 
+        /// <summary>
+        /// Muestra todos los ejemplares disponibles de un libro
+        /// </summary>
+        /// <param name="l">Libro no nulo</param>
         private void MostrarEjemplaresDisponibles(Libro l)
         {
             List<Ejemplar> ejemplares = lnAdq.EjemplaresDisponibles(l.Isbn);
@@ -398,6 +445,10 @@ namespace Presentacion
             }
         }
 
+        /// <summary>
+        /// Carga los datos de los ejemplares en el formulario
+        /// </summary>
+        /// <param name="fListadoEjs"></param>
         private void PonerDatosEjemplares(FormNavig fListadoEjs)
         {
             if (Int32.Parse(fListadoEjs.PsItem.Text) > 0)
@@ -418,6 +469,11 @@ namespace Presentacion
             
         }
 
+        /// <summary>
+        /// Busca un ejemplar dado un codigo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiBusqEj_Click(object sender, EventArgs e)
         {
             FormClave formCodigo = new FormClave();
@@ -451,6 +507,10 @@ namespace Presentacion
             formCodigo.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulario de busqueda de ejemplar
+        /// </summary>
+        /// <param name="ej"></param>
         private void MostrarFormBusqEj(Ejemplar ej)
         {
             CtrlDatosEjBusq control = new CtrlDatosEjBusq(100, 65);
@@ -490,6 +550,11 @@ namespace Presentacion
             formBusqUsu.Dispose();
         }
 
+        /// <summary>
+        /// Busca un libro por isbn y lo muestra
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiBusqLib_Click(object sender, EventArgs e)
         {
             FormClave formIsbn = new FormClave();
@@ -523,6 +588,10 @@ namespace Presentacion
             formIsbn.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulario de busqueda de libro
+        /// </summary>
+        /// <param name="l"></param>
         private void MostrarFormBusqLib(Libro l)
         {
             CtrlDatosLib control = new CtrlDatosLib(100, 50);
@@ -558,6 +627,11 @@ namespace Presentacion
             formBusqUsu.Dispose();
         }
 
+        /// <summary>
+        /// Da de baja un ejemplar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiBajaEj_Click(object sender, EventArgs e)
         {
             FormClave formCodEj = new FormClave();
@@ -602,6 +676,10 @@ namespace Presentacion
             formCodEj.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el ejemplar que se va a dar de baja
+        /// </summary>
+        /// <param name="e"></param>
         private void MostrarFormBajaEj(Ejemplar e)
         {
             CtrlDatosEjemplar control = new CtrlDatosEjemplar(100, 100);
@@ -648,6 +726,10 @@ namespace Presentacion
             formBajaEj.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulario de baja de libro
+        /// </summary>
+        /// <param name="l"></param>
         private void MostrarFormBajaLib(Libro l)
         {
             CtrlDatosLib control = new CtrlDatosLib(100, 50);
@@ -689,6 +771,11 @@ namespace Presentacion
             formBajaLib.Dispose();
         }
 
+        /// <summary>
+        /// Da de baja un libro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiBajaLib_Click(object sender, EventArgs e)
         {
             FormClave formISBN = new FormClave();
@@ -722,6 +809,11 @@ namespace Presentacion
             formISBN.Dispose();
         }
 
+        /// <summary>
+        /// Da de alta un libro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiAltaLib_Click(object sender, EventArgs e)
         {
             FormClave formISBN = new FormClave();
@@ -754,6 +846,10 @@ namespace Presentacion
             formISBN.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulario de alta de libro
+        /// </summary>
+        /// <param name="isbn"></param>
         private void MostrarFormAltaLib(string isbn)
         {
             CtrlDatosLib control = new CtrlDatosLib(100, 100);
@@ -799,6 +895,10 @@ namespace Presentacion
             formAltaLib.Dispose();
         }
 
+        /// <summary>
+        /// Añade ejemplares desde libro
+        /// </summary>
+        /// <param name="l"></param>
         private void AniadirEjsDsdLibro(Libro l)
         {
             CtrlDatosLib control = new CtrlDatosLib(100, 100);
@@ -828,6 +928,11 @@ namespace Presentacion
             formAltaLib.Dispose();
         }
 
+        /// <summary>
+        /// Da de alta un ejemplar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiAltaEj_Click(object sender, EventArgs e)
         {
             FormClave formISBN = new FormClave();
@@ -860,6 +965,10 @@ namespace Presentacion
             formISBN.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulairo de alta de ejemplares
+        /// </summary>
+        /// <param name="isbn"></param>
         public void MostrarFormAltaEj(string isbn)
         {
             CtrlDatosEjemplar control = new CtrlDatosEjemplar(100, 100);
