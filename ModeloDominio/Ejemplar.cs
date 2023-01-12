@@ -28,5 +28,13 @@ namespace ModeloDominio
         
         public PersonalAdquisiciones PersonalBAlta { get { return personalBAlta; } }
 
+        public bool Equals(Ejemplar other)
+        {
+            if (other == null)
+            {
+                return this == null;
+            }
+            else return other.codigo == this.codigo;
+        }
     }
 }

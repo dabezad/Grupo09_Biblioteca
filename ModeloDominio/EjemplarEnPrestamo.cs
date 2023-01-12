@@ -26,5 +26,17 @@ namespace ModeloDominio
         {
             get { return codEj; }
         }
+
+        public bool Equals(EjemplarEnPrestamo otro)
+        {
+            if (otro == null)
+            {
+                return this == null;
+            } else
+            {
+                return (otro.CodPr == codPr && otro.CodEj == codEj);
+            }
+            
+        }
     }
 }
