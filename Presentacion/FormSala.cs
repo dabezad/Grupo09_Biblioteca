@@ -508,7 +508,10 @@ namespace Presentacion
         }
 
         
-
+        /// <summary>
+        /// Muestra el formulario para la alta de prestamos
+        /// </summary>
+        /// <param name="codP">Codigo del prestamo a dar de alta</param>
         private void MostrarFormAltaPres(string codP)
         {
             CtrlDatosPrestamo control = new CtrlDatosPrestamo(100, 100);
