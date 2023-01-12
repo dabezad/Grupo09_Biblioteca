@@ -18,7 +18,9 @@ namespace LogicaNegocio
         {
             gbd = new GestorBD();
         }
-
+        /// <summary>
+        /// Carga los datos iniciales en la BD
+        /// </summary>
         public void IniciarBD()
         {
             gbd.CargarBD();
@@ -28,7 +30,7 @@ namespace LogicaNegocio
         {
             return gbd.CrearUsuario(usuario);
         }
-        public bool AltaPersonal(PersonalBiblioteca personal) //Metodo de prueba, eliminar despues
+        public bool AltaPersonal(PersonalBiblioteca personal) 
         {
             return gbd.CrearPersonal(personal);
         }
