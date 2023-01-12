@@ -99,6 +99,51 @@ namespace Persistencia
             EjemplarEnPrestamoDato eep6 = new EjemplarEnPrestamoDato("p3", "e61");
             EjemplarEnPrestamoDato eep7 = new EjemplarEnPrestamoDato("p4", "e52");
 
+            BD.DELETE<string, PersonalBibliotecaDato>(per1.Id, "PersonalBibliotecaDato");
+            BD.DELETE<string, PersonalBibliotecaDato>(per2.Id, "PersonalBibliotecaDato");
+            BD.DELETE<string, PersonalBibliotecaDato>(per3.Id, "PersonalBibliotecaDato");
+
+            BD.DELETE<string, UsuarioDato>(u1.Id, "UsuarioDato");
+            BD.DELETE<string, UsuarioDato>(u2.Id, "UsuarioDato");
+            BD.DELETE<string, UsuarioDato>(u3.Id, "UsuarioDato");
+            BD.DELETE<string, UsuarioDato>(u4.Id, "UsuarioDato");
+
+            BD.DELETE<string, LibroDato>(l1.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l2.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l3.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l4.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l5.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l6.Isbn, "LibroDato");
+
+            BD.DELETE<string, EjemplarDato>(e1.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e2.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e3.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e4.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e5.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e6.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e7.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e8.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e9.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e10.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e11.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e12.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e13.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e14.Codigo, "EjemplarDato");
+
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep1.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep2.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep3.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep4.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep5.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep6.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep7.Id, "EjemplarEnPrestamoDato");
+
+            BD.DELETE<string, PrestamoDato>(p1.Codigo, "PrestamoDato");
+            BD.DELETE<string, PrestamoDato>(p2.Codigo, "PrestamoDato");
+            BD.DELETE<string, PrestamoDato>(p3.Codigo, "PrestamoDato");
+            BD.DELETE<string, PrestamoDato>(p4.Codigo, "PrestamoDato");
+            BD.DELETE<string, PrestamoDato>(p5.Codigo, "PrestamoDato");
+            BD.DELETE<string, PrestamoDato>(p6.Codigo, "PrestamoDato");
 
             BD.CREATE<string, PersonalBibliotecaDato>(per1);
             BD.CREATE<string, PersonalBibliotecaDato>(per2);
