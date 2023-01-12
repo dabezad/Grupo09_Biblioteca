@@ -154,6 +154,12 @@
     <Compile Include="FormListadoUsu.Designer.cs">
       <DependentUpon>FormListadoUsu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormListPrest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListPrest.Designer.cs">
+      <DependentUpon>FormListPrest.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormListPrestEnProc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormListadoUsu.resx">
       <DependentUpon>FormListadoUsu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListPrest.resx">
+      <DependentUpon>FormListPrest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPrestEnProc.resx">
       <DependentUpon>FormListPrestEnProc.cs</DependentUpon>

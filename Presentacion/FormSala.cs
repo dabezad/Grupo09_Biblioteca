@@ -160,7 +160,8 @@ namespace Presentacion
 
         private void TsmiPrestAct_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormListPrestEnProc fListado = new FormListPrestEnProc(lnSala.ObtenerPrestamosEnProceso());
+            fListado.Show();
         }
 
         private void TsmiEjNoDev_Click(object sender, EventArgs e)
@@ -285,7 +286,7 @@ namespace Presentacion
 
         private void TsmiListado_Click(object sender, EventArgs e)
         {
-            FormListPrestEnProc fListado = new FormListPrestEnProc(lnSala);
+            FormListPrest fListado = new FormListPrest(lnSala.MostrarPrestamos());
             fListado.Show();
         }
 

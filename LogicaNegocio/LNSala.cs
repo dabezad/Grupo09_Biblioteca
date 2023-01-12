@@ -196,5 +196,10 @@ namespace LogicaNegocio
             }
             return resultado;
         }
+
+        public List<Prestamo> MostrarPrestamos()
+        {
+            return gbd.RecorrerPrestamos();
+        }
     }
 }

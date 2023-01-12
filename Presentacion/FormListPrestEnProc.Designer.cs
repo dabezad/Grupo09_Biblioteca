@@ -38,27 +38,26 @@
             // dgPrestEnProceso
             // 
             this.dgPrestEnProceso.AllowUserToDeleteRows = false;
-            this.dgPrestEnProceso.AutoGenerateColumns = false;
+            this.dgPrestEnProceso.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgPrestEnProceso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPrestEnProceso.DataSource = this.bsDatos;
-            this.dgPrestEnProceso.Location = new System.Drawing.Point(12, 12);
+            this.dgPrestEnProceso.Location = new System.Drawing.Point(9, 10);
+            this.dgPrestEnProceso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgPrestEnProceso.Name = "dgPrestEnProceso";
-            this.dgPrestEnProceso.RowHeadersWidth = 51;
+            this.dgPrestEnProceso.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgPrestEnProceso.RowTemplate.Height = 24;
-            this.dgPrestEnProceso.Size = new System.Drawing.Size(776, 147);
+            this.dgPrestEnProceso.RowTemplate.ReadOnly = true;
+            this.dgPrestEnProceso.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPrestEnProceso.Size = new System.Drawing.Size(704, 311);
             this.dgPrestEnProceso.TabIndex = 0;
-            // 
-            // bsDatos
-            // 
-            this.bsDatos.DataSource = typeof(LogicaNegocio.LNBiblioteca);
             // 
             // FormListPrestEnProc
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(965, 366);
             this.Controls.Add(this.dgPrestEnProceso);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormListPrestEnProc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de préstamos en proceso";

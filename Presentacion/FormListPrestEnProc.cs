@@ -14,25 +14,58 @@ namespace Presentacion
 {
     public partial class FormListPrestEnProc : Form
     {
-        private LNSala lnSala;
+        private List<Prestamo> prestamos;
         public FormListPrestEnProc()
         {
             InitializeComponent();
         }
 
-        public FormListPrestEnProc(LNSala lnS)
+        public FormListPrestEnProc(List<Prestamo> prestamos)
         {
-            this.lnSala = lnS;
+            this.prestamos = prestamos;
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Carga en el DataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormListPrestEnProc_Load(object sender, EventArgs e)
         {
-            List<Prestamo> prestamos = lnSala.ObtenerPrestamosEnProceso();
-            BindingSource bdatos = new BindingSource();
 
-            this.bsDatos = bdatos;
-            this.bsDatos.DataSource = prestamos;
+            int n = 0;
+            int i = 0;
+            DataGridViewColumn codP = new DataGridViewTextBoxColumn();
+            codP.HeaderText = "Código de préstamo";
+            DataGridViewColumn dniU = new DataGridViewTextBoxColumn();
+            dniU.HeaderText = "DNI de usuario";
+            DataGridViewColumn fRealizado = new DataGridViewTextBoxColumn();
+            fRealizado.HeaderText = "Fecha de préstamo";
+            DataGridViewColumn fFin= new DataGridViewTextBoxColumn();
+            fFin.HeaderText = "Fecha de fin de préstamo";
+            //DataGridViewColumn ejemplares = new DataGridViewComboBoxColumn();
+            //ejemplares.HeaderText = "Ejemplares del préstamo";
+            DataGridViewColumn nomPerAlta = new DataGridViewTextBoxColumn();
+            nomPerAlta.HeaderText = "Nombre de personal de alta";
+            this.dgPrestEnProceso.Columns.Add(codP);
+            this.dgPrestEnProceso.Columns.Add(dniU);
+            this.dgPrestEnProceso.Columns.Add(fRealizado);
+            this.dgPrestEnProceso.Columns.Add(fFin);
+            //this.dgPrestEnProceso.Columns.Add(ejemplares);
+            this.dgPrestEnProceso.Columns.Add(nomPerAlta);
+
+            foreach (Prestamo prestamo in prestamos)
+            {
+                this.dgPrestEnProceso.Rows.Add();
+                this.dgPrestEnProceso[0, n].Value = prestamo.Codigo;
+                this.dgPrestEnProceso[1, n].Value = prestamo.Usuario.Dni;
+                this.dgPrestEnProceso[2, n].Value = prestamo.FRealizado;
+                this.dgPrestEnProceso[3, n].Value = prestamo.FFinPrestamo;
+                this.dgPrestEnProceso[4, n].Value = prestamo.PersonalBAlta.Nombre;
+                n++;
+            }
+
+            
         }
     }
 }
