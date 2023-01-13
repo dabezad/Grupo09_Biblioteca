@@ -24,6 +24,12 @@ namespace Presentacion
             this.prestamos = prestamosBD;
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Muestra el formulario con la lista de prestamos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         /// <summary>
         /// Carga en el DataGridView todos los préstamos de la BD, si no existen muestra un mensaje por pantalla y muestra el datagridview vacío
         /// </summary>

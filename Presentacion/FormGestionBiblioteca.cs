@@ -32,7 +32,11 @@ namespace Presentacion
         }
 
 
-
+        /// <summary>
+        /// Muestra el formulario de alta de usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiAltaUsu_Click(object sender, EventArgs e)
         {
             FormClave formDNI = new FormClave();
@@ -67,6 +71,10 @@ namespace Presentacion
             formDNI.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulario de alta usuario y le da caracteristicas especificas
+        /// </summary>
+        /// <param name="dni"></param>
         private void MostrarFormAltaUsu(string dni)
         {
             CtrlDatosUsu control = new CtrlDatosUsu(100, 100);
@@ -107,6 +115,11 @@ namespace Presentacion
             formAltaUsu.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulario de baja de usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiBajaUsu_Click(object sender, EventArgs e)
         {
             FormClave formDNI = new FormClave();
@@ -140,6 +153,10 @@ namespace Presentacion
             formDNI.Dispose();
         }
 
+        /// <summary>
+        /// Le da caracterisiticas especificas al formulario de baja de usuario
+        /// </summary>
+        /// <param name="u"></param>
         private void MostrarFormBajaUsu(Usuario u)
         {
             CtrlDatosUsu control = new CtrlDatosUsu(100, 100);
@@ -175,6 +192,11 @@ namespace Presentacion
             formBajaUsu.Dispose();
         }
 
+        /// <summary>
+        /// Devuelve el formulario de busqueda de usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiBusqUsu_Click(object sender, EventArgs e)
         {
             FormClave formDNI = new FormClave();
@@ -208,6 +230,10 @@ namespace Presentacion
             formDNI.Dispose();
         }
 
+        /// <summary>
+        /// Le da las caracterisiticas necesarias al formulario de busqueda de usuarios
+        /// </summary>
+        /// <param name="u"></param>
         private void MostrarFormBusqUsu(Usuario u)
         {
             CtrlDatosUsu control = new CtrlDatosUsu(100, 100);
@@ -233,6 +259,10 @@ namespace Presentacion
             formBusqUsu.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulario personal 
+        /// </summary>
+        /// <param name="pers"></param>
         protected void MostrarFormPersAlta(PersonalBiblioteca pers)
         {
             FormDatos formPers = new FormDatos();
@@ -253,6 +283,11 @@ namespace Presentacion
 
         }
 
+        /// <summary>
+        /// Muestra el formulario para prestar ejemplares
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiEjPrest_Click(object sender, EventArgs e)
         {
             FormClave formDNI = new FormClave();
@@ -286,6 +321,10 @@ namespace Presentacion
             formDNI.Dispose();
         }
 
+        /// <summary>
+        /// Muestra los ejemplares prestados a un usaurio
+        /// </summary>
+        /// <param name="u"></param>
         private void MostrarEjsPrestados(Usuario u)
         {
             List<Ejemplar> ejemplares = lnB.MostrarEjemplaresPrestados(u);
@@ -328,6 +367,10 @@ namespace Presentacion
             }
         }
 
+        /// <summary>
+        /// carga los datos de un ejemplar en el formulario
+        /// </summary>
+        /// <param name="fRecorrido"></param>
         private void PonerDatosEjemplar(FormNavig fRecorrido)
         {
             
@@ -342,6 +385,11 @@ namespace Presentacion
             }
         }
 
+        /// <summary>
+        /// Muestrael formulario con los prestamos caducados respecto a un usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiPrestCad_Click(object sender, EventArgs e)
         {
             FormClave formDNI = new FormClave();
@@ -375,6 +423,10 @@ namespace Presentacion
             formDNI.Dispose();
         }
 
+        /// <summary>
+        /// Muestra prestamos caducados de un usuario
+        /// </summary>
+        /// <param name="u"></param>
         private void MostrarPrestCaducados(Usuario u)
         {
             List<Prestamo> prestamos = lnB.MostrarPrestamosCaducados(u);
@@ -417,6 +469,10 @@ namespace Presentacion
             }
         }
 
+        /// <summary>
+        /// carga los datos de frecorrdido en el formualrio
+        /// </summary>
+        /// <param name="fRecorrido"></param>
         private void PonerDatos(FormNavig fRecorrido)
         {
             if (Int32.Parse(fRecorrido.PsItem.Text) > 0)
@@ -435,6 +491,11 @@ namespace Presentacion
             
         }
 
+        /// <summary>
+        /// Muestra el listado de usuarios
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiListado_Click(object sender, EventArgs e)
         {
             FormListadoUsu FListado = new FormListadoUsu(lnB);
@@ -446,6 +507,11 @@ namespace Presentacion
             FListado.Dispose();
         }
 
+        /// <summary>
+        /// Busca por dni un usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void búsquedaPorDNIToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<string> dnis = lnB.MostrarUsuarios().Select(x => x.Dni).ToList();
@@ -462,6 +528,12 @@ namespace Presentacion
             FBusq.Show();
         }
 
+        /// <summary>
+        /// Cambia el nombre de un usuario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="form"></param>
         private void CambiarNombreUsu(object sender, EventArgs e, FormBusqPorClave form)
         {
             CtrlDatosUsu control = (CtrlDatosUsu) form.Controls["CtrlAltaUsu"];
@@ -475,6 +547,11 @@ namespace Presentacion
        
         }
 
+        /// <summary>
+        /// recorre una lista con todos los usuarios
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiRecorrido_Click(object sender, EventArgs e)
         {
             FormNavig fRecorrido = new FormNavig();
@@ -511,6 +588,11 @@ namespace Presentacion
             fRecorrido.Dispose();
         }
 
+        /// <summary>
+        /// Cierra la sesión y muestra el formulario inicial
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiCerrarSes_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Retry;

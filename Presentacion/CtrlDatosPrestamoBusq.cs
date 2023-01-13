@@ -51,6 +51,11 @@ namespace Presentacion
             get { return this.tbEstado; }
         }
 
+        /// <summary>
+        /// Muestra un formulario para el recorrido de los ejemplares
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btejemplares_Click(object sender, EventArgs e)
         {
             if (ejemplares.Count > 0)
@@ -85,6 +90,10 @@ namespace Presentacion
 
         }
 
+        /// <summary>
+        /// Carga en el formulario los datos del ejemplar
+        /// </summary>
+        /// <param name="listadoEjemplares"></param>
         private void PonerDatosEjemplar(FormNavig listadoEjemplares)
         {
             if (listadoEjemplares.BnDatos.BindingSource != null)

@@ -44,6 +44,11 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Actualiza el textbox si el titulo cambió
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbTitulo_TextChanged(object sender, EventArgs e)
         {
             Size size = TextRenderer.MeasureText(tbTitulo.Text, tbTitulo.Font);
@@ -51,6 +56,11 @@ namespace Presentacion
             tbTitulo.Height = size.Height;
         }
 
+        /// <summary>
+        /// Actualiza el textbox si el autor ha cambiado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbAutor_TextChanged(object sender, EventArgs e)
         {
             Size size = TextRenderer.MeasureText(tbAutor.Text, tbAutor.Font);
