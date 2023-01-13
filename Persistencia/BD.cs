@@ -222,7 +222,7 @@ namespace Persistencia
         /// <returns>True si ha podido insertar el elemento en la BD y falso en caso contrario o si el elemento a insertar es nulo</returns>
         public static bool CREATE<T, U>(U u) where U : Entity<T>
         {
-            if (u == null)
+            if (u.Equals(null))
             {
                 return false;
             }
@@ -277,7 +277,7 @@ namespace Persistencia
         /// <returns>El elemento en la BD cuya clave se corresponde con la pasada por parámetro</returns>
         public static object READ<T, U>(T t, string tabla) where U : Entity<T>
         {
-            if (t == null) return null;
+            if (t.Equals(null)) return null;
             object x = null;
             switch (tabla)
             {
@@ -328,7 +328,7 @@ namespace Persistencia
         public static bool UPDATE<T, U>(U u) where U : Entity<T>
         {
             bool b = false;
-            if (u == null)
+            if (u.Equals(null))
             {
                 b = false;
             }
@@ -401,7 +401,7 @@ namespace Persistencia
                 case "UsuarioDato":
                     foreach (PrestamoDato pd in BD.TPrestamo.ToList())
                     {
-                        if (pd.Usuario==t as string)
+                        if (pd.Usuario.Equals(t as string))
                         {
                             BD.TPrestamo.Remove(pd.Codigo);
                         }                       
@@ -413,7 +413,7 @@ namespace Persistencia
                 case "PrestamoDato":
                     foreach (EjemplarEnPrestamoDato elem in BD.TEEP.ToList())
                     {
-                        if (elem.Id.CodPres == t as string)
+                        if (elem.Id.CodPres.Equals(t as string))
                         {
                             BD.TEEP.Remove(elem.Id);
                         }
@@ -422,7 +422,7 @@ namespace Persistencia
                 case "EjemplarDato":
                     string codEj = t as string;
                     Ejemplar e = BD.READ<string, EjemplarDato>(codEj, "EjemplarDato") as Ejemplar;
-                        var l = BD.TEEP.ToList().Where((eep) => eep.CodEjemplar == codEj);
+                        var l = BD.TEEP.ToList().Where((eep) => eep.CodEjemplar.Equals(codEj));
                         List<EjemplarEnPrestamoDato> listEEP = new List<EjemplarEnPrestamoDato>(l); //EEPs del ejemplar
                         foreach (EjemplarEnPrestamoDato eep in listEEP)
                         {
@@ -430,7 +430,7 @@ namespace Persistencia
                         }
                         return BD.TEjemplar.Remove(codEj); 
                 case "LibroDato":
-                    var b = BD.TEjemplar.ToList().Exists((ej) => ej.Estado == EstadoEjemplarEnum.Prestado);
+                    var b = BD.TEjemplar.ToList().Exists((ej) => ej.Libro.Equals(t as string) && ej.Estado.Equals(EstadoEjemplarEnum.Prestado));
                     if (b)
                     {
                         return false;
@@ -438,7 +438,7 @@ namespace Persistencia
                     {
                         foreach (EjemplarDato ed in BD.TEjemplar.ToList())
                         {
-                            if (ed.Libro == t as string)
+                            if (ed.Libro.Equals(t as string))
                             {
                                 BD.DELETE<string, EjemplarDato>(ed.Codigo, "EjemplarDato"); //Para cada libro se eliminaran todos sus ejemplares 
                             }

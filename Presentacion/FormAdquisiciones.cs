@@ -398,7 +398,7 @@ namespace Presentacion
                         DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún libro con ese ISBN", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (res == DialogResult.Yes)
                         {
-                            TsmiBusqLib_Click(sender, e);
+                            TsmiEjDisp_Click(sender, e);
                         }
                     }
                 }
@@ -871,7 +871,7 @@ namespace Presentacion
         /// <param name="isbn"></param>
         private void MostrarFormAltaLib(string isbn)
         {
-            CtrlDatosLib control = new CtrlDatosLib(100, 100);
+            CtrlDatosLib control = new CtrlDatosLib(100, 50);
             FormDatos formAltaLib = new FormDatos();
             formAltaLib.Text = "Alta de un libro";
             formAltaLib.LbClave.Text = "ISBN";
@@ -920,7 +920,7 @@ namespace Presentacion
         /// <param name="l"></param>
         private void AniadirEjsDsdLibro(Libro l)
         {
-            CtrlDatosLib control = new CtrlDatosLib(100, 100);
+            CtrlDatosLib control = new CtrlDatosLib(100, 50);
             FormDatos formAltaLib = new FormDatos();
             formAltaLib.Text = "Alta de un libro";
             formAltaLib.LbClave.Text = "ISBN";

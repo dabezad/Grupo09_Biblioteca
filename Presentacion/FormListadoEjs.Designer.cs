@@ -49,6 +49,7 @@
             this.ClientSize = new System.Drawing.Size(793, 573);
             this.Controls.Add(this.dgEjemplares);
             this.Name = "FormListadoEjs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de ejemplares";
             this.Load += new System.EventHandler(this.FormListadoEjs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgEjemplares)).EndInit();

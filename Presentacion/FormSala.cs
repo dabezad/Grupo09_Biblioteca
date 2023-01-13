@@ -391,6 +391,9 @@ namespace Presentacion
                 if (d == DialogResult.Cancel)
                 {
                     fPrestLib.Close();
+                } else
+                {
+                    MostrarListadoPrest(l);
                 }
                 fPrestLib.Dispose();
             } else
