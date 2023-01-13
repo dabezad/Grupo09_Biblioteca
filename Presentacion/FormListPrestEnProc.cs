@@ -67,7 +67,6 @@ namespace Presentacion
                     this.dgPrestEnProceso[5, n].Value = prestamo.PersonalBAlta.Nombre;
                     n++;
                 }
-            }
             
 
             
