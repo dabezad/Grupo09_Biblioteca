@@ -75,15 +75,7 @@ namespace LogicaNegocio
             return gbd.EliminarEjemplar(id);
         }
 
-        /// <summary>
-        /// Busca un libro respecto a su isbn
-        /// </summary>
-        /// <param name="isbn"></param>
-        /// <returns>devuelve el libro con el isbn dado</returns>
-        public Libro BuscarLibro(string isbn)
-        {
-            return gbd.BuscarLibro(isbn);
-        }
+        
 
         /// <summary>
         /// busca el ejemplar respecto a un codigo
