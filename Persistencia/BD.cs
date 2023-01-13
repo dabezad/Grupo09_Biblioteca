@@ -68,6 +68,7 @@ namespace Persistencia
             LibroDato l4 = new LibroDato("3355", "1984", "George Orwell", "Planeta", "Pepa");
             LibroDato l5 = new LibroDato("6565", "Hamlet", "William Shakespeare", "Valdemar", "Pepa");
             LibroDato l6 = new LibroDato("7769", "Viaje al centro de la tierra", "Julio Verne", "Urano", "Pepa");
+            LibroDato l7 = new LibroDato("7777", "El libro troll", "ElRubiusOMG", "Santillán", "Pepa");
             
             EjemplarDato e1 = new EjemplarDato("e11", EstadoEjemplarEnum.Prestado, "1111", "Pepa");
             EjemplarDato e2 = new EjemplarDato("e12", EstadoEjemplarEnum.Disponible, "1111", "Pepa"); 
@@ -83,6 +84,9 @@ namespace Persistencia
             EjemplarDato e12 = new EjemplarDato("e62", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
             EjemplarDato e13 = new EjemplarDato("e63", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
             EjemplarDato e14 = new EjemplarDato("e52", EstadoEjemplarEnum.Prestado, "6565", "Pepa");
+            EjemplarDato e15 = new EjemplarDato("e71", EstadoEjemplarEnum.Prestado, "7777", "Pepa");
+            EjemplarDato e16 = new EjemplarDato("e72", EstadoEjemplarEnum.Prestado, "7777", "Pepa");
+            EjemplarDato e17 = new EjemplarDato("e73", EstadoEjemplarEnum.Disponible, "7777", "Pepa");
 
             PrestamoDato p1 = new PrestamoDato("p1", "11111111A", DateTime.Now, DateTime.Now.AddDays(15), EstadoEnum.EnProceso, "Jose");
             PrestamoDato p2 = new PrestamoDato("p2", "33333333C", DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-5), EstadoEnum.EnProceso, "Jose");
@@ -98,6 +102,8 @@ namespace Persistencia
             EjemplarEnPrestamoDato eep5 = new EjemplarEnPrestamoDato("p2", "e51");
             EjemplarEnPrestamoDato eep6 = new EjemplarEnPrestamoDato("p3", "e61");
             EjemplarEnPrestamoDato eep7 = new EjemplarEnPrestamoDato("p4", "e52");
+            EjemplarEnPrestamoDato eep8 = new EjemplarEnPrestamoDato("p4", "e71");
+            EjemplarEnPrestamoDato eep9 = new EjemplarEnPrestamoDato("p1", "e72");
 
             BD.DELETE<string, PersonalBibliotecaDato>(per1.Id, "PersonalBibliotecaDato");
             BD.DELETE<string, PersonalBibliotecaDato>(per2.Id, "PersonalBibliotecaDato");
@@ -114,6 +120,7 @@ namespace Persistencia
             BD.DELETE<string, LibroDato>(l4.Isbn, "LibroDato");
             BD.DELETE<string, LibroDato>(l5.Isbn, "LibroDato");
             BD.DELETE<string, LibroDato>(l6.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l7.Isbn, "LibroDato");
 
             BD.DELETE<string, EjemplarDato>(e1.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e2.Codigo, "EjemplarDato");
@@ -129,6 +136,9 @@ namespace Persistencia
             BD.DELETE<string, EjemplarDato>(e12.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e13.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e14.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e15.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e16.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e17.Codigo, "EjemplarDato");
 
             BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep1.Id, "EjemplarEnPrestamoDato");
             BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep2.Id, "EjemplarEnPrestamoDato");
@@ -137,6 +147,8 @@ namespace Persistencia
             BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep5.Id, "EjemplarEnPrestamoDato");
             BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep6.Id, "EjemplarEnPrestamoDato");
             BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep7.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep8.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep9.Id, "EjemplarEnPrestamoDato");
 
             BD.DELETE<string, PrestamoDato>(p1.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p2.Codigo, "PrestamoDato");
@@ -160,7 +172,8 @@ namespace Persistencia
             BD.CREATE<string, LibroDato>(l4);
             BD.CREATE<string, LibroDato>(l5);
             BD.CREATE<string, LibroDato>(l6);
-            
+            BD.CREATE<string, LibroDato>(l7);
+
             BD.CREATE<string, EjemplarDato>(e1);
             BD.CREATE<string, EjemplarDato>(e2);
             BD.CREATE<string, EjemplarDato>(e3);
@@ -175,6 +188,9 @@ namespace Persistencia
             BD.CREATE<string, EjemplarDato>(e12);
             BD.CREATE<string, EjemplarDato>(e13);
             BD.CREATE<string, EjemplarDato>(e14);
+            BD.CREATE<string, EjemplarDato>(e15);
+            BD.CREATE<string, EjemplarDato>(e16);
+            BD.CREATE<string, EjemplarDato>(e17);
 
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
@@ -183,6 +199,8 @@ namespace Persistencia
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep5);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep6);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep7);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep8);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep9);
 
             BD.CREATE<string, PrestamoDato>(p1);
             BD.CREATE<string, PrestamoDato>(p2);

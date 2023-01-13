@@ -132,5 +132,11 @@ namespace LogicaNegocio
             Libro masLeido = gbd.RecorrerLibros().Where((lib) => l2.Libro.Isbn == lib.Isbn).First();
             return masLeido;
         }
+
+        public int MostrarVecesLibroMasLeido()
+        {
+            var l = gbd.RecorrerEEP().Max(eep => eep.CodEj.Distinct().Count());
+            return (int)l;
+        }
     }
 }

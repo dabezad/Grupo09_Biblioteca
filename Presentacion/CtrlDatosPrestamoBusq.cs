@@ -53,27 +53,34 @@ namespace Presentacion
 
         private void btejemplares_Click(object sender, EventArgs e)
         {
-            FormNavig listadoEjemplares = new FormNavig();
-            CtrlDatosUsu controlEj = new CtrlDatosUsu(100, 35);
-            BindingSource datos = new BindingSource();
+            if (ejemplares.Count > 0)
+            {
+                FormNavig listadoEjemplares = new FormNavig();
+                CtrlDatosUsu controlEj = new CtrlDatosUsu(100, 35);
+                BindingSource datos = new BindingSource();
 
-            listadoEjemplares.LbClave.Text = "Código";
-            listadoEjemplares.Text = "Datos de un ejemplar";
+                listadoEjemplares.LbClave.Text = "Código";
+                listadoEjemplares.Text = "Datos de un ejemplar";
 
-            listadoEjemplares.BnDatos.BindingSource = datos;
-            listadoEjemplares.BnDatos.BindingSource.DataSource = ejemplares;
-            Ejemplar ej = (Ejemplar)listadoEjemplares.BnDatos.BindingSource.Current;
-            listadoEjemplares.TbClave.Text = ej.Codigo;
-            listadoEjemplares.TbClave.ReadOnly = true;
-            controlEj.LbNombre.Text = "Estado";
-            controlEj.TbNombre.ReadOnly = true;
-            controlEj.TbNombre.Text = ej.Estado.ToString();
+                listadoEjemplares.BnDatos.BindingSource = datos;
+                listadoEjemplares.BnDatos.BindingSource.DataSource = ejemplares;
+                Ejemplar ej = (Ejemplar)listadoEjemplares.BnDatos.BindingSource.Current;
+                listadoEjemplares.TbClave.Text = ej.Codigo;
+                listadoEjemplares.TbClave.ReadOnly = true;
+                controlEj.LbNombre.Text = "Estado";
+                controlEj.TbNombre.ReadOnly = true;
+                controlEj.TbNombre.Text = ej.Estado.ToString();
 
-            listadoEjemplares.PsItem.TextChanged += (se, eve) => PonerDatosEjemplar(listadoEjemplares);
+                listadoEjemplares.PsItem.TextChanged += (se, eve) => PonerDatosEjemplar(listadoEjemplares);
 
-            listadoEjemplares.Controls.Add(controlEj);
+                listadoEjemplares.Controls.Add(controlEj);
 
-            listadoEjemplares.ShowDialog();
+                listadoEjemplares.ShowDialog();
+            } else
+            {
+                MessageBox.Show("El préstamo no tiene ejemplares prestados actualmente", "Ver ejemplares de préstamo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            
             
 
         }

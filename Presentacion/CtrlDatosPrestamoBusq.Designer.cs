@@ -86,7 +86,7 @@
             this.tbusuario.Margin = new System.Windows.Forms.Padding(4);
             this.tbusuario.Name = "tbusuario";
             this.tbusuario.ReadOnly = true;
-            this.tbusuario.Size = new System.Drawing.Size(132, 22);
+            this.tbusuario.Size = new System.Drawing.Size(150, 22);
             this.tbusuario.TabIndex = 6;
             // 
             // tbfecha
@@ -113,7 +113,7 @@
             this.btejemplares.Location = new System.Drawing.Point(114, 48);
             this.btejemplares.Margin = new System.Windows.Forms.Padding(4);
             this.btejemplares.Name = "btejemplares";
-            this.btejemplares.Size = new System.Drawing.Size(133, 28);
+            this.btejemplares.Size = new System.Drawing.Size(150, 28);
             this.btejemplares.TabIndex = 10;
             this.btejemplares.Text = "Ver ejemplares";
             this.btejemplares.UseVisualStyleBackColor = true;

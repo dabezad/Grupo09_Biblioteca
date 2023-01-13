@@ -301,7 +301,6 @@ namespace Presentacion
             Libro l=lnAdq.MostrarLibroMasLeido();
             FormDatos frm= new FormDatos();
             CtrlDatosLib control = new CtrlDatosLib(100, 50);
-            CtrlDatosUsu controlVeces = new CtrlDatosUsu(350,50);
             frm.Text = "Libro más leído";
             frm.LbClave.Text = "ISBN";
             frm.BtAceptar.Text = "Aceptar";
@@ -313,8 +312,19 @@ namespace Presentacion
             control.TbEditorial.Text = l.Editorial;
             control.TbEditorial.ReadOnly = true;
             control.BtAniadirEj.Hide();
-            controlVeces.LbNombre.Text = "Veces leídas";
-            controlVeces.TbNombre.Text="Yokakin bro haz algo";
+
+            Label lbVecesLeidas = new Label();
+            TextBox tbVecesLeidas = new TextBox();
+
+            lbVecesLeidas.Text = "Veces leídas";
+            lbVecesLeidas.Location = new Point(45, 170);
+            lbVecesLeidas.Width -= 25;
+            tbVecesLeidas.Text = lnAdq.MostrarVecesLibroMasLeido().ToString();
+            tbVecesLeidas.ReadOnly = true;
+            tbVecesLeidas.Location = new Point(117, 167);
+            control.Controls.Add(lbVecesLeidas);
+            control.Controls.Add(tbVecesLeidas);
+
             frm.Controls.Add(control);
             DialogResult dLibLeido = frm.ShowDialog();
             if (dLibLeido == DialogResult.Cancel)
@@ -331,7 +341,8 @@ namespace Presentacion
         /// <param name="e"></param>
         private void TsmiListadoEj_Click(object sender, EventArgs e)
         {
-            //HACERLO CON DATAGRIDVIEW
+            FormListadoEjs listadoEjs = new FormListadoEjs(lnAdq.MostrarEjemplares());
+            listadoEjs.ShowDialog();
         }
 
         /// <summary>

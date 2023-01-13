@@ -55,6 +55,11 @@ namespace LogicaNegocio
             return gbd.RecorrerUsuarios();
         }
 
+        public Libro BuscarLibro(string isbn)
+        {
+            return gbd.BuscarLibro(isbn);
+        }
+
         public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 
         {
             var presJUsu = gbd.RecorrerPrestamos().Where((p) => p.Usuario.Equals(u) && p.Estado == EstadoEnum.EnProceso); //Es necesario crear el objeto EjemplarEnPrestamo para la consulta
