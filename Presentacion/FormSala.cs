@@ -171,14 +171,22 @@ namespace Presentacion
         }
 
         /// <summary>
-        /// Muestra los prestamos activos
+        /// Muestra los prestamos activos o un mensaje indicando que no hay ningún préstamo en proceso en el sistema
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TsmiPrestAct_Click(object sender, EventArgs e)
         {
-            FormListPrestEnProc fListado = new FormListPrestEnProc(lnSala.ObtenerPrestamosEnProceso());
-            fListado.ShowDialog();
+            List<Prestamo> prestamos = lnSala.ObtenerPrestamosEnProceso();
+            if (prestamos.Count > 0)
+            {
+                FormListPrestEnProc fListado = new FormListPrestEnProc(lnSala.ObtenerPrestamosEnProceso());
+                fListado.ShowDialog();
+            } else
+            {
+                MessageBox.Show("No existen préstamos en proceso actualmente", "Listado de préstamos en proceso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         /// <summary>
@@ -318,7 +326,6 @@ namespace Presentacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <exception cref="NotImplementedException"></exception>
         private void TsmiPrestLib_Click(object sender, EventArgs e)
         {
             FormClave formIsbn = new FormClave();
@@ -393,14 +400,22 @@ namespace Presentacion
         }
 
         /// <summary>
-        /// Muestra en un formulario todos los prestamos
+        /// Muestra en un formulario todos los prestamos o un mensaje indicando que no hay ningún préstamo en el sistema
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TsmiListado_Click(object sender, EventArgs e)
         {
-            FormListPrest fListado = new FormListPrest(lnSala.MostrarPrestamos());
-            fListado.ShowDialog();
+            List<Prestamo> prestamos = lnSala.MostrarPrestamos();
+            if (prestamos.Count > 0)
+            {
+                FormListPrest fListado = new FormListPrest(lnSala.MostrarPrestamos());
+                fListado.ShowDialog();
+            } else
+            {
+                MessageBox.Show("No existen préstamos en el sistema actualmente", "Listado de préstamos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         /// <summary>

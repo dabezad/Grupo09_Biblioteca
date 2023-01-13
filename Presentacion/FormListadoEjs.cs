@@ -25,14 +25,12 @@ namespace Presentacion
             InitializeComponent();
         }
         /// <summary>
-        /// Carga en el DataGridView los ejemplares, si no existen muestra un mensaje por pantalla y muestra el datagridview vacío
+        /// Carga en el DataGridView los ejemplares
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FormListadoEjs_Load(object sender, EventArgs e)
         {
-            if (ejemplares.Count > 0)
-            {
                 this.dgEjemplares.BackgroundColor = SystemColors.Control;
                 int n = 0;
                 DataGridViewColumn codEj = new DataGridViewTextBoxColumn();
@@ -57,11 +55,7 @@ namespace Presentacion
                     this.dgEjemplares[3, n].Value = ej.PersonalBAlta.Nombre;
                     n++;
                 }
-            }
-            else
-            {
-                MessageBox.Show("No existen ejemplares en el sistema actualmente", "Listado de ejemplares", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
         }
     }
 }

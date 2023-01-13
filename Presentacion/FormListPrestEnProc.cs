@@ -32,8 +32,6 @@ namespace Presentacion
         /// <param name="e"></param>
         private void FormListPrestEnProc_Load(object sender, EventArgs e)
         {
-            if (prestamos.Count > 0)
-            {
                 this.dgPrestEnProceso.BackgroundColor = SystemColors.Control;
                 int n = 0;
                 DataGridViewColumn codP = new DataGridViewTextBoxColumn();
@@ -69,9 +67,6 @@ namespace Presentacion
                     this.dgPrestEnProceso[5, n].Value = prestamo.PersonalBAlta.Nombre;
                     n++;
                 }
-            } else
-            {
-                MessageBox.Show("No existen préstamos en proceso actualmente", "Listado de préstamos en proceso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             
 

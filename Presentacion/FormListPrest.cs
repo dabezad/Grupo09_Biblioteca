@@ -37,8 +37,7 @@ namespace Presentacion
         /// <param name="e"></param>
         private void FormListPrest_Load(object sender, EventArgs e)
         {
-            if (prestamos.Count() > 0)
-            {
+            
                 this.dgPrestamos.BackgroundColor = SystemColors.Control;
                 int n = 0;
                 DataGridViewColumn codP = new DataGridViewTextBoxColumn();
@@ -78,10 +77,7 @@ namespace Presentacion
                     this.dgPrestamos[6, n].Value = prestamo.PersonalBAlta.Nombre;
                     n++;
                 }
-            } else
-            {
-                MessageBox.Show("No existen préstamos en el sistema actualmente", "Listado de préstamos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            
             
         }
     }

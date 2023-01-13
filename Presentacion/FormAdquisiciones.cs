@@ -335,14 +335,22 @@ namespace Presentacion
         }
 
         /// <summary>
-        /// Muestra un listado con todos los ejemplares
+        /// Muestra un listado con todos los ejemplares o un mensaje indicando que no hay ningún ejemplar en el sistema
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TsmiListadoEj_Click(object sender, EventArgs e)
         {
-            FormListadoEjs listadoEjs = new FormListadoEjs(lnAdq.MostrarEjemplares());
-            listadoEjs.ShowDialog();
+            List<Ejemplar> ejemplares = lnAdq.MostrarEjemplares();
+            if (ejemplares.Count() > 0)
+            {
+                FormListadoEjs listadoEjs = new FormListadoEjs(ejemplares);
+                listadoEjs.ShowDialog();
+            } else
+            {
+                MessageBox.Show("No existen ejemplares en el sistema actualmente", "Listado de ejemplares", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         /// <summary>
