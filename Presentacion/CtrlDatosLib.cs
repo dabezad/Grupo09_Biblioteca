@@ -57,6 +57,11 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Muestra el formulario para añadir ejemplares
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btAniadirEj_Click(object sender, EventArgs e)
         {
             Form f = this.FindForm();
@@ -72,6 +77,11 @@ namespace Presentacion
             }
         }
 
+        /// <summary>
+        /// Actualiza el titulo dentro del textbox cuando este cambia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbTitulo_TextChanged(object sender, EventArgs e)
         {
             Size size = TextRenderer.MeasureText(tbTitulo.Text, tbTitulo.Font);
@@ -79,6 +89,11 @@ namespace Presentacion
             tbTitulo.Height = size.Height;
         }
 
+        /// <summary>
+        /// Actualiza el autor dentro del textbox cuando este cambia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbAutor_TextChanged(object sender, EventArgs e)
         {
             Size size = TextRenderer.MeasureText(tbAutor.Text, tbAutor.Font);

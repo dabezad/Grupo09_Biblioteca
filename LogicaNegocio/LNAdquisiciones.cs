@@ -55,27 +55,51 @@ namespace LogicaNegocio
         {
             return gbd.EliminarLibro(id);
         }
-
+        /// <summary>
+        /// DA de alta un ejemplar en la base de datos
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns>Devuelve ture si el ejemplar se ha dado correctamente de alta, false si no</returns>
         public bool AltaEjemplar(Ejemplar e)
         {
             return gbd.CrearEjemplar(e);
         }
 
+        /// <summary>
+        /// da de baja un ejemplar en la base de datos
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>devuelve true si se ha dado correctamente de baja al ejemplar, false si no</returns>
         public bool BajaEjemplar(string id)
         {
             return gbd.EliminarEjemplar(id);
         }
 
+        /// <summary>
+        /// Busca un libro respecto a su isbn
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <returns>devuelve el libro con el isbn dado</returns>
         public Libro BuscarLibro(string isbn)
         {
             return gbd.BuscarLibro(isbn);
         }
 
+        /// <summary>
+        /// busca el ejemplar respecto a un codigo
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns>busca el ejemplar a un codigo</returns>
         public Ejemplar BuscarEjemplar(string codigo)
         {
             return gbd.BuscarEjemplar(codigo);
         }
 
+        /// <summary>
+        /// devuelve una lista con todos los ejemplares disponibles
+        /// </summary>
+        /// <param name="isbn"></param>
+        /// <returns>devuelve una lista con todos los ejemplares disponibles</returns>
         public List<Ejemplar> EjemplaresDisponibles(string isbn)
         {
             List<Ejemplar> ejemplares = gbd.RecorrerEjemplares();
@@ -95,7 +119,7 @@ namespace LogicaNegocio
         /// </summary>
         /// <param name="p">es no nulo</param>
         /// <returns>Devuelve la fecha de devolucion de un prestamo</returns>
-        public DateTime MostrarFechaDevolucion(Prestamo p) 
+        public DateTime MostrarFechaDevolucion(Prestamo p) //borrar
         {
             return p.FFinPrestamo;
         }
@@ -118,6 +142,10 @@ namespace LogicaNegocio
             return ejemplarDeLibro;
         }
 
+        /// <summary>
+        /// Devuelve el libro más leido de la base de datos
+        /// </summary>
+        /// <returns>Devuelve el libro que ha participado en más prestamos</returns>
         public Libro MostrarLibroMasLeido()
         {
             var l =

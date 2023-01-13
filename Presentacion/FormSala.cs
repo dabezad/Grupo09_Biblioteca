@@ -35,6 +35,9 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Añade los items al formulario con la funcionalidad adecuada
+        /// </summary>
         private void Aniadir_tsmis()
         {
             ToolStripMenuItem tsmiAltaPres = new ToolStripMenuItem("Alta");
@@ -70,6 +73,11 @@ namespace Presentacion
 
         }
 
+        /// <summary>
+        /// Devuelve un ejemplar prestado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiDevEj_Click(object sender, EventArgs e)
         {
             FormClave formISBN = new FormClave();
@@ -114,6 +122,10 @@ namespace Presentacion
             formISBN.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formualrio para la devolucion de un ejemplar
+        /// </summary>
+        /// <param name="e"></param>
         private void MostrarFormDevEj(Ejemplar e)
         {
             Prestamo p = lnSala.ObtenerPrestamoDeEjemplar(e);
@@ -158,12 +170,22 @@ namespace Presentacion
             formDevEj.Dispose();
         }
 
+        /// <summary>
+        /// Muestra los prestamos activos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiPrestAct_Click(object sender, EventArgs e)
         {
             FormListPrestEnProc fListado = new FormListPrestEnProc(lnSala.ObtenerPrestamosEnProceso());
             fListado.Show();
         }
 
+        /// <summary>
+        /// Muestra ejemplares no devueltos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiEjNoDev_Click(object sender, EventArgs e)
         {
             List<Ejemplar> ejemplares = lnSala.VerEjemplaresNoDevueltos();
@@ -201,6 +223,10 @@ namespace Presentacion
             
         }
 
+        /// <summary>
+        /// carga los datos de un ejemplar prestado
+        /// </summary>
+        /// <param name="form"></param>
         private void PonerDatosEjemplarPrestado(FormNavig form)
         {
             if (Int32.Parse(form.PsItem.Text) > 0)
@@ -216,6 +242,11 @@ namespace Presentacion
 
         }
 
+        /// <summary>
+        /// Muestra en un formulario los prestamos pasados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiPrestPasad_Click(object sender, EventArgs e)
         {
             List<Prestamo> prestamos = lnSala.ObtenerPrestamosEnProcesoPasados();
@@ -261,6 +292,10 @@ namespace Presentacion
             }
         }
 
+        /// <summary>
+        /// carga en el formulario los datos de un prestamo
+        /// </summary>
+        /// <param name="fPrestCad"></param>
         private void PonerDatosPrestamo(FormNavig fPrestCad)
         {
             if (Int32.Parse(fPrestCad.PsItem.Text) > 0)
@@ -277,19 +312,35 @@ namespace Presentacion
                 fPrestCad.Controls.Add(controlNuevo);
             }
         }
-
+        
+        /// <summary>
+        /// muestra los prestamos de un libro
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="NotImplementedException"></exception>
         private void TsmiPrestLib_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
 
+        /// <summary>
+        /// Muestra en un formulario todos los prestamos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiListado_Click(object sender, EventArgs e)
         {
             FormListPrest fListado = new FormListPrest(lnSala.MostrarPrestamos());
             fListado.Show();
         }
 
+        /// <summary>
+        /// abre el formulario de busqueda de prestamo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiBusqPres_Click(object sender, EventArgs e)
         {
             FormClave formClave = new FormClave();
@@ -322,6 +373,11 @@ namespace Presentacion
             }
             formClave.Dispose();
         }
+
+        /// <summary>
+        /// carga los datos que debe tener el formulario de busqueda de prestamos
+        /// </summary>
+        /// <param name="p"></param>
         private void MostrarFormBusqPres(Prestamo p)
         {
             CtrlDatosPrestamoBusq control = new CtrlDatosPrestamoBusq(100, 100, lnSala.ObtenerEjemplaresDePrestamo(p.Codigo));
@@ -353,6 +409,11 @@ namespace Presentacion
             formBusqPres.Dispose();
         }
 
+        /// <summary>
+        /// Da de baja un prestamo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiBajaPres_Click(object sender, EventArgs e)
         {
             FormClave formCodP = new FormClave();
@@ -386,6 +447,10 @@ namespace Presentacion
             formCodP.Dispose();
         }
 
+        /// <summary>
+        /// Muestra el formulario de baja de prestamo
+        /// </summary>
+        /// <param name="p"></param>
         private void MostrarFormBajaPres(Prestamo p)
         {
             CtrlDatosPrestamo control = new CtrlDatosPrestamo(100, 100);
@@ -496,6 +561,10 @@ namespace Presentacion
             formBajaPres.Dispose();
         }
 
+        /// <summary>
+        /// Carga los datos de un prestamo en el formulario
+        /// </summary>
+        /// <param name="listaEjs"></param>
         private void PonerDatos(FormNavig listaEjs)
         {
             if(Int32.Parse(listaEjs.PsItem.Text) > 0)
@@ -561,6 +630,10 @@ namespace Presentacion
             fAltaPres.Dispose();
         }
 
+        /// <summary>
+        /// Añade los ejejmplares al prestamo dado
+        /// </summary>
+        /// <param name="p"></param>
         private void AniadirEjsAPres(Prestamo p)
         {
             CtrlDatosPrestamo control = new CtrlDatosPrestamo(100, 100);
@@ -634,6 +707,11 @@ namespace Presentacion
             fAltaPres.Dispose();
         }
 
+        /// <summary>
+        /// Añade un ejemplar
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns>Devuelve el ejemplar</returns>
         private Ejemplar AniadirEjs(Prestamo p)
         {
             CtrlDatosUsu control = new CtrlDatosUsu(100, 100); //Se reutiliza el control de usuario, cambiandole
@@ -690,6 +768,11 @@ namespace Presentacion
         
         }                                                       
 
+        /// <summary>
+        /// Abre el formulario de alta de prestamo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsmiAltaPres_Click(object sender, EventArgs e)
         {
             FormClave formCodP = new FormClave();

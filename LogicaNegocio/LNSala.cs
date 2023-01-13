@@ -53,11 +53,11 @@ namespace LogicaNegocio
             return gbd.ActualizarPrestamo(prestamo);
         }
         
-        public Usuario VerInformacionUsuario(Prestamo prestamo)
+        public Usuario VerInformacionUsuario(Prestamo prestamo)//borrar
         {
             return prestamo.Usuario;
         }
-        public Enum VerEstadoPrestamo(Prestamo prestamo)
+        public Enum VerEstadoPrestamo(Prestamo prestamo)//borrar
         {
             return prestamo.Estado;
         }
@@ -180,6 +180,7 @@ namespace LogicaNegocio
                 select libros;
             return new List<Libro>(l);
         }
+
         /// <summary>
         /// Obtiene todos los préstamos de la BD que todavía se encuentren en proceso
         /// </summary>
@@ -197,6 +198,10 @@ namespace LogicaNegocio
             return resultado;
         }
 
+        /// <summary>
+        /// Devuelve una lista con los prestamos
+        /// </summary>
+        /// <returns>Devuelve una lista con los prestamos</returns>
         public List<Prestamo> MostrarPrestamos()
         {
             return gbd.RecorrerPrestamos();

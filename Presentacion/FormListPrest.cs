@@ -21,6 +21,11 @@ namespace Presentacion
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Muestra el formulario con la lista de prestamos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormListPrest_Load(object sender, EventArgs e)
         {
  
