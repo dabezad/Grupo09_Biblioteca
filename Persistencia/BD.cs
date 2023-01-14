@@ -15,6 +15,7 @@ namespace Persistencia
         private static Tabla<string, PrestamoDato> tPrestamo = new Tabla<string, PrestamoDato>();
         private static Tabla<string, PersonalBibliotecaDato> tPersonalBiblioteca = new Tabla<string, PersonalBibliotecaDato>();
         private static Tabla<ClaveEEP, EjemplarEnPrestamoDato> tEjemplarEnPrestamo = new Tabla<ClaveEEP, EjemplarEnPrestamoDato>();
+        private static Tabla<ClavePMP, PersonalModificaPrestamoDato> tPersonalModificaPrestamo = new Tabla<ClavePMP, PersonalModificaPrestamoDato>();
 
         private BD()
         {
@@ -47,6 +48,11 @@ namespace Persistencia
 
         public static Tabla<ClaveEEP, EjemplarEnPrestamoDato> TEEP { 
             get { return tEjemplarEnPrestamo; }
+        }
+
+        public static Tabla<ClavePMP, PersonalModificaPrestamoDato> TPMP
+        {
+            get { return tPersonalModificaPrestamo; }
         }
         /// <summary>
         /// Carga en la BD los datos iniciales
@@ -241,11 +247,15 @@ namespace Persistencia
 
                 BD.TPersonalBiblioteca.Add(u as PersonalBibliotecaDato);
                 return true;
-            }//en caso de no funcionar añadir 3 if con los distintos personales
+            }
             else if (u is EjemplarEnPrestamoDato)
             {
                 BD.tEjemplarEnPrestamo.Add(u as EjemplarEnPrestamoDato);
                 return true;
+            }
+            else if(u is PersonalModificaPrestamoDato)
+            {
+                BD.tPersonalModificaPrestamo.Add(u as PersonalModificaPrestamoDato);
             }
             return false;
         }
