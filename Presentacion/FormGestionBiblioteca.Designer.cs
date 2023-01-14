@@ -43,6 +43,7 @@
             this.tsmiPrestamos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConfiguracion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCerrarSes = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.msPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,7 +155,8 @@
             // tsmiConfiguracion
             // 
             this.tsmiConfiguracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCerrarSes});
+            this.tsmiCerrarSes,
+            this.tsmiSalir});
             this.tsmiConfiguracion.Name = "tsmiConfiguracion";
             this.tsmiConfiguracion.Size = new System.Drawing.Size(116, 24);
             this.tsmiConfiguracion.Text = "Configuración";
@@ -165,6 +167,13 @@
             this.tsmiCerrarSes.Size = new System.Drawing.Size(224, 26);
             this.tsmiCerrarSes.Text = "Cerrar sesión";
             this.tsmiCerrarSes.Click += new System.EventHandler(this.tsmiCerrarSes_Click);
+            // 
+            // tsmiSalir
+            // 
+            this.tsmiSalir.Name = "tsmiSalir";
+            this.tsmiSalir.Size = new System.Drawing.Size(224, 26);
+            this.tsmiSalir.Text = "Salir";
+            this.tsmiSalir.Click += new System.EventHandler(this.tsmiSalir_Click);
             // 
             // FormGestionBiblioteca
             // 
@@ -200,6 +209,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiPrestCad;
         private System.Windows.Forms.ToolStripMenuItem búsquedaPorDNIToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiRecorrido;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSalir;
     }
 }
 

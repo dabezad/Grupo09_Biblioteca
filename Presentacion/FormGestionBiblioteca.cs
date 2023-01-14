@@ -313,7 +313,7 @@ namespace Presentacion
                         DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún usuario con ese DNI", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (res == DialogResult.Yes)
                         {
-                            tsmiBajaUsu_Click(sender, e);
+                            tsmiEjPrest_Click(sender, e);
                         }
                     }
                 }
@@ -415,7 +415,7 @@ namespace Presentacion
                         DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún usuario con ese DNI", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (res == DialogResult.Yes)
                         {
-                            tsmiBajaUsu_Click(sender, e);
+                            tsmiPrestCad_Click(sender, e);
                         }
                     }
                 }
@@ -595,8 +595,12 @@ namespace Presentacion
         /// <param name="e"></param>
         private void tsmiCerrarSes_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Retry;
+            this.DialogResult = DialogResult.Abort;
+        }
 
+        private void tsmiSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

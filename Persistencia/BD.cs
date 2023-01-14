@@ -114,14 +114,6 @@ namespace Persistencia
             BD.DELETE<string, UsuarioDato>(u3.Id, "UsuarioDato");
             BD.DELETE<string, UsuarioDato>(u4.Id, "UsuarioDato");
 
-            BD.DELETE<string, LibroDato>(l1.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l2.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l3.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l4.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l5.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l6.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l7.Isbn, "LibroDato");
-
             BD.DELETE<string, EjemplarDato>(e1.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e2.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e3.Codigo, "EjemplarDato");
@@ -140,22 +132,20 @@ namespace Persistencia
             BD.DELETE<string, EjemplarDato>(e16.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e17.Codigo, "EjemplarDato");
 
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep1.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep2.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep3.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep4.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep5.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep6.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep7.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep8.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep9.Id, "EjemplarEnPrestamoDato");
-
             BD.DELETE<string, PrestamoDato>(p1.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p2.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p3.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p4.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p5.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p6.Codigo, "PrestamoDato");
+
+            BD.DELETE<string, LibroDato>(l1.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l2.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l3.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l4.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l5.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l6.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l7.Isbn, "LibroDato");
 
             BD.CREATE<string, PersonalBibliotecaDato>(per1);
             BD.CREATE<string, PersonalBibliotecaDato>(per2);
@@ -165,7 +155,7 @@ namespace Persistencia
             BD.CREATE<string, UsuarioDato>(u2);
             BD.CREATE<string, UsuarioDato>(u3);
             BD.CREATE<string, UsuarioDato>(u4);
-            
+
             BD.CREATE<string, LibroDato>(l1);
             BD.CREATE<string, LibroDato>(l2);
             BD.CREATE<string, LibroDato>(l3);
@@ -173,6 +163,13 @@ namespace Persistencia
             BD.CREATE<string, LibroDato>(l5);
             BD.CREATE<string, LibroDato>(l6);
             BD.CREATE<string, LibroDato>(l7);
+
+            BD.CREATE<string, PrestamoDato>(p1);
+            BD.CREATE<string, PrestamoDato>(p2);
+            BD.CREATE<string, PrestamoDato>(p3);
+            BD.CREATE<string, PrestamoDato>(p4);
+            BD.CREATE<string, PrestamoDato>(p5);
+            BD.CREATE<string, PrestamoDato>(p6);
 
             BD.CREATE<string, EjemplarDato>(e1);
             BD.CREATE<string, EjemplarDato>(e2);
@@ -202,13 +199,9 @@ namespace Persistencia
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep8);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep9);
 
-            BD.CREATE<string, PrestamoDato>(p1);
-            BD.CREATE<string, PrestamoDato>(p2);
-            BD.CREATE<string, PrestamoDato>(p3);
-            BD.CREATE<string, PrestamoDato>(p4);
-            BD.CREATE<string, PrestamoDato>(p5);
-            BD.CREATE<string, PrestamoDato>(p6);
+            
 
+            
 
 
         }
