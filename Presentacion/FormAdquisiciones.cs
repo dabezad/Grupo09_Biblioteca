@@ -301,7 +301,6 @@ namespace Presentacion
             Libro l=lnAdq.MostrarLibroMasLeido();
             FormDatos frm= new FormDatos();
             CtrlDatosLib control = new CtrlDatosLib(100, 50);
-            CtrlDatosUsu controlVeces = new CtrlDatosUsu(350,50);
             frm.Text = "Libro más leído";
             frm.LbClave.Text = "ISBN";
             frm.BtAceptar.Text = "Aceptar";
@@ -313,8 +312,19 @@ namespace Presentacion
             control.TbEditorial.Text = l.Editorial;
             control.TbEditorial.ReadOnly = true;
             control.BtAniadirEj.Hide();
-            controlVeces.LbNombre.Text = "Veces leídas";
-            controlVeces.TbNombre.Text="Yokakin bro haz algo";
+
+            Label lbVecesLeidas = new Label();
+            TextBox tbVecesLeidas = new TextBox();
+
+            lbVecesLeidas.Text = "Veces leídas";
+            lbVecesLeidas.Location = new Point(45, 170);
+            lbVecesLeidas.Width -= 25;
+            tbVecesLeidas.Text = lnAdq.MostrarVecesLibroMasLeido().ToString();
+            tbVecesLeidas.ReadOnly = true;
+            tbVecesLeidas.Location = new Point(117, 167);
+            control.Controls.Add(lbVecesLeidas);
+            control.Controls.Add(tbVecesLeidas);
+
             frm.Controls.Add(control);
             DialogResult dLibLeido = frm.ShowDialog();
             if (dLibLeido == DialogResult.Cancel)
@@ -325,13 +335,22 @@ namespace Presentacion
         }
 
         /// <summary>
-        /// Muestra un listado con todos los ejemplares
+        /// Muestra un listado con todos los ejemplares o un mensaje indicando que no hay ningún ejemplar en el sistema
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TsmiListadoEj_Click(object sender, EventArgs e)
         {
-            //HACERLO CON DATAGRIDVIEW
+            List<Ejemplar> ejemplares = lnAdq.MostrarEjemplares();
+            if (ejemplares.Count() > 0)
+            {
+                FormListadoEjs listadoEjs = new FormListadoEjs(ejemplares);
+                listadoEjs.ShowDialog();
+            } else
+            {
+                MessageBox.Show("No existen ejemplares en el sistema actualmente", "Listado de ejemplares", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         /// <summary>
@@ -379,7 +398,7 @@ namespace Presentacion
                         DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún libro con ese ISBN", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (res == DialogResult.Yes)
                         {
-                            TsmiBusqLib_Click(sender, e);
+                            TsmiEjDisp_Click(sender, e);
                         }
                     }
                 }
@@ -852,7 +871,7 @@ namespace Presentacion
         /// <param name="isbn"></param>
         private void MostrarFormAltaLib(string isbn)
         {
-            CtrlDatosLib control = new CtrlDatosLib(100, 100);
+            CtrlDatosLib control = new CtrlDatosLib(100, 50);
             FormDatos formAltaLib = new FormDatos();
             formAltaLib.Text = "Alta de un libro";
             formAltaLib.LbClave.Text = "ISBN";
@@ -901,7 +920,7 @@ namespace Presentacion
         /// <param name="l"></param>
         private void AniadirEjsDsdLibro(Libro l)
         {
-            CtrlDatosLib control = new CtrlDatosLib(100, 100);
+            CtrlDatosLib control = new CtrlDatosLib(100, 50);
             FormDatos formAltaLib = new FormDatos();
             formAltaLib.Text = "Alta de un libro";
             formAltaLib.LbClave.Text = "ISBN";

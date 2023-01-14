@@ -34,22 +34,28 @@
             // 
             // dgPrestamos
             // 
+            this.dgPrestamos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgPrestamos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPrestamos.Location = new System.Drawing.Point(13, 13);
+            this.dgPrestamos.Location = new System.Drawing.Point(17, 16);
+            this.dgPrestamos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgPrestamos.Name = "dgPrestamos";
+            this.dgPrestamos.RowHeadersWidth = 51;
             this.dgPrestamos.RowTemplate.ReadOnly = true;
             this.dgPrestamos.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPrestamos.Size = new System.Drawing.Size(775, 317);
+            this.dgPrestamos.Size = new System.Drawing.Size(1120, 390);
             this.dgPrestamos.TabIndex = 0;
             // 
             // FormListPrest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 450);
+            this.ClientSize = new System.Drawing.Size(1150, 421);
             this.Controls.Add(this.dgPrestamos);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormListPrest";
-            this.Text = "FormListPrest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Listado de todos los préstamos";
             this.Load += new System.EventHandler(this.FormListPrest_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPrestamos)).EndInit();
             this.ResumeLayout(false);

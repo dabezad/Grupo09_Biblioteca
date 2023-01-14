@@ -171,14 +171,22 @@ namespace Presentacion
         }
 
         /// <summary>
-        /// Muestra los prestamos activos
+        /// Muestra los prestamos activos o un mensaje indicando que no hay ningún préstamo en proceso en el sistema
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TsmiPrestAct_Click(object sender, EventArgs e)
         {
-            FormListPrestEnProc fListado = new FormListPrestEnProc(lnSala.ObtenerPrestamosEnProceso());
-            fListado.Show();
+            List<Prestamo> prestamos = lnSala.ObtenerPrestamosEnProceso();
+            if (prestamos.Count > 0)
+            {
+                FormListPrestEnProc fListado = new FormListPrestEnProc(lnSala.ObtenerPrestamosEnProceso());
+                fListado.ShowDialog();
+            } else
+            {
+                MessageBox.Show("No existen préstamos en proceso actualmente", "Listado de préstamos en proceso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         /// <summary>
@@ -213,7 +221,7 @@ namespace Presentacion
                 fEjNoDev.PsItem.TextChanged += (s, ev) => PonerDatosEjemplarPrestado(fEjNoDev);
 
                 fEjNoDev.Controls.Add(control);
-                fEjNoDev.Show();
+                fEjNoDev.ShowDialog();
             }else
             {
                 MessageBox.Show("Actualmente no hay ningún ejemplar prestado en el sistema", "Ver ejemplares no devueltos", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -308,7 +316,7 @@ namespace Presentacion
                 controlNuevo.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
                 controlNuevo.Tbusuario.Text = p.Usuario.Dni;
                 controlNuevo.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
-                control.TbEstado.Text = p.Estado.ToString();
+                controlNuevo.TbEstado.Text = p.Estado.ToString();
                 fPrestCad.Controls.Add(controlNuevo);
             }
         }
@@ -318,22 +326,99 @@ namespace Presentacion
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// <exception cref="NotImplementedException"></exception>
         private void TsmiPrestLib_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormClave formIsbn = new FormClave();
+            formIsbn.Text = "Introducir ISBN";
+            formIsbn.LbClave.Text = "ISBN";
+            DialogResult d = formIsbn.ShowDialog();
+            if (d == DialogResult.Cancel)
+            {
+                formIsbn.Close();
+            }
+            else
+            {
+                string isbn = formIsbn.TbClave.Text;
+                if (isbn != "")
+                {
+                    Libro l = lnB.BuscarLibro(isbn);
+                    if (l != null)
+                    {
+                        MostrarListadoPrest(l);
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("¿Quieres introducir otro?", "No existe ningún libro con ese ISBN", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (res == DialogResult.Yes)
+                        {
+                            TsmiPrestLib_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            formIsbn.Dispose();
         }
 
+        private void MostrarListadoPrest(Libro l)
+        {
+            List<Prestamo> prestamos = lnSala.ObtenerPrestamosLibro(l);
+            if (prestamos.Count > 0)
+            {
+                FormNavig fPrestLib = new FormNavig();
+                BindingSource bsDatos = new BindingSource();
+
+                fPrestLib.Text = "Préstamos de un libro";
+                fPrestLib.LbClave.Text = "Código de préstamo";
+                fPrestLib.LbClave.Left -= 60;
+                fPrestLib.TbClave.ReadOnly = true;
+
+
+                fPrestLib.BnDatos.BindingSource = bsDatos;
+                fPrestLib.BnDatos.BindingSource.DataSource = prestamos;
+                Prestamo p = (Prestamo)fPrestLib.BnDatos.BindingSource.Current;
+                CtrlDatosPrestamoBusq control = new CtrlDatosPrestamoBusq(100, 35, lnSala.ObtenerEjemplaresDePrestamo(p.Codigo));
+
+                fPrestLib.TbClave.Text = p.Codigo;
+                control.Tbdevolucion.Text = p.FFinPrestamo.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                control.Tbusuario.Text = p.Usuario.Dni;
+                control.Tbfecha.Text = p.FRealizado.ToString(CultureInfo.GetCultureInfo("es-ES"));
+                control.TbEstado.Text = p.Estado.ToString();
+
+                fPrestLib.PsItem.TextChanged += (s, ev) => PonerDatosPrestamo(fPrestLib);
+
+                fPrestLib.Controls.Add(control);
+                DialogResult d = fPrestLib.ShowDialog();
+                if (d == DialogResult.Cancel)
+                {
+                    fPrestLib.Close();
+                } else
+                {
+                    MostrarListadoPrest(l);
+                }
+                fPrestLib.Dispose();
+            } else
+            {
+                MessageBox.Show("El libro no tiene ningún préstamo actualmente", "Préstamos de un libro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
         /// <summary>
-        /// Muestra en un formulario todos los prestamos
+        /// Muestra en un formulario todos los prestamos o un mensaje indicando que no hay ningún préstamo en el sistema
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TsmiListado_Click(object sender, EventArgs e)
         {
-            FormListPrest fListado = new FormListPrest(lnSala.MostrarPrestamos());
-            fListado.Show();
+            List<Prestamo> prestamos = lnSala.MostrarPrestamos();
+            if (prestamos.Count > 0)
+            {
+                FormListPrest fListado = new FormListPrest(lnSala.MostrarPrestamos());
+                fListado.ShowDialog();
+            } else
+            {
+                MessageBox.Show("No existen préstamos en el sistema actualmente", "Listado de préstamos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
         }
 
         /// <summary>

@@ -41,7 +41,7 @@ namespace LogicaNegocio
         /// </summary>
         /// <param name="personal"></param>
         /// <returns>Devuelve true si se ha dado de alta correctamente al personal, false si no</returns>
-        public bool AltaPersonal(PersonalBiblioteca personal) 
+        public bool AltaPersonal(PersonalBiblioteca personal) //Método para el botón registrar del login
         {
             return gbd.CrearPersonal(personal);
         }
@@ -88,8 +88,18 @@ namespace LogicaNegocio
         /// <summary>
         /// Devuelve una lista con los ejemplares prestados
         /// </summary>
-        /// <param name="u"></param>
+        /// <param name="isbn"></param>
         /// <returns>Devuelve una lista con los ejemplares prestados</returns>
+        public Libro BuscarLibro(string isbn)
+        {
+            return gbd.BuscarLibro(isbn);
+        }
+
+        /// <summary>
+        /// Muestra los ejemplares que tiene prestados actualmente el usuario u
+        /// </summary>
+        /// <param name="u">Usuario del que se quieren obtener los ejemplares prestados</param>
+        /// <returns>Lista de ejemplares que tiene prestados el usuario</returns>
         public List<Ejemplar> MostrarEjemplaresPrestados(Usuario u) 
         {
             var presJUsu = gbd.RecorrerPrestamos().Where((p) => p.Usuario.Equals(u) && p.Estado == EstadoEnum.EnProceso); //Es necesario crear el objeto EjemplarEnPrestamo para la consulta
@@ -133,12 +143,11 @@ namespace LogicaNegocio
             return new List<Ejemplar>(l);
 
         }
-
         /// <summary>
-        /// Respecto a un ejemplar busca el prestamo en el que está
+        /// Obtiene el préstamo al que pertenece un ejemplar prestado
         /// </summary>
-        /// <param name="e"></param>
-        /// <returns>Respecto a un ejemplar busca el prestamo en el que está</returns>
+        /// <param name="e">Ejemplar en estado Prestado del que se quiere obtener el préstamo al que pertenece</param>
+        /// <returns>Prestamo al que pertenece el ejemplar</returns>
         public Prestamo ObtenerPrestamoDeEjemplar(Ejemplar e)
         {
             var eeps = gbd.RecorrerEEP().Where((eep) => eep.CodEj == e.Codigo);

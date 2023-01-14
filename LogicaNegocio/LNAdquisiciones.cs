@@ -75,15 +75,7 @@ namespace LogicaNegocio
             return gbd.EliminarEjemplar(id);
         }
 
-        /// <summary>
-        /// Busca un libro respecto a su isbn
-        /// </summary>
-        /// <param name="isbn"></param>
-        /// <returns>devuelve el libro con el isbn dado</returns>
-        public Libro BuscarLibro(string isbn)
-        {
-            return gbd.BuscarLibro(isbn);
-        }
+        
 
         /// <summary>
         /// busca el ejemplar respecto a un codigo
@@ -159,6 +151,12 @@ namespace LogicaNegocio
             Ejemplar l2 = gbd.RecorrerEjemplares().Where((ej) => ej.Codigo == eep.CodEj).First(); //de Prestamo -> EEP -> Ejemplar -> Libro
             Libro masLeido = gbd.RecorrerLibros().Where((lib) => l2.Libro.Isbn == lib.Isbn).First();
             return masLeido;
+        }
+
+        public int MostrarVecesLibroMasLeido()
+        {
+            var l = gbd.RecorrerEEP().Max(eep => eep.CodEj.Distinct().Count());
+            return (int)l;
         }
     }
 }

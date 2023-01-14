@@ -74,6 +74,7 @@ namespace Persistencia
             LibroDato l4 = new LibroDato("3355", "1984", "George Orwell", "Planeta", "Pepa");
             LibroDato l5 = new LibroDato("6565", "Hamlet", "William Shakespeare", "Valdemar", "Pepa");
             LibroDato l6 = new LibroDato("7769", "Viaje al centro de la tierra", "Julio Verne", "Urano", "Pepa");
+            LibroDato l7 = new LibroDato("7777", "El libro troll", "ElRubiusOMG", "Santillán", "Pepa");
             
             EjemplarDato e1 = new EjemplarDato("e11", EstadoEjemplarEnum.Prestado, "1111", "Pepa");
             EjemplarDato e2 = new EjemplarDato("e12", EstadoEjemplarEnum.Disponible, "1111", "Pepa"); 
@@ -89,6 +90,9 @@ namespace Persistencia
             EjemplarDato e12 = new EjemplarDato("e62", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
             EjemplarDato e13 = new EjemplarDato("e63", EstadoEjemplarEnum.Disponible, "7769", "Pepa");
             EjemplarDato e14 = new EjemplarDato("e52", EstadoEjemplarEnum.Prestado, "6565", "Pepa");
+            EjemplarDato e15 = new EjemplarDato("e71", EstadoEjemplarEnum.Prestado, "7777", "Pepa");
+            EjemplarDato e16 = new EjemplarDato("e72", EstadoEjemplarEnum.Prestado, "7777", "Pepa");
+            EjemplarDato e17 = new EjemplarDato("e73", EstadoEjemplarEnum.Disponible, "7777", "Pepa");
 
             PrestamoDato p1 = new PrestamoDato("p1", "11111111A", DateTime.Now, DateTime.Now.AddDays(15), EstadoEnum.EnProceso, "Jose");
             PrestamoDato p2 = new PrestamoDato("p2", "33333333C", DateTime.Now.AddDays(-20), DateTime.Now.AddDays(-5), EstadoEnum.EnProceso, "Jose");
@@ -104,6 +108,8 @@ namespace Persistencia
             EjemplarEnPrestamoDato eep5 = new EjemplarEnPrestamoDato("p2", "e51");
             EjemplarEnPrestamoDato eep6 = new EjemplarEnPrestamoDato("p3", "e61");
             EjemplarEnPrestamoDato eep7 = new EjemplarEnPrestamoDato("p4", "e52");
+            EjemplarEnPrestamoDato eep8 = new EjemplarEnPrestamoDato("p4", "e71");
+            EjemplarEnPrestamoDato eep9 = new EjemplarEnPrestamoDato("p1", "e72");
 
             BD.DELETE<string, PersonalBibliotecaDato>(per1.Id, "PersonalBibliotecaDato");
             BD.DELETE<string, PersonalBibliotecaDato>(per2.Id, "PersonalBibliotecaDato");
@@ -113,13 +119,6 @@ namespace Persistencia
             BD.DELETE<string, UsuarioDato>(u2.Id, "UsuarioDato");
             BD.DELETE<string, UsuarioDato>(u3.Id, "UsuarioDato");
             BD.DELETE<string, UsuarioDato>(u4.Id, "UsuarioDato");
-
-            BD.DELETE<string, LibroDato>(l1.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l2.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l3.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l4.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l5.Isbn, "LibroDato");
-            BD.DELETE<string, LibroDato>(l6.Isbn, "LibroDato");
 
             BD.DELETE<string, EjemplarDato>(e1.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e2.Codigo, "EjemplarDato");
@@ -135,14 +134,9 @@ namespace Persistencia
             BD.DELETE<string, EjemplarDato>(e12.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e13.Codigo, "EjemplarDato");
             BD.DELETE<string, EjemplarDato>(e14.Codigo, "EjemplarDato");
-
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep1.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep2.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep3.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep4.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep5.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep6.Id, "EjemplarEnPrestamoDato");
-            BD.DELETE<ClaveEEP, EjemplarEnPrestamoDato>(eep7.Id, "EjemplarEnPrestamoDato");
+            BD.DELETE<string, EjemplarDato>(e15.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e16.Codigo, "EjemplarDato");
+            BD.DELETE<string, EjemplarDato>(e17.Codigo, "EjemplarDato");
 
             BD.DELETE<string, PrestamoDato>(p1.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p2.Codigo, "PrestamoDato");
@@ -150,6 +144,14 @@ namespace Persistencia
             BD.DELETE<string, PrestamoDato>(p4.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p5.Codigo, "PrestamoDato");
             BD.DELETE<string, PrestamoDato>(p6.Codigo, "PrestamoDato");
+
+            BD.DELETE<string, LibroDato>(l1.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l2.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l3.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l4.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l5.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l6.Isbn, "LibroDato");
+            BD.DELETE<string, LibroDato>(l7.Isbn, "LibroDato");
 
             BD.CREATE<string, PersonalBibliotecaDato>(per1);
             BD.CREATE<string, PersonalBibliotecaDato>(per2);
@@ -159,14 +161,22 @@ namespace Persistencia
             BD.CREATE<string, UsuarioDato>(u2);
             BD.CREATE<string, UsuarioDato>(u3);
             BD.CREATE<string, UsuarioDato>(u4);
-            
+
             BD.CREATE<string, LibroDato>(l1);
             BD.CREATE<string, LibroDato>(l2);
             BD.CREATE<string, LibroDato>(l3);
             BD.CREATE<string, LibroDato>(l4);
             BD.CREATE<string, LibroDato>(l5);
             BD.CREATE<string, LibroDato>(l6);
-            
+            BD.CREATE<string, LibroDato>(l7);
+
+            BD.CREATE<string, PrestamoDato>(p1);
+            BD.CREATE<string, PrestamoDato>(p2);
+            BD.CREATE<string, PrestamoDato>(p3);
+            BD.CREATE<string, PrestamoDato>(p4);
+            BD.CREATE<string, PrestamoDato>(p5);
+            BD.CREATE<string, PrestamoDato>(p6);
+
             BD.CREATE<string, EjemplarDato>(e1);
             BD.CREATE<string, EjemplarDato>(e2);
             BD.CREATE<string, EjemplarDato>(e3);
@@ -181,6 +191,9 @@ namespace Persistencia
             BD.CREATE<string, EjemplarDato>(e12);
             BD.CREATE<string, EjemplarDato>(e13);
             BD.CREATE<string, EjemplarDato>(e14);
+            BD.CREATE<string, EjemplarDato>(e15);
+            BD.CREATE<string, EjemplarDato>(e16);
+            BD.CREATE<string, EjemplarDato>(e17);
 
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep1);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep2);
@@ -189,14 +202,12 @@ namespace Persistencia
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep5);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep6);
             BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep7);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep8);
+            BD.CREATE<ClaveEEP, EjemplarEnPrestamoDato>(eep9);
 
-            BD.CREATE<string, PrestamoDato>(p1);
-            BD.CREATE<string, PrestamoDato>(p2);
-            BD.CREATE<string, PrestamoDato>(p3);
-            BD.CREATE<string, PrestamoDato>(p4);
-            BD.CREATE<string, PrestamoDato>(p5);
-            BD.CREATE<string, PrestamoDato>(p6);
+            
 
+            
 
 
         }
@@ -210,7 +221,7 @@ namespace Persistencia
         /// <returns>True si ha podido insertar el elemento en la BD y falso en caso contrario o si el elemento a insertar es nulo</returns>
         public static bool CREATE<T, U>(U u) where U : Entity<T>
         {
-            if (u == null)
+            if (u.Equals(null))
             {
                 return false;
             }
@@ -269,7 +280,7 @@ namespace Persistencia
         /// <returns>El elemento en la BD cuya clave se corresponde con la pasada por parámetro</returns>
         public static object READ<T, U>(T t, string tabla) where U : Entity<T>
         {
-            if (t == null) return null;
+            if (t.Equals(null)) return null;
             object x = null;
             switch (tabla)
             {
@@ -320,7 +331,7 @@ namespace Persistencia
         public static bool UPDATE<T, U>(U u) where U : Entity<T>
         {
             bool b = false;
-            if (u == null)
+            if (u.Equals(null))
             {
                 b = false;
             }
@@ -393,7 +404,7 @@ namespace Persistencia
                 case "UsuarioDato":
                     foreach (PrestamoDato pd in BD.TPrestamo.ToList())
                     {
-                        if (pd.Usuario==t as string)
+                        if (pd.Usuario.Equals(t as string))
                         {
                             BD.TPrestamo.Remove(pd.Codigo);
                         }                       
@@ -405,7 +416,7 @@ namespace Persistencia
                 case "PrestamoDato":
                     foreach (EjemplarEnPrestamoDato elem in BD.TEEP.ToList())
                     {
-                        if (elem.Id.CodPres == t as string)
+                        if (elem.Id.CodPres.Equals(t as string))
                         {
                             BD.TEEP.Remove(elem.Id);
                         }
@@ -414,7 +425,7 @@ namespace Persistencia
                 case "EjemplarDato":
                     string codEj = t as string;
                     Ejemplar e = BD.READ<string, EjemplarDato>(codEj, "EjemplarDato") as Ejemplar;
-                        var l = BD.TEEP.ToList().Where((eep) => eep.CodEjemplar == codEj);
+                        var l = BD.TEEP.ToList().Where((eep) => eep.CodEjemplar.Equals(codEj));
                         List<EjemplarEnPrestamoDato> listEEP = new List<EjemplarEnPrestamoDato>(l); //EEPs del ejemplar
                         foreach (EjemplarEnPrestamoDato eep in listEEP)
                         {
@@ -422,7 +433,7 @@ namespace Persistencia
                         }
                         return BD.TEjemplar.Remove(codEj); 
                 case "LibroDato":
-                    var b = BD.TEjemplar.ToList().Exists((ej) => ej.Estado == EstadoEjemplarEnum.Prestado);
+                    var b = BD.TEjemplar.ToList().Exists((ej) => ej.Libro.Equals(t as string) && ej.Estado.Equals(EstadoEjemplarEnum.Prestado));
                     if (b)
                     {
                         return false;
@@ -430,7 +441,7 @@ namespace Persistencia
                     {
                         foreach (EjemplarDato ed in BD.TEjemplar.ToList())
                         {
-                            if (ed.Libro == t as string)
+                            if (ed.Libro.Equals(t as string))
                             {
                                 BD.DELETE<string, EjemplarDato>(ed.Codigo, "EjemplarDato"); //Para cada libro se eliminaran todos sus ejemplares 
                             }
